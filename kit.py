@@ -55,9 +55,6 @@ input,select,textarea{font:inherit;color:inherit}
 .searchbar input{flex:1;border:0;outline:0;padding:.7rem 1.1rem;font-size:.95rem;border-radius:999px;background:transparent}
 .searchbar input::placeholder{color:#98A2B3}
 .searchbar button{background:var(--grad);color:#fff;font-weight:700;border-radius:999px;padding:.75rem 1.5rem}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:.34rem .85rem;border-radius:999px;font-size:.84rem;font-weight:600;backdrop-filter:blur(4px);transition:.2s}
-.chip:hover{background:#fff;color:var(--violet)}
 .dom-list{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:20px;padding:1.1rem;backdrop-filter:blur(6px)}
 .dom-list h3{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:.7rem;font-weight:700}
 .dom-list a{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .7rem;border-radius:12px;font-weight:650;font-size:.92rem;transition:.2s}
@@ -159,14 +156,7 @@ DOMAINS = [
 ]
 
 LANGS = ["Engleză", "Franceză", "Spaniolă", "Germană", "Italiană"]
-
 PRODUCTS = []
-
-def cat_title(slug):
-    for s, t, d, i, g in CATEGORIES:
-        if s == slug:
-            return t
-    return "Resurse"
 
 def head(title, desc, active):
     return f"""<!DOCTYPE html>
@@ -257,9 +247,6 @@ def footer():
 </body>
 </html>
 """
-
-def product_card(p):
-    return f"""<div class="card"><h3>{p['title']}</h3><p>{p['price']} LEI</p></div>"""
 
 def category_card(slug, title, desc, icon, grad):
     return f"""

@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 """Script principal de generare a paginilor pentru Caleidoscope Educational.ro"""
 
-from kit import head, footer, category_card, PRODUCTS, CATEGORIES, DOMAINS, LANGS, svg
+from kit import head, footer, category_card, CATEGORIES, DOMAINS, LANGS, svg
 
 def build_index():
-    # Generăm toate cele 12 categorii pentru grilă
     cat_html = "".join(category_card(slug, title, desc, icon, grad) for slug, title, desc, icon, grad in CATEGORIES)
-    
-    # Domeniile populare din hero
     domains_html = "".join(f'<a href="produse.html?dom={slug}">{name} {svg(icon, 16, 2)}</a>' for name, slug, icon in DOMAINS)
-    
-    # Limbile străine
     langs_html = "".join(f'<a href="produse.html?lang={lang}">{lang}</a>' for lang in LANGS)
 
     html = head("Caleidoscope Educational.ro — Resurse educaționale", "Materiale educaționale, cărți, exerciții, rezumate, eseuri.", "home") + f"""
@@ -88,8 +83,19 @@ def build_index():
 
 if __name__ == "__main__":
     build_index()
-    for page_name in ["produse", "categorii", "despre", "blog", "contact", "termeni", "cont", "produs"]:
-        with open(f"{page_name}.html", "w", encoding="utf-8") as f:
-            f.write(head(page_name.capitalize(), "Caleidoscope Educational", page_name) + f"<div class='wrap' style='padding:4rem 0'><h1>{page_name.capitalize()}</h1><p>Pagină în curs de actualizare.</p></div>" + footer())
-        print(f"Generat: {page_name}.html")
+    
+    # Generăm paginile secundare incluzând corect head() și footer()
+    pages = ["produse", "categorii", "despre", "blog", "contact", "termeni", "cont", "produs", "checkout"]
+    for p in pages:
+        html = head(p.capitalize() + " — Caleidoscope Educational", "Resurse educaționale", p) + f"""
+        <div class="wrap" style="padding: 4rem 0;">
+            <h1>{p.capitalize()}</h1>
+            <p>Pagină generată automat și integrată în platformă.</p>
+        </div>
+        """ + footer()
+        
+        with open(f"{p}.html", "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"Generat: {p}.html")
+        
     print("Gata toate paginile!")
