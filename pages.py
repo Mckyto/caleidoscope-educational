@@ -10,8 +10,8 @@ def page_index():
     cats = "".join(category_card(*c) for c in CATEGORIES)
     doms = "".join(
         '<a href="produse.html?cat=%s">%s<span>%s</span></a>' % (
-            "limbi-straine-vocabular" if n == "Limbi străine" else
-            "rezumate-si-eseuri" if n == "Literatură" else
+            "limbi-straine-vocabular" if d == "Limbi străine" else
+            "rezumate-si-eseuri" if d == "Literatură" else
             "literatura-de-specialitate",
             n, "→")
         for n, s, i in DOMAINS)
@@ -535,6 +535,50 @@ def page_cont():
 def page_produs():
     data = json.dumps([{k: p[k] for k in ("id", "title", "cat", "lang", "level", "fmt", "pages", "price", "old", "badge", "rating", "votes", "icon")} for p in PRODUCTS], ensure_ascii=False)
     body = """
+<div class="page-head"><div class="wrap breadcrumb"><a href="index.html">Acasă</a> › <a href="produse.html">Produse</a> › <span id="crumb">Produs</span></div></div>
+<section><div class="wrap" id="detail"></div></section>
+<script>
+var DATA=__DATA__;
+var grads=%s;
+function params(){ return new URLSearchParams(location.search) }
+var id=parseInt(params().get('id')||'1',10);
+var p=DATA.filter(function(x){return x.id===id})[0]||DATA[0];
+var related=DATA.filter(function(x){return x.cat===p.cat && x.id!==p.id}).slice(0,4);
+if(!related.length){ related=DATA.slice(0,4) }
+document.getElementById('crumb').textContent=p.title.slice(0,40)+'…';
+document.title=p.title+' — Caleidoscope Educational.ro';
+function card(x){
+  return '<a class="card" href="produs.html?id='+x.id+'" style="text-decoration:none">'
+   +'<div class="cover" style="background:'+grads[x.icon]+'"><span class="fmt">'+x.fmt+'</span><span class="cico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span></div>'
+   +'<div class="card-body"><h3>'+x.title+'</h3><div class="meta"><span>'+x.pages+'</span><span>'+x.lang+'</span></div></div>'
+   +'<div class="card-foot"><div class="price">'+x.price+' LEI</div><span class="add">Vezi</span></div></a>';
+}
+document.getElementById('detail').innerHTML=
+ '<div class="grid-2" style="align-items:start">'
+ +'<div><div class="cover" style="height:320px;border-radius:22px;background:'+grads[p.icon]+'">'
+ +'<span class="tag" style="top:1rem;left:1rem">'+(p.badge||'Resursă')+'</span>'
+ +'<span class="cico" style="width:96px;height:96px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span></div>'
+ +'<div class="tile" style="margin-top:1rem"><h3>Ce conține</h3><ul>'
+ +'<li>Fișier '+p.fmt+' — '+p.pages+'</li><li>Nivel: '+p.level+'</li><li>Limbă: '+p.lang+'</li>'
+ +'<li>Extras gratuit (3 pagini) înainte de cumpărare</li><li>Actualizări gratuite timp de 12 luni</li>'
+ +'<li>Licență de utilizare personală</li></ul></div></div>'
+ +'<div><span class="cat" style="color:var(--violet);font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:.76rem">'+p.cat.replace(/-/g,' ')+'</span>'
+ +'<h1 style="font-size:1.7rem;font-weight:800;margin:.5rem 0 .6rem;line-height:1.2">'+p.title+'</h1>'
+ +'<div class="rating" style="font-size:.95rem">★ '+p.rating+' <small>('+p.votes+' recenzii)</small></div>'
+ +'<div class="price" style="font-size:2rem;margin:1rem 0 .3rem">'+p.price+' LEI '+(p.old?'<small style="font-size:1rem">'+p.old+' LEI</small>':'')+'</div>'
+ +'<div class="price-note">TVA inclus · descărcare instantă · factură fiscală automată</div>'
+ +'<div style="display:flex;gap:.6rem;margin:1.4rem 0;flex-wrap:wrap">'
+ +'<button class="btn btn-primary add" data-id="'+p.id+'" data-title="'+p.title.replace(/"/g,'')+'" data-price="'+p.price+'">Adaugă în coș</button>'
+ +'<a class="btn btn-ghost" href="contact.html">Cere o mostră</a></div>'
+ +'<div class="tile"><h3>Descriere</h3><p style="margin-top:.4rem">Material realizat de autori cu experiență didactică, structurat progresiv, cu explicații pas cu pas, exemple rezolvate și barem de corectare. Conținutul este verificat și actualizat periodic; primești gratuit orice versiune nouă apărută în 12 luni de la achiziție.</p>'
+ +'<p style="margin-top:.7rem">După plată, primești pe e-mail factura și linkul de descărcare, valabil 12 luni, cu re-descărcări nelimitate.</p></div>'
+ +'<div class="faq" style="margin-top:1.2rem"><details open><summary>Cum folosesc materialul?</summary><p>Îl descarci, îl poți tipări sau folosi pe tabletă/laptop. Este optimizat pentru print A4.</p></details>'
+ +'<details><summary>Pot folosi materialul la clasă?</summary><p>Da, la nivelul unei clase. Pentru școli oferim licențe extinse — vezi pagina de contact.</p></details>'
+ +'<details><summary>Lucrările sunt gata de predat?</summary><p>Nu. Oferim ghiduri, structuri și instrumente de lucru, nu lucrări redactate integral.</p></details></div>'
+ +'</div></div>'
+ +'<div style="margin-top:3rem"><h2 style="font-weight:800;margin-bottom:1rem">Resurse similare</h2><div class="prod-grid">'+related.map(card).join('')+'</div></div>';
+</script>
+""" % json.dumps(GRADS_JS, ensure_ascii=False) if False else """
 <div class="page-head"><div class="wrap breadcrumb"><a href="index.html">Acasă</a> › <a href="produse.html">Produse</a> › <span id="crumb">Produs</span></div></div>
 <section><div class="wrap" id="detail"></div></section>
 <script>
