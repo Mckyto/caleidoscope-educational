@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalog resurse educaționale — Caleidoscope Educational.ro</title>
-<meta name="description" content="Catalog complet.">
+<meta name="description" content="Catalog complet de resurse educaționale: exerciții, fișe de lucru, rezumate, eseuri, hărți, audiobookuri, ghiduri de licență.">
+<meta name="theme-color" content="#6D28D9">
+<link rel="canonical" href="https://mckyto.github.io/caleidoscope-educational/produse.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect x='1' y='1' width='42' height='42' rx='13' fill='%236D28D9'/%3E%3Cg stroke='%23fff' stroke-width='1.6' fill='none'%3E%3Ccircle cx='22' cy='22' r='12'/%3E%3Cpath d='M22 10l10.4 18H11.6z'/%3E%3Cpath d='M22 34L11.6 16h20.8z'/%3E%3C/g%3E%3Ccircle cx='22' cy='22' r='3.4' fill='%230EA5A4'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Caleidoscope Educational.ro">
+<meta property="og:title" content="Catalog resurse educaționale — Caleidoscope Educational.ro">
+<meta property="og:description" content="Catalog complet de resurse educaționale: exerciții, fișe de lucru, rezumate, eseuri, hărți, audiobookuri, ghiduri de licență.">
+<meta property="og:url" content="https://mckyto.github.io/caleidoscope-educational/produse.html">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Caleidoscope Educational.ro","url":"https://mckyto.github.io/caleidoscope-educational/","potentialAction":{"@type":"SearchAction","target":"https://mckyto.github.io/caleidoscope-educational/produse.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <style>
 :root{
   --violet:#6D28D9; --violet-2:#7C3AED; --indigo:#4F46E5;
@@ -262,6 +273,60 @@ section{padding:4rem 0}
 .reveal{opacity:0;transform:translateY(14px);transition:.6s}
 .reveal.in{opacity:1;transform:none}
 
+/* ---------- WISHLIST / QTY / CHECKOUT / 404 ---------- */
+.wish{position:absolute;top:.6rem;right:.6rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;transition:.2s;z-index:2}
+.wish:hover{transform:scale(1.08);color:var(--pink)}
+.wish.on{color:var(--pink)}
+.wish.on svg{fill:var(--pink)}
+.cover .fmt{bottom:.6rem;right:.6rem}
+.cart-line{display:grid;grid-template-columns:1fr auto auto auto;gap:.8rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.cart-line .t{font-weight:650;font-size:.92rem;line-height:1.3}
+.cart-line .t small{display:block;color:var(--muted);font-weight:600;font-size:.76rem}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
+.qty button{width:30px;height:30px;font-weight:800;color:var(--violet)}
+.qty button:hover{background:#F4F1FF}
+.qty span{min-width:26px;text-align:center;font-weight:700;font-size:.9rem}
+.rm{color:var(--muted);width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.rm:hover{background:#FEF2F2;color:#DC2626}
+.sum-row{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.92rem;color:var(--ink-2)}
+.sum-row.total{border-top:1px solid var(--line);margin-top:.5rem;padding-top:.9rem;font-weight:800;font-size:1.15rem;color:var(--ink)}
+.sum-row.disc{color:#059669;font-weight:700}
+.coupon{display:flex;gap:.5rem;margin:.9rem 0}
+.coupon input{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;outline:0;text-transform:uppercase}
+.coupon input:focus{border-color:var(--violet)}
+.field .err{font-size:.78rem;color:#DC2626;display:none}
+.field.invalid input{border-color:#DC2626}
+.field.invalid .err{display:block}
+.pay-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.4rem 0 1rem}
+.pay-opts label{border:1.5px solid var(--line);border-radius:12px;padding:.6rem;text-align:center;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.pay-opts input{display:none}
+.pay-opts input:checked+span{color:var(--violet)}
+.pay-opts label:has(input:checked){border-color:var(--violet);background:#F6F3FF}
+.success{text-align:center;max-width:560px;margin:0 auto;padding:2rem 0}
+.success .ok{width:84px;height:84px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;margin:0 auto 1.2rem}
+.success h2{font-size:1.7rem;font-weight:800}
+.success p{color:var(--muted);margin-top:.6rem}
+.p404{text-align:center;padding:5rem 0}
+.p404 b{font-size:6rem;font-weight:800;line-height:1;display:block}
+.p404 h1{font-size:1.6rem;margin:.6rem 0 .4rem}
+.p404 p{color:var(--muted)}
+.skel{background:linear-gradient(90deg,#F3F0FF 25%,#EAE6FA 50%,#F3F0FF 75%);background-size:200% 100%;animation:sh 1.2s infinite;border-radius:14px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.back-top{position:fixed;right:1.5rem;bottom:5rem;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--violet);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.back-top.show{opacity:1;pointer-events:auto}
+.level-pill{display:inline-block;background:#F4F1FF;color:var(--violet);font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:999px}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.8rem}
+.spec div{background:#F8F7FF;border-radius:12px;padding:.6rem .8rem;font-size:.86rem}
+.spec div b{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.desc-list{display:grid;gap:.4rem;margin-top:.6rem}
+.desc-list li{display:flex;gap:.5rem;font-size:.9rem;color:var(--ink-2)}
+.desc-list li:before{content:"✓";color:var(--teal);font-weight:800}
+@media(max-width:560px){
+  .cart-line{grid-template-columns:1fr auto;row-gap:.4rem}
+  .pay-opts{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
 @media(max-width:1200px){
   .hero-grid{grid-template-columns:1fr 1fr;gap:1.4rem}
   .cat-grid{grid-template-columns:repeat(4,1fr)}
@@ -316,6 +381,7 @@ section{padding:4rem 0}
     <nav class="nav" id="nav"><a href="index.html" class="">Acasă</a><div class="drop"><a href="produse.html" class="active">Produse ▾</a><div class="drop-panel"><a href="produse.html?cat=carti-si-materiale-scolare">Cărți și materiale școlare<small>Manuale auxiliare, culegeri, sinteze pe materii</small></a><a href="produse.html?cat=exercitii-si-fise-de-lucru">Exerciții și fișe de lucru<small>Fișe printabile cu exerciții și barem</small></a><a href="produse.html?cat=povesti-si-carti-de-lectura">Povești și cărți de lectură<small>Lecturi pentru copii + fișe de înțelegere</small></a><a href="produse.html?cat=harti-si-atlase">Hărți și atlase<small>Hărți printabile A4/A3, atlase tematice</small></a><a href="produse.html?cat=rezumate-si-eseuri">Rezumate și eseuri<small>Rezumate, comentarii, eseuri argumentative</small></a><a href="produse.html?cat=schite-si-conspecte">Schițe și conspecte<small>Structuri, scheme, conspecte de curs</small></a><a href="produse.html" style="color:var(--violet)">Toate produsele →</a></div></div><div class="drop"><a href="categorii.html" class="">Categorii ▾</a><div class="drop-panel"><a href="produse.html?cat=limbi-straine-vocabular">Limbi străine – vocabular<small>Cuvinte și expresii pe teme, A1–B2</small></a><a href="produse.html?cat=audiobookuri">Audiobookuri<small>Cărți audio și lecții ascultate, MP3</small></a><a href="produse.html?cat=licenta-si-disertatie">Licență și disertație<small>Ghiduri, structuri, bibliografii, teme</small></a><a href="produse.html?cat=literatura-de-specialitate">Literatură de specialitate<small>Sinteze și ghiduri de studiu pe domenii</small></a><a href="produse.html?cat=planuri-de-lucru-stiintifice">Planuri de lucru științifice<small>Modele de plan, metodologie, etape</small></a><a href="produse.html?cat=si-multe-altele">Și multe altele...<small>Resurse personalizate la cerere</small></a><a href="categorii.html" style="color:var(--violet)">Toate categoriile →</a></div></div><a href="despre.html" class="">Despre noi</a><a href="blog.html" class="">Blog</a><a href="contact.html" class="">Contact</a></nav>
     <div class="hdr-actions">
       <a class="icon-btn only-desktop" href="cont.html" aria-label="Contul meu"><svg class="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a class="icon-btn" href="favorite.html" aria-label="Favorite"><svg class="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="cart-count" id="wishCount" style="background:var(--violet)">0</span></a>
       <button class="icon-btn" id="cartBtn" aria-label="Coșul meu"><svg class="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg><span class="cart-count" id="cartCount">0</span></button>
       <button class="nav-toggle" id="navToggle" aria-label="Meniu"><svg class="" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg></button>
     </div>
@@ -327,25 +393,48 @@ section{padding:4rem 0}
   <h1>Toate resursele educaționale</h1>
   <p>Filtrează după categorie, limbă, nivel, format sau buget. Descărcare instantă după plată.</p>
 </div></div>
+<style>@media(max-width:900px){.filters{display:none}.filters.open{display:block}}</style>
 <section><div class="wrap shop">
   <aside class="filters">
     <h3>Filtrează</h3>
     <div class="fgroup"><h4>Căutare</h4>
-      <input type="search" id="q" placeholder="Caută după titlu..." style="width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;outline:0">
+      <input type="search" id="q" placeholder="Caută după titlu..." aria-label="Caută" style="width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;outline:0">
     </div>
+    <div class="fgroup"><h4>Categorie</h4><label><input type="checkbox" name="cat" value="limbi-straine-vocabular"> Limbi străine – vocabular <span>6</span></label><label><input type="checkbox" name="cat" value="rezumate-si-eseuri"> Rezumate și eseuri <span>3</span></label><label><input type="checkbox" name="cat" value="licenta-si-disertatie"> Licență și disertație <span>3</span></label><label><input type="checkbox" name="cat" value="exercitii-si-fise-de-lucru"> Exerciții și fișe de lucru <span>2</span></label><label><input type="checkbox" name="cat" value="povesti-si-carti-de-lectura"> Povești și cărți de lectură <span>2</span></label><label><input type="checkbox" name="cat" value="harti-si-atlase"> Hărți și atlase <span>2</span></label><label><input type="checkbox" name="cat" value="audiobookuri"> Audiobookuri <span>2</span></label><label><input type="checkbox" name="cat" value="literatura-de-specialitate"> Literatură de specialitate <span>2</span></label><label><input type="checkbox" name="cat" value="schite-si-conspecte"> Schițe și conspecte <span>1</span></label><label><input type="checkbox" name="cat" value="planuri-de-lucru-stiintifice"> Planuri de lucru științifice <span>1</span></label></div>
+    <div class="fgroup"><h4>Limbă</h4><label><input type="checkbox" name="lang" value="Engleză"> Engleză <span>3</span></label><label><input type="checkbox" name="lang" value="Franceză"> Franceză <span>1</span></label><label><input type="checkbox" name="lang" value="Germană"> Germană <span>1</span></label><label><input type="checkbox" name="lang" value="Italiană"> Italiană <span>1</span></label><label><input type="checkbox" name="lang" value="Română"> Română <span>17</span></label><label><input type="checkbox" name="lang" value="Spaniolă"> Spaniolă <span>1</span></label></div>
+    <div class="fgroup"><h4>Nivel</h4><label><input type="checkbox" name="level" value="Studenți"> Studenți <span>5</span></label><label><input type="checkbox" name="level" value="Liceu"> Liceu <span>4</span></label><label><input type="checkbox" name="level" value="A1–A2"> A1–A2 <span>3</span></label><label><input type="checkbox" name="level" value="A1"> A1 <span>3</span></label><label><input type="checkbox" name="level" value="Primar"> Primar <span>2</span></label><label><input type="checkbox" name="level" value="Bac"> Bac <span>1</span></label><label><input type="checkbox" name="level" value="Primar/Gimnaziu"> Primar/Gimnaziu <span>1</span></label><label><input type="checkbox" name="level" value="Preșcolari"> Preșcolari <span>1</span></label><label><input type="checkbox" name="level" value="Toate"> Toate <span>1</span></label><label><input type="checkbox" name="level" value="3–8 ani"> 3–8 ani <span>1</span></label><label><input type="checkbox" name="level" value="Master"> Master <span>1</span></label><label><input type="checkbox" name="level" value="B1–B2"> B1–B2 <span>1</span></label></div>
+    <div class="fgroup"><h4>Format</h4><label><input type="checkbox" name="fmt" value="PDF"> PDF <span>20</span></label><label><input type="checkbox" name="fmt" value="MP3"> MP3 <span>2</span></label><label><input type="checkbox" name="fmt" value="PDF + MP3"> PDF + MP3 <span>1</span></label><label><input type="checkbox" name="fmt" value="PDF + DOCX"> PDF + DOCX <span>1</span></label></div>
+    <div class="fgroup">
+      <h4>Preț maxim: <span id="rangeVal">100 LEI</span></h4>
+      <input type="range" id="range" min="15" max="100" value="100" aria-label="Preț maxim" style="width:100%;accent-color:#6D28D9">
+    </div>
+    <button class="btn btn-ghost btn-sm" id="reset" style="width:100%;justify-content:center;margin-top:.6rem">Resetează filtrele</button>
   </aside>
   <div>
+    <div class="shop-bar">
+      <button class="btn btn-ghost btn-sm" id="filtersToggle" style="display:none">Filtre</button>
+      <span class="count"><span id="count">24</span> <span>resurse găsite</span></span>
+      <div class="chips" id="activeChips" style="margin:0"></div>
+      <select id="sort" aria-label="Sortare">
+        <option value="popular">Sortare: popularitate</option>
+        <option value="rating">Rating</option>
+        <option value="new">Cele mai noi</option>
+        <option value="price-asc">Preț: crescător</option>
+        <option value="price-desc">Preț: descrescător</option>
+      </select>
+    </div>
     <div class="prod-grid" id="grid">
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Engleză" data-level="A1–A2" data-fmt="PDF" data-price="49" data-title="engleză pentru începători a1–a2: 200 de exerciții + vocabular">
+    <article class="card reveal" data-id="1" data-cat="limbi-straine-vocabular" data-lang="Engleză" data-level="A1–A2" data-fmt="PDF" data-price="49" data-votes="214" data-rating="4.9" data-title="engleză pentru începători a1–a2: 200 de exerciții + vocabular">
       <div class="cover" style="background:linear-gradient(135deg,#4F46E5,#0EA5A4)">
         <span class="tag">Bestseller</span>
+        <button class="wish" data-id="1" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <a class="cico" href="produs.html?id=1" aria-label="Engleză pentru începători A1–A2: 200 de exerciții + vocabular"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=1">Engleză pentru începători A1–A2: 200 de exerciții + vocabular</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 124 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 124 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span><span class="level-pill">A1–A2</span></div>
         <div class="rating">★ 4.9 <small>(214)</small></div>
       </div>
       <div class="card-foot">
@@ -353,16 +442,17 @@ section{padding:4rem 0}
         <button class="add" data-id="1" data-title="Engleză pentru începători A1–A2: 200 de exerciții + vocabular" data-price="49"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Franceză" data-level="A1" data-fmt="PDF" data-price="39" data-title="500 de cuvinte esențiale în franceză – vocabular ilustrat">
+    <article class="card reveal" data-id="2" data-cat="limbi-straine-vocabular" data-lang="Franceză" data-level="A1" data-fmt="PDF" data-price="39" data-votes="96" data-rating="4.8" data-title="500 de cuvinte esențiale în franceză – vocabular ilustrat">
       <div class="cover" style="background:linear-gradient(135deg,#4F46E5,#0EA5A4)">
         <span class="tag">Nou</span>
+        <button class="wish" data-id="2" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <a class="cico" href="produs.html?id=2" aria-label="500 de cuvinte esențiale în franceză – vocabular ilustrat"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=2">500 de cuvinte esențiale în franceză – vocabular ilustrat</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 78 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Franceză</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 78 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Franceză</span><span class="level-pill">A1</span></div>
         <div class="rating">★ 4.8 <small>(96)</small></div>
       </div>
       <div class="card-foot">
@@ -370,16 +460,17 @@ section{padding:4rem 0}
         <button class="add" data-id="2" data-title="500 de cuvinte esențiale în franceză – vocabular ilustrat" data-price="39"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Spaniolă" data-level="A1–A2" data-fmt="PDF" data-price="45" data-title="spaniolă de la zero: 60 de lecții cu dialoguri și exerciții">
+    <article class="card reveal" data-id="3" data-cat="limbi-straine-vocabular" data-lang="Spaniolă" data-level="A1–A2" data-fmt="PDF" data-price="45" data-votes="131" data-rating="4.7" data-title="spaniolă de la zero: 60 de lecții cu dialoguri și exerciții">
       <div class="cover" style="background:linear-gradient(135deg,#4F46E5,#0EA5A4)">
         
+        <button class="wish" data-id="3" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <a class="cico" href="produs.html?id=3" aria-label="Spaniolă de la zero: 60 de lecții cu dialoguri și exerciții"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=3">Spaniolă de la zero: 60 de lecții cu dialoguri și exerciții</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 150 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Spaniolă</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 150 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Spaniolă</span><span class="level-pill">A1–A2</span></div>
         <div class="rating">★ 4.7 <small>(131)</small></div>
       </div>
       <div class="card-foot">
@@ -387,16 +478,17 @@ section{padding:4rem 0}
         <button class="add" data-id="3" data-title="Spaniolă de la zero: 60 de lecții cu dialoguri și exerciții" data-price="45"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Germană" data-level="A1" data-fmt="PDF" data-price="45" data-title="germană a1: vocabular pe teme + 80 de fișe de lucru">
+    <article class="card reveal" data-id="4" data-cat="limbi-straine-vocabular" data-lang="Germană" data-level="A1" data-fmt="PDF" data-price="45" data-votes="88" data-rating="4.8" data-title="germană a1: vocabular pe teme + 80 de fișe de lucru">
       <div class="cover" style="background:linear-gradient(135deg,#4F46E5,#0EA5A4)">
         
+        <button class="wish" data-id="4" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <a class="cico" href="produs.html?id=4" aria-label="Germană A1: vocabular pe teme + 80 de fișe de lucru"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=4">Germană A1: vocabular pe teme + 80 de fișe de lucru</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 96 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Germană</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 96 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Germană</span><span class="level-pill">A1</span></div>
         <div class="rating">★ 4.8 <small>(88)</small></div>
       </div>
       <div class="card-foot">
@@ -404,16 +496,17 @@ section{padding:4rem 0}
         <button class="add" data-id="4" data-title="Germană A1: vocabular pe teme + 80 de fișe de lucru" data-price="45"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Italiană" data-level="A1–A2" data-fmt="PDF + MP3" data-price="55" data-title="italiană pentru călătorii: expresii utile + audio">
+    <article class="card reveal" data-id="5" data-cat="limbi-straine-vocabular" data-lang="Italiană" data-level="A1–A2" data-fmt="PDF + MP3" data-price="55" data-votes="142" data-rating="4.9" data-title="italiană pentru călătorii: expresii utile + audio">
       <div class="cover" style="background:linear-gradient(135deg,#4F46E5,#0EA5A4)">
         <span class="tag">Pachet</span>
+        <button class="wish" data-id="5" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF + MP3</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <a class="cico" href="produs.html?id=5" aria-label="Italiană pentru călătorii: expresii utile + audio"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=5">Italiană pentru călătorii: expresii utile + audio</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 62 pagini · 55 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Italiană</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 62 pagini · 55 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Italiană</span><span class="level-pill">A1–A2</span></div>
         <div class="rating">★ 4.9 <small>(142)</small></div>
       </div>
       <div class="card-foot">
@@ -421,16 +514,17 @@ section{padding:4rem 0}
         <button class="add" data-id="5" data-title="Italiană pentru călătorii: expresii utile + audio" data-price="55"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="19" data-title="rezumat „romeo și julieta” – shakespeare (analiză + personaje)">
+    <article class="card reveal" data-id="6" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="19" data-votes="389" data-rating="4.9" data-title="rezumat „romeo și julieta” – shakespeare (analiză + personaje)">
       <div class="cover" style="background:linear-gradient(135deg,#6D28D9,#A78BFA)">
         <span class="tag">Bestseller</span>
+        <button class="wish" data-id="6" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></span>
+        <a class="cico" href="produs.html?id=6" aria-label="Rezumat „Romeo și Julieta” – Shakespeare (analiză + personaje)"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Rezumate și eseuri</span>
         <h3><a href="produs.html?id=6">Rezumat „Romeo și Julieta” – Shakespeare (analiză + personaje)</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 32 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 32 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Liceu</span></div>
         <div class="rating">★ 4.9 <small>(389)</small></div>
       </div>
       <div class="card-foot">
@@ -438,16 +532,17 @@ section{padding:4rem 0}
         <button class="add" data-id="6" data-title="Rezumat „Romeo și Julieta” – Shakespeare (analiză + personaje)" data-price="19"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Bac" data-fmt="PDF" data-price="24" data-title="eseu: tema și viziunea despre lume în „moromeții”">
+    <article class="card reveal" data-id="7" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Bac" data-fmt="PDF" data-price="24" data-votes="176" data-rating="4.8" data-title="eseu: tema și viziunea despre lume în „moromeții”">
       <div class="cover" style="background:linear-gradient(135deg,#6D28D9,#A78BFA)">
         
+        <button class="wish" data-id="7" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></span>
+        <a class="cico" href="produs.html?id=7" aria-label="Eseu: tema și viziunea despre lume în „Moromeții”"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Rezumate și eseuri</span>
         <h3><a href="produs.html?id=7">Eseu: tema și viziunea despre lume în „Moromeții”</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 26 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 26 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Bac</span></div>
         <div class="rating">★ 4.8 <small>(176)</small></div>
       </div>
       <div class="card-foot">
@@ -455,16 +550,17 @@ section{padding:4rem 0}
         <button class="add" data-id="7" data-title="Eseu: tema și viziunea despre lume în „Moromeții”" data-price="24"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="22" data-title="rezumat „ion” de liviu rebreanu + fișe de personaje">
+    <article class="card reveal" data-id="8" data-cat="rezumate-si-eseuri" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="22" data-votes="154" data-rating="4.7" data-title="rezumat „ion” de liviu rebreanu + fișe de personaje">
       <div class="cover" style="background:linear-gradient(135deg,#6D28D9,#A78BFA)">
         
+        <button class="wish" data-id="8" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></span>
+        <a class="cico" href="produs.html?id=8" aria-label="Rezumat „Ion” de Liviu Rebreanu + fișe de personaje"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Rezumate și eseuri</span>
         <h3><a href="produs.html?id=8">Rezumat „Ion” de Liviu Rebreanu + fișe de personaje</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 38 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 38 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Liceu</span></div>
         <div class="rating">★ 4.7 <small>(154)</small></div>
       </div>
       <div class="card-foot">
@@ -472,16 +568,17 @@ section{padding:4rem 0}
         <button class="add" data-id="8" data-title="Rezumat „Ion” de Liviu Rebreanu + fișe de personaje" data-price="22"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="schite-si-conspecte" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="29" data-title="schițe și conspecte: literatura română, clasa a ix-a">
+    <article class="card reveal" data-id="9" data-cat="schite-si-conspecte" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="29" data-votes="97" data-rating="4.6" data-title="schițe și conspecte: literatura română, clasa a ix-a">
       <div class="cover" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">
         
+        <button class="wish" data-id="9" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></span>
+        <a class="cico" href="produs.html?id=9" aria-label="Schițe și conspecte: Literatura română, clasa a IX-a"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Schițe și conspecte</span>
         <h3><a href="produs.html?id=9">Schițe și conspecte: Literatura română, clasa a IX-a</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 84 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 84 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Liceu</span></div>
         <div class="rating">★ 4.6 <small>(97)</small></div>
       </div>
       <div class="card-foot">
@@ -489,16 +586,17 @@ section{padding:4rem 0}
         <button class="add" data-id="9" data-title="Schițe și conspecte: Literatura română, clasa a IX-a" data-price="29"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="exercitii-si-fise-de-lucru" data-lang="Română" data-level="Primar/Gimnaziu" data-fmt="PDF" data-price="35" data-title="fișe de lucru matematică clasa a v-a – 200 de exerciții cu barem">
+    <article class="card reveal" data-id="10" data-cat="exercitii-si-fise-de-lucru" data-lang="Română" data-level="Primar/Gimnaziu" data-fmt="PDF" data-price="35" data-votes="203" data-rating="4.8" data-title="fișe de lucru matematică clasa a v-a – 200 de exerciții cu barem">
       <div class="cover" style="background:linear-gradient(135deg,#0EA5A4,#84CC16)">
         
+        <button class="wish" data-id="10" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+        <a class="cico" href="produs.html?id=10" aria-label="Fișe de lucru Matematică clasa a V-a – 200 de exerciții cu barem"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Exerciții și fișe de lucru</span>
         <h3><a href="produs.html?id=10">Fișe de lucru Matematică clasa a V-a – 200 de exerciții cu barem</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 110 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 110 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Primar/Gimnaziu</span></div>
         <div class="rating">★ 4.8 <small>(203)</small></div>
       </div>
       <div class="card-foot">
@@ -506,16 +604,17 @@ section{padding:4rem 0}
         <button class="add" data-id="10" data-title="Fișe de lucru Matematică clasa a V-a – 200 de exerciții cu barem" data-price="35"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="exercitii-si-fise-de-lucru" data-lang="Română" data-level="Primar" data-fmt="PDF" data-price="39" data-title="limba română clasele i–iv: pachet complet de fișe">
+    <article class="card reveal" data-id="11" data-cat="exercitii-si-fise-de-lucru" data-lang="Română" data-level="Primar" data-fmt="PDF" data-price="39" data-votes="267" data-rating="4.9" data-title="limba română clasele i–iv: pachet complet de fișe">
       <div class="cover" style="background:linear-gradient(135deg,#0EA5A4,#84CC16)">
         <span class="tag">Bestseller</span>
+        <button class="wish" data-id="11" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+        <a class="cico" href="produs.html?id=11" aria-label="Limba română clasele I–IV: pachet complet de fișe"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Exerciții și fișe de lucru</span>
         <h3><a href="produs.html?id=11">Limba română clasele I–IV: pachet complet de fișe</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 180 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 180 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Primar</span></div>
         <div class="rating">★ 4.9 <small>(267)</small></div>
       </div>
       <div class="card-foot">
@@ -523,16 +622,17 @@ section{padding:4rem 0}
         <button class="add" data-id="11" data-title="Limba română clasele I–IV: pachet complet de fișe" data-price="39"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="povesti-si-carti-de-lectura" data-lang="Română" data-level="Preșcolari" data-fmt="PDF" data-price="45" data-title="30 de povești ilustrate pentru copii (4–9 ani)">
+    <article class="card reveal" data-id="12" data-cat="povesti-si-carti-de-lectura" data-lang="Română" data-level="Preșcolari" data-fmt="PDF" data-price="45" data-votes="188" data-rating="4.9" data-title="30 de povești ilustrate pentru copii (4–9 ani)">
       <div class="cover" style="background:linear-gradient(135deg,#EC4899,#F59E0B)">
         
+        <button class="wish" data-id="12" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <a class="cico" href="produs.html?id=12" aria-label="30 de povești ilustrate pentru copii (4–9 ani)"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Povești și cărți de lectură</span>
         <h3><a href="produs.html?id=12">30 de povești ilustrate pentru copii (4–9 ani)</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 92 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 92 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Preșcolari</span></div>
         <div class="rating">★ 4.9 <small>(188)</small></div>
       </div>
       <div class="card-foot">
@@ -540,16 +640,17 @@ section{padding:4rem 0}
         <button class="add" data-id="12" data-title="30 de povești ilustrate pentru copii (4–9 ani)" data-price="45"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="povesti-si-carti-de-lectura" data-lang="Română" data-level="Primar" data-fmt="PDF" data-price="32" data-title="povești educative + exerciții de înțelegere a textului">
+    <article class="card reveal" data-id="13" data-cat="povesti-si-carti-de-lectura" data-lang="Română" data-level="Primar" data-fmt="PDF" data-price="32" data-votes="121" data-rating="4.7" data-title="povești educative + exerciții de înțelegere a textului">
       <div class="cover" style="background:linear-gradient(135deg,#EC4899,#F59E0B)">
         
+        <button class="wish" data-id="13" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <a class="cico" href="produs.html?id=13" aria-label="Povești educative + exerciții de înțelegere a textului"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Povești și cărți de lectură</span>
         <h3><a href="produs.html?id=13">Povești educative + exerciții de înțelegere a textului</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 74 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 74 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Primar</span></div>
         <div class="rating">★ 4.7 <small>(121)</small></div>
       </div>
       <div class="card-foot">
@@ -557,16 +658,17 @@ section{padding:4rem 0}
         <button class="add" data-id="13" data-title="Povești educative + exerciții de înțelegere a textului" data-price="32"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="harti-si-atlase" data-lang="Română" data-level="Toate" data-fmt="PDF" data-price="25" data-title="hartă politică europa – printabilă a3 (alb/negru + color)">
+    <article class="card reveal" data-id="14" data-cat="harti-si-atlase" data-lang="Română" data-level="Toate" data-fmt="PDF" data-price="25" data-votes="76" data-rating="4.8" data-title="hartă politică europa – printabilă a3 (alb/negru + color)">
       <div class="cover" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
         
+        <button class="wish" data-id="14" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3z"/><path d="M8 3v15"/><path d="M16 6v15"/></svg></span>
+        <a class="cico" href="produs.html?id=14" aria-label="Hartă politică Europa – printabilă A3 (alb/negru + color)"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3z"/><path d="M8 3v15"/><path d="M16 6v15"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Hărți și atlase</span>
         <h3><a href="produs.html?id=14">Hartă politică Europa – printabilă A3 (alb/negru + color)</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 6 fișiere</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 6 fișiere</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Toate</span></div>
         <div class="rating">★ 4.8 <small>(76)</small></div>
       </div>
       <div class="card-foot">
@@ -574,16 +676,17 @@ section{padding:4rem 0}
         <button class="add" data-id="14" data-title="Hartă politică Europa – printabilă A3 (alb/negru + color)" data-price="25"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="harti-si-atlase" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="29" data-title="atlas istoric: harta româniei 1918–1940">
+    <article class="card reveal" data-id="15" data-cat="harti-si-atlase" data-lang="Română" data-level="Liceu" data-fmt="PDF" data-price="29" data-votes="54" data-rating="4.7" data-title="atlas istoric: harta româniei 1918–1940">
       <div class="cover" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
         
+        <button class="wish" data-id="15" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3z"/><path d="M8 3v15"/><path d="M16 6v15"/></svg></span>
+        <a class="cico" href="produs.html?id=15" aria-label="Atlas istoric: harta României 1918–1940"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3z"/><path d="M8 3v15"/><path d="M16 6v15"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Hărți și atlase</span>
         <h3><a href="produs.html?id=15">Atlas istoric: harta României 1918–1940</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 22 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 22 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Liceu</span></div>
         <div class="rating">★ 4.7 <small>(54)</small></div>
       </div>
       <div class="card-foot">
@@ -591,16 +694,17 @@ section{padding:4rem 0}
         <button class="add" data-id="15" data-title="Atlas istoric: harta României 1918–1940" data-price="29"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="audiobookuri" data-lang="Română" data-level="3–8 ani" data-fmt="MP3" data-price="35" data-title="audiobook: povești de noapte bună, volumul 1">
+    <article class="card reveal" data-id="16" data-cat="audiobookuri" data-lang="Română" data-level="3–8 ani" data-fmt="MP3" data-price="35" data-votes="143" data-rating="4.9" data-title="audiobook: povești de noapte bună, volumul 1">
       <div class="cover" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">
         <span class="tag">Audio</span>
+        <button class="wish" data-id="16" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">MP3</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+        <a class="cico" href="produs.html?id=16" aria-label="Audiobook: Povești de noapte bună, volumul 1"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Audiobookuri</span>
         <h3><a href="produs.html?id=16">Audiobook: Povești de noapte bună, volumul 1</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 3 h 10 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 3 h 10 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">3–8 ani</span></div>
         <div class="rating">★ 4.9 <small>(143)</small></div>
       </div>
       <div class="card-foot">
@@ -608,16 +712,17 @@ section{padding:4rem 0}
         <button class="add" data-id="16" data-title="Audiobook: Povești de noapte bună, volumul 1" data-price="35"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="audiobookuri" data-lang="Engleză" data-level="A1" data-fmt="MP3" data-price="49" data-title="audiobook: engleză pentru începători – ascultă și repetă">
+    <article class="card reveal" data-id="17" data-cat="audiobookuri" data-lang="Engleză" data-level="A1" data-fmt="MP3" data-price="49" data-votes="119" data-rating="4.8" data-title="audiobook: engleză pentru începători – ascultă și repetă">
       <div class="cover" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">
         <span class="tag">Audio</span>
+        <button class="wish" data-id="17" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">MP3</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+        <a class="cico" href="produs.html?id=17" aria-label="Audiobook: Engleză pentru începători – ascultă și repetă"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Audiobookuri</span>
         <h3><a href="produs.html?id=17">Audiobook: Engleză pentru începători – ascultă și repetă</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 2 h 25 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 2 h 25 min</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span><span class="level-pill">A1</span></div>
         <div class="rating">★ 4.8 <small>(119)</small></div>
       </div>
       <div class="card-foot">
@@ -625,16 +730,17 @@ section{padding:4rem 0}
         <button class="add" data-id="17" data-title="Audiobook: Engleză pentru începători – ascultă și repetă" data-price="49"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="59" data-title="cum alegi tema de licență (psihologie) – ghid + 60 de idei">
+    <article class="card reveal" data-id="18" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="59" data-votes="211" data-rating="4.9" data-title="cum alegi tema de licență (psihologie) – ghid + 60 de idei">
       <div class="cover" style="background:linear-gradient(135deg,#1D4ED8,#0EA5A4)">
         <span class="tag">Bestseller</span>
+        <button class="wish" data-id="18" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+        <a class="cico" href="produs.html?id=18" aria-label="Cum alegi tema de licență (Psihologie) – ghid + 60 de idei"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Licență și disertație</span>
         <h3><a href="produs.html?id=18">Cum alegi tema de licență (Psihologie) – ghid + 60 de idei</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 48 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 48 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Studenți</span></div>
         <div class="rating">★ 4.9 <small>(211)</small></div>
       </div>
       <div class="card-foot">
@@ -642,16 +748,17 @@ section{padding:4rem 0}
         <button class="add" data-id="18" data-title="Cum alegi tema de licență (Psihologie) – ghid + 60 de idei" data-price="59"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Master" data-fmt="PDF" data-price="69" data-title="structură de disertație – drept penal (model + bibliografie)">
+    <article class="card reveal" data-id="19" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Master" data-fmt="PDF" data-price="69" data-votes="104" data-rating="4.8" data-title="structură de disertație – drept penal (model + bibliografie)">
       <div class="cover" style="background:linear-gradient(135deg,#1D4ED8,#0EA5A4)">
         
+        <button class="wish" data-id="19" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+        <a class="cico" href="produs.html?id=19" aria-label="Structură de disertație – Drept penal (model + bibliografie)"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Licență și disertație</span>
         <h3><a href="produs.html?id=19">Structură de disertație – Drept penal (model + bibliografie)</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 42 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 42 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Master</span></div>
         <div class="rating">★ 4.8 <small>(104)</small></div>
       </div>
       <div class="card-foot">
@@ -659,16 +766,17 @@ section{padding:4rem 0}
         <button class="add" data-id="19" data-title="Structură de disertație – Drept penal (model + bibliografie)" data-price="69"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="79" data-title="120 de teme de licență: psihologie, drept, criminalistică">
+    <article class="card reveal" data-id="20" data-cat="licenta-si-disertatie" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="79" data-votes="167" data-rating="4.9" data-title="120 de teme de licență: psihologie, drept, criminalistică">
       <div class="cover" style="background:linear-gradient(135deg,#1D4ED8,#0EA5A4)">
         <span class="tag">Nou</span>
+        <button class="wish" data-id="20" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+        <a class="cico" href="produs.html?id=20" aria-label="120 de teme de licență: Psihologie, Drept, Criminalistică"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Licență și disertație</span>
         <h3><a href="produs.html?id=20">120 de teme de licență: Psihologie, Drept, Criminalistică</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 56 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 56 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Studenți</span></div>
         <div class="rating">★ 4.9 <small>(167)</small></div>
       </div>
       <div class="card-foot">
@@ -676,16 +784,17 @@ section{padding:4rem 0}
         <button class="add" data-id="20" data-title="120 de teme de licență: Psihologie, Drept, Criminalistică" data-price="79"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="planuri-de-lucru-stiintifice" data-lang="Română" data-level="Studenți" data-fmt="PDF + DOCX" data-price="55" data-title="plan de lucru științific: model complet + exemplu redactat">
+    <article class="card reveal" data-id="21" data-cat="planuri-de-lucru-stiintifice" data-lang="Română" data-level="Studenți" data-fmt="PDF + DOCX" data-price="55" data-votes="92" data-rating="4.7" data-title="plan de lucru științific: model complet + exemplu redactat">
       <div class="cover" style="background:linear-gradient(135deg,#0F766E,#22C1A5)">
         
+        <button class="wish" data-id="21" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF + DOCX</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6L5 19a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 19l-5-10V3"/><path d="M7.5 14h9"/></svg></span>
+        <a class="cico" href="produs.html?id=21" aria-label="Plan de lucru științific: model complet + exemplu redactat"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6L5 19a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 19l-5-10V3"/><path d="M7.5 14h9"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Planuri de lucru științifice</span>
         <h3><a href="produs.html?id=21">Plan de lucru științific: model complet + exemplu redactat</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 34 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 34 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Studenți</span></div>
         <div class="rating">★ 4.7 <small>(92)</small></div>
       </div>
       <div class="card-foot">
@@ -693,16 +802,17 @@ section{padding:4rem 0}
         <button class="add" data-id="21" data-title="Plan de lucru științific: model complet + exemplu redactat" data-price="55"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="literatura-de-specialitate" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="65" data-title="introducere în psihiatrie – sinteze de studiu">
+    <article class="card reveal" data-id="22" data-cat="literatura-de-specialitate" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="65" data-votes="87" data-rating="4.8" data-title="introducere în psihiatrie – sinteze de studiu">
       <div class="cover" style="background:linear-gradient(135deg,#DB2777,#7C3AED)">
         
+        <button class="wish" data-id="22" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 3 3 0 0 0 1 5.8V19a2 2 0 0 0 2 2h1v-6"/><path d="M12 5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 3 3 0 0 1-1 5.8V19a2 2 0 0 1-2 2h-1v-6"/><path d="M12 5v14"/></svg></span>
+        <a class="cico" href="produs.html?id=22" aria-label="Introducere în psihiatrie – sinteze de studiu"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 3 3 0 0 0 1 5.8V19a2 2 0 0 0 2 2h1v-6"/><path d="M12 5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 3 3 0 0 1-1 5.8V19a2 2 0 0 1-2 2h-1v-6"/><path d="M12 5v14"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Literatură de specialitate</span>
         <h3><a href="produs.html?id=22">Introducere în psihiatrie – sinteze de studiu</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 132 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 132 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Studenți</span></div>
         <div class="rating">★ 4.8 <small>(87)</small></div>
       </div>
       <div class="card-foot">
@@ -710,16 +820,17 @@ section{padding:4rem 0}
         <button class="add" data-id="22" data-title="Introducere în psihiatrie – sinteze de studiu" data-price="65"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="literatura-de-specialitate" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="59" data-title="criminalistica pe înțelesul tuturor: ghid de studiu ilustrat">
+    <article class="card reveal" data-id="23" data-cat="literatura-de-specialitate" data-lang="Română" data-level="Studenți" data-fmt="PDF" data-price="59" data-votes="133" data-rating="4.9" data-title="criminalistica pe înțelesul tuturor: ghid de studiu ilustrat">
       <div class="cover" style="background:linear-gradient(135deg,#334155,#0EA5A4)">
         
+        <button class="wish" data-id="23" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></span>
+        <a class="cico" href="produs.html?id=23" aria-label="Criminalistica pe înțelesul tuturor: ghid de studiu ilustrat"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Literatură de specialitate</span>
         <h3><a href="produs.html?id=23">Criminalistica pe înțelesul tuturor: ghid de studiu ilustrat</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 108 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 108 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Română</span><span class="level-pill">Studenți</span></div>
         <div class="rating">★ 4.9 <small>(133)</small></div>
       </div>
       <div class="card-foot">
@@ -727,16 +838,17 @@ section{padding:4rem 0}
         <button class="add" data-id="23" data-title="Criminalistica pe înțelesul tuturor: ghid de studiu ilustrat" data-price="59"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article>
-    <article class="card reveal" data-cat="limbi-straine-vocabular" data-lang="Engleză" data-level="B1–B2" data-fmt="PDF" data-price="49" data-title="vocabular juridic: engleză–franceză pentru juriști">
+    <article class="card reveal" data-id="24" data-cat="limbi-straine-vocabular" data-lang="Engleză" data-level="B1–B2" data-fmt="PDF" data-price="49" data-votes="63" data-rating="4.7" data-title="vocabular juridic: engleză–franceză pentru juriști">
       <div class="cover" style="background:linear-gradient(135deg,#B45309,#F59E0B)">
         
+        <button class="wish" data-id="24" aria-label="Adaugă la favorite"><svg class="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
         <span class="fmt">PDF</span>
-        <span class="cico"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/></svg></span>
+        <a class="cico" href="produs.html?id=24" aria-label="Vocabular juridic: engleză–franceză pentru juriști"><svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/></svg></a>
       </div>
       <div class="card-body">
         <span class="cat">Limbi străine – vocabular</span>
         <h3><a href="produs.html?id=24">Vocabular juridic: engleză–franceză pentru juriști</a></h3>
-        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 64 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span></div>
+        <div class="meta"><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg> 64 pagini</span><span><svg class="" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Engleză</span><span class="level-pill">B1–B2</span></div>
         <div class="rating">★ 4.7 <small>(63)</small></div>
       </div>
       <div class="card-foot">
@@ -744,8 +856,10 @@ section{padding:4rem 0}
         <button class="add" data-id="24" data-title="Vocabular juridic: engleză–franceză pentru juriști" data-price="49"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg> Adaugă</button>
       </div>
     </article></div>
+    <div class="empty" id="empty"><h3>Nu am găsit rezultate</h3><p>Încearcă să modifici filtrele sau caută altceva.</p></div>
   </div>
 </div></section>
+<style>@media(max-width:900px){#filtersToggle{display:inline-flex!important}}</style>
 
 <footer class="ftr">
   <div class="wrap">
@@ -789,32 +903,145 @@ section{padding:4rem 0}
     </div>
     <div class="ftr-btm">
       <span>© 2026 Caleidoscope Educational.ro — Toate drepturile rezervate.</span>
+      <ul><li><a href="termeni.html">Termeni</a></li><li><a href="termeni.html#gdpr">GDPR</a></li><li><a href="termeni.html#retur">Retur</a></li><li><a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC – SAL</a></li><li><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">SOL/ODR</a></li></ul>
     </div>
   </div>
 </footer>
 <div class="toast" id="toast"></div>
+<button class="back-top" id="backTop" aria-label="Sus"><svg style="transform:rotate(-90deg)" class="" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie-uri">
+  <p><b>Folosim cookie-uri</b> strict necesare pentru coș și preferințe. Cu acordul tău, folosim și cookie-uri de analiză. Detalii în <a href="termeni.html#cookies" style="color:var(--violet);text-decoration:underline">politica de cookie-uri</a>.</p>
+  <div class="row"><button class="btn btn-primary btn-sm" id="ckOk">Accept toate</button><button class="btn btn-ghost btn-sm" id="ckNo">Doar necesare</button></div>
+</div>
+
+<script>
+/* ===== Caleido app: coș, favorite, UI ===== */
+(function(){
+  var KEY='caleido_cart', WKEY='caleido_wish', CKEY='caleido_cookie';
+  function read(k){ try{ return JSON.parse(localStorage.getItem(k))||[] }catch(e){ return [] } }
+  function write(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+  function toast(msg){ var t=document.getElementById('toast'); if(!t) return; t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show')},2600); }
+
+  /* --- coș: [{id,title,price,qty}] (migrează formatul vechi fără qty) --- */
+  function getCart(){
+    var raw=read(KEY), out=[], seen={};
+    raw.forEach(function(it){ var id=String(it.id); if(seen[id]){ seen[id].qty+=(it.qty||1) } else { seen[id]={id:id,title:it.title,price:parseFloat(it.price)||0,qty:it.qty||1}; out.push(seen[id]) } });
+    return out;
+  }
+  function setCart(c){ write(KEY,c); paint(); window.dispatchEvent(new CustomEvent('cart:change')); }
+  function addToCart(id,title,price,qty){
+    var c=getCart(), f=c.filter(function(x){return x.id===String(id)})[0];
+    if(f){ f.qty+=(qty||1) } else { c.push({id:String(id),title:title,price:parseFloat(price)||0,qty:qty||1}) }
+    setCart(c); toast('„'+(title.length>38?title.slice(0,38)+'…':title)+'” a fost adăugat în coș');
+  }
+  function count(){ return getCart().reduce(function(s,x){return s+x.qty},0) }
+
+  /* --- favorite: [id] --- */
+  function getWish(){ return read(WKEY).map(String) }
+  function toggleWish(id){
+    var w=getWish(), i=w.indexOf(String(id));
+    if(i>-1){ w.splice(i,1); toast('Eliminat din favorite') } else { w.push(String(id)); toast('Adăugat la favorite ♥') }
+    write(WKEY,w); paint(); window.dispatchEvent(new CustomEvent('wish:change'));
+    return i===-1;
+  }
+
+  function paint(){
+    var el=document.getElementById('cartCount'); if(el){ el.textContent=count() }
+    var w=document.getElementById('wishCount'); if(w){ var n=getWish().length; w.textContent=n; w.style.display=n?'grid':'none' }
+    var ws=getWish();
+    document.querySelectorAll('.wish').forEach(function(b){ b.classList.toggle('on', ws.indexOf(String(b.dataset.id))>-1) });
+  }
+
+  window.Caleido={getCart:getCart,setCart:setCart,addToCart:addToCart,getWish:getWish,toggleWish:toggleWish,toast:toast,paint:paint};
+
+  /* --- delegare click: .add / .wish (merge și pentru elemente create dinamic) --- */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.add[data-id]'); if(a){ e.preventDefault(); addToCart(a.dataset.id,a.dataset.title,a.dataset.price,1); return }
+    var w=e.target.closest('.wish[data-id]'); if(w){ e.preventDefault(); toggleWish(w.dataset.id); }
+  });
+  paint();
+  window.addEventListener('storage',paint);
+
+  /* --- header / nav --- */
+  var hdr=document.getElementById('hdr'), nav=document.getElementById('nav'), tg=document.getElementById('navToggle'), bt=document.getElementById('backTop');
+  window.addEventListener('scroll',function(){ var y=window.scrollY; hdr.classList.toggle('scrolled',y>10); if(bt){ bt.classList.toggle('show',y>500) } },{passive:true});
+  if(tg){ tg.addEventListener('click',function(){ var o=nav.classList.toggle('open'); tg.setAttribute('aria-expanded',o) }); }
+  if(bt){ bt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}) }) }
+  var cartBtn=document.getElementById('cartBtn'); if(cartBtn){ cartBtn.addEventListener('click',function(){ location.href='checkout.html' }) }
+
+  /* --- reveal la scroll --- */
+  var io = (typeof window.IntersectionObserver==='function') ? new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target) } }) },{rootMargin:'0px 0px -8% 0px'}) : null;
+  window.Caleido.reveal=function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io?io.observe(el):el.classList.add('in') }) };
+  window.Caleido.reveal();
+
+  /* --- cookie banner --- */
+  var ck=document.getElementById('cookie');
+  if(ck && !localStorage.getItem(CKEY)){ setTimeout(function(){ck.classList.add('show')},900);
+    document.getElementById('ckOk').onclick=function(){ localStorage.setItem(CKEY,'all'); ck.classList.remove('show') };
+    document.getElementById('ckNo').onclick=function(){ localStorage.setItem(CKEY,'necessary'); ck.classList.remove('show') };
+  }
+})();
+</script>
 
 <script>
 (function(){
-  var hdr=document.getElementById('hdr'), nav=document.getElementById('nav'), tg=document.getElementById('navToggle');
-  window.addEventListener('scroll',function(){ if(window.scrollY>10){hdr.classList.add('scrolled')}else{hdr.classList.remove('scrolled')} });
-  if(tg){ tg.addEventListener('click',function(){ nav.classList.toggle('open'); }); }
-  var key='caleido_cart';
-  function getCart(){ try{ return JSON.parse(localStorage.getItem(key))||[] }catch(e){ return [] } }
-  function paint(){ var el=document.getElementById('cartCount'); if(el){ el.textContent=getCart().length } }
-  paint();
-  window.addEventListener('storage',paint);
-  document.querySelectorAll('.add').forEach(function(b){
-    b.addEventListener('click',function(e){
-      e.preventDefault();
-      var c=getCart(); c.push({id:this.dataset.id,title:this.dataset.title,price:this.dataset.price});
-      localStorage.setItem(key, JSON.stringify(c)); paint();
-      var t=document.getElementById('toast'); t.textContent='„'+this.dataset.title.slice(0,35)+'…” a fost adăugat în coș';
-      t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},2600);
+  var grid=document.getElementById('grid');
+  var cards=[].slice.call(grid.querySelectorAll('.card'));
+  var out=document.getElementById('count'), empty=document.getElementById('empty'), chipsBox=document.getElementById('activeChips');
+  var norm=function(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'') };
+  function val(name){ return [].slice.call(document.querySelectorAll('input[name="'+name+'"]:checked')).map(function(i){return i.value}); }
+  function apply(push){
+    var cats=val('cat'), langs=val('lang'), fmts=val('fmt'), lvls=val('level');
+    var maxP=parseInt(document.getElementById('range').value,10);
+    var q=norm(document.getElementById('q').value).trim();
+    var sort=document.getElementById('sort').value, shown=0;
+    cards.forEach(function(c){
+      var ok=(!cats.length||cats.indexOf(c.dataset.cat)>-1)
+          && (!langs.length||langs.indexOf(c.dataset.lang)>-1)
+          && (!fmts.length||fmts.indexOf(c.dataset.fmt)>-1)
+          && (!lvls.length||lvls.indexOf(c.dataset.level)>-1)
+          && (parseInt(c.dataset.price,10)<=maxP)
+          && (!q || norm(c.dataset.title).indexOf(q)>-1 || norm(c.dataset.cat).indexOf(q)>-1 || norm(c.dataset.lang).indexOf(q)>-1);
+      c.style.display=ok?'':'none'; if(ok) shown++;
     });
+    var by={ 'popular':function(a,b){return b.dataset.votes-a.dataset.votes}, 'rating':function(a,b){return b.dataset.rating-a.dataset.rating},
+             'price-asc':function(a,b){return a.dataset.price-b.dataset.price}, 'price-desc':function(a,b){return b.dataset.price-a.dataset.price},
+             'new':function(a,b){return b.dataset.id-a.dataset.id} };
+    if(by[sort]){ cards.sort(by[sort]); cards.forEach(function(c){ grid.appendChild(c) }); }
+    out.textContent=shown; empty.style.display=shown?'none':'block';
+    /* chip-uri cu filtrele active */
+    var chips=[];
+    cats.forEach(function(v){ chips.push(['cat',v,document.querySelector('input[name=cat][value="'+v+'"]').parentNode.textContent.replace(/\d+$/,'').trim()]) });
+    langs.forEach(function(v){ chips.push(['lang',v,v]) }); fmts.forEach(function(v){ chips.push(['fmt',v,v]) }); lvls.forEach(function(v){ chips.push(['level',v,v]) });
+    if(q) chips.push(['q','', '„'+document.getElementById('q').value+'”']);
+    if(maxP<100) chips.push(['range','', 'până la '+maxP+' LEI']);
+    chipsBox.innerHTML=chips.map(function(c){ return '<button class="chip" style="color:var(--violet);background:#F4F1FF;border-color:#DDD6FE" data-k="'+c[0]+'" data-v="'+c[1]+'">'+c[2]+' ✕</button>' }).join('');
+    /* sincronizează URL-ul (fără reload) ca filtrele să poată fi partajate */
+    if(push!==false){ var p=new URLSearchParams(); cats.forEach(function(v){p.append('cat',v)}); langs.forEach(function(v){p.append('lang',v)}); fmts.forEach(function(v){p.append('fmt',v)}); lvls.forEach(function(v){p.append('level',v)});
+      if(q) p.set('q',document.getElementById('q').value); if(maxP<100) p.set('max',maxP); if(sort!=='popular') p.set('sort',sort);
+      var qs=p.toString(); history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')); }
+  }
+  chipsBox.addEventListener('click',function(e){ var b=e.target.closest('.chip'); if(!b) return;
+    if(b.dataset.k==='q'){ document.getElementById('q').value='' } else if(b.dataset.k==='range'){ document.getElementById('range').value=100; document.getElementById('rangeVal').textContent='100 LEI' }
+    else { var i=document.querySelector('input[name='+b.dataset.k+'][value="'+b.dataset.v+'"]'); if(i) i.checked=false } apply(); });
+  document.querySelectorAll('.filters input[type=checkbox]').forEach(function(i){ i.addEventListener('change',apply) });
+  document.getElementById('range').addEventListener('input',function(){ document.getElementById('rangeVal').textContent=this.value+' LEI'; apply(); });
+  document.getElementById('q').addEventListener('input',apply);
+  document.getElementById('sort').addEventListener('change',apply);
+  document.getElementById('reset').addEventListener('click',function(){
+    document.querySelectorAll('.filters input[type=checkbox]').forEach(function(i){i.checked=false});
+    document.getElementById('range').value=100; document.getElementById('rangeVal').textContent='100 LEI';
+    document.getElementById('q').value=''; document.getElementById('sort').value='popular'; apply();
   });
-  var cartBtn = document.getElementById('cartBtn');
-  if(cartBtn){ cartBtn.addEventListener('click', function(){ window.location.href = 'checkout.html'; }); }
+  var ft=document.getElementById('filtersToggle'), fl=document.querySelector('.filters');
+  if(ft){ ft.addEventListener('click',function(){ fl.classList.toggle('open') }) }
+  /* preluare parametri din URL: ?cat= ?lang= ?fmt= ?level= ?q= ?max= ?sort= */
+  var params=new URLSearchParams(location.search);
+  ['cat','lang','fmt','level'].forEach(function(k){ params.getAll(k).forEach(function(v){ var el=document.querySelector('input[name='+k+'][value="'+v+'"]'); if(el) el.checked=true }) });
+  if(params.get('q')) document.getElementById('q').value=params.get('q');
+  if(params.get('max')){ document.getElementById('range').value=params.get('max'); document.getElementById('rangeVal').textContent=params.get('max')+' LEI' }
+  if(params.get('sort')) document.getElementById('sort').value=params.get('sort');
+  apply(false);
 })();
 </script>
 </body>
