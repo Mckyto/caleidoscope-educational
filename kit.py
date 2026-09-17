@@ -258,6 +258,60 @@ section{padding:4rem 0}
 .reveal{opacity:0;transform:translateY(14px);transition:.6s}
 .reveal.in{opacity:1;transform:none}
 
+/* ---------- WISHLIST / QTY / CHECKOUT / 404 ---------- */
+.wish{position:absolute;top:.6rem;right:.6rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;transition:.2s;z-index:2}
+.wish:hover{transform:scale(1.08);color:var(--pink)}
+.wish.on{color:var(--pink)}
+.wish.on svg{fill:var(--pink)}
+.cover .fmt{bottom:.6rem;right:.6rem}
+.cart-line{display:grid;grid-template-columns:1fr auto auto auto;gap:.8rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.cart-line .t{font-weight:650;font-size:.92rem;line-height:1.3}
+.cart-line .t small{display:block;color:var(--muted);font-weight:600;font-size:.76rem}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
+.qty button{width:30px;height:30px;font-weight:800;color:var(--violet)}
+.qty button:hover{background:#F4F1FF}
+.qty span{min-width:26px;text-align:center;font-weight:700;font-size:.9rem}
+.rm{color:var(--muted);width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.rm:hover{background:#FEF2F2;color:#DC2626}
+.sum-row{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.92rem;color:var(--ink-2)}
+.sum-row.total{border-top:1px solid var(--line);margin-top:.5rem;padding-top:.9rem;font-weight:800;font-size:1.15rem;color:var(--ink)}
+.sum-row.disc{color:#059669;font-weight:700}
+.coupon{display:flex;gap:.5rem;margin:.9rem 0}
+.coupon input{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;outline:0;text-transform:uppercase}
+.coupon input:focus{border-color:var(--violet)}
+.field .err{font-size:.78rem;color:#DC2626;display:none}
+.field.invalid input{border-color:#DC2626}
+.field.invalid .err{display:block}
+.pay-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.4rem 0 1rem}
+.pay-opts label{border:1.5px solid var(--line);border-radius:12px;padding:.6rem;text-align:center;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.pay-opts input{display:none}
+.pay-opts input:checked+span{color:var(--violet)}
+.pay-opts label:has(input:checked){border-color:var(--violet);background:#F6F3FF}
+.success{text-align:center;max-width:560px;margin:0 auto;padding:2rem 0}
+.success .ok{width:84px;height:84px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;margin:0 auto 1.2rem}
+.success h2{font-size:1.7rem;font-weight:800}
+.success p{color:var(--muted);margin-top:.6rem}
+.p404{text-align:center;padding:5rem 0}
+.p404 b{font-size:6rem;font-weight:800;line-height:1;display:block}
+.p404 h1{font-size:1.6rem;margin:.6rem 0 .4rem}
+.p404 p{color:var(--muted)}
+.skel{background:linear-gradient(90deg,#F3F0FF 25%,#EAE6FA 50%,#F3F0FF 75%);background-size:200% 100%;animation:sh 1.2s infinite;border-radius:14px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.back-top{position:fixed;right:1.5rem;bottom:5rem;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--violet);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.back-top.show{opacity:1;pointer-events:auto}
+.level-pill{display:inline-block;background:#F4F1FF;color:var(--violet);font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:999px}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.8rem}
+.spec div{background:#F8F7FF;border-radius:12px;padding:.6rem .8rem;font-size:.86rem}
+.spec div b{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.desc-list{display:grid;gap:.4rem;margin-top:.6rem}
+.desc-list li{display:flex;gap:.5rem;font-size:.9rem;color:var(--ink-2)}
+.desc-list li:before{content:"✓";color:var(--teal);font-weight:800}
+@media(max-width:560px){
+  .cart-line{grid-template-columns:1fr auto;row-gap:.4rem}
+  .pay-opts{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
 @media(max-width:1200px){
   .hero-grid{grid-template-columns:1fr 1fr;gap:1.4rem}
   .cat-grid{grid-template-columns:repeat(4,1fr)}
@@ -389,6 +443,36 @@ PRODUCTS = [
     dict(id=24, title="Vocabular juridic: engleză–franceză pentru juriști", cat="limbi-straine-vocabular", lang="Engleză", level="B1–B2", fmt="PDF", pages="64 pagini", price=49, old=0, badge="", rating=4.7, votes=63, icon="lib"),
 ]
 
+# Descrieri scurte per produs (afișate pe pagina de produs; fallback pe categorie)
+DESCRIPTIONS = {
+    1: "200 de exerciții gradate de la A1 la A2, cu răspunsuri la final, vocabular tematic pe 20 de teme și mini-teste de verificare la fiecare 5 lecții.",
+    2: "500 de cuvinte și expresii de bază în franceză, ilustrate și grupate pe teme (familie, oraș, mâncare, călătorii), cu exemple în propoziții și pronunție scrisă.",
+    3: "60 de lecții scurte cu dialoguri realiste, explicații de gramatică pe înțelesul tuturor și exerciții cu cheie de rezolvare. Ideal pentru autodidacți.",
+    4: "Vocabular german A1 organizat pe 16 teme, plus 80 de fișe de lucru printabile cu barem. Include listă de verbe neregulate și tabel de articole.",
+    5: "Expresiile de care ai nevoie la aeroport, hotel, restaurant sau în oraș, cu fișiere audio înregistrate de vorbitori nativi pentru ascultare și repetare.",
+    6: "Rezumat pe acte și scene, analiza temelor (iubire, destin, conflict), fișe pentru fiecare personaj și 10 citate-cheie explicate — pentru teză sau bac.",
+    7: "Eseu complet de 4 pagini pe cerința tipică de bacalaureat, cu structura pe paragrafe evidențiată, plus 3 variante de introducere și încheiere.",
+    8: "Rezumat pe capitole, fișe de personaje (Ion, Ana, Florica, Vasile Baciu), analiza celor două glasuri și un set de 15 întrebări de verificare.",
+    9: "Conspecte sintetice pentru toate operele din programa clasei a IX-a: autor, context, temă, structură, personaje, citate — pe câte 2 pagini per operă.",
+    10: "200 de exerciții pe toate capitolele clasei a V-a (numere naturale, fracții, geometrie), grupate pe 3 niveluri de dificultate, cu barem detaliat.",
+    11: "Peste 180 de fișe pentru clasele I–IV: citire, scriere, ortografie, părți de vorbire, compuneri. Fiecare fișă este printabilă A4 și are răspunsuri.",
+    12: "30 de povești originale ilustrate color, cu morală explicată și 3 întrebări de discuție la finalul fiecărei povești. Potrivite pentru citit seara.",
+    13: "Povești scurte urmate de exerciții de înțelegere a textului: întrebări cu răspuns scurt, adevărat/fals, ordonare de evenimente și vocabular.",
+    14: "Hartă politică a Europei actualizată, în variante A3 și A4, color și alb-negru (pentru colorat), plus versiune mută pentru evaluare.",
+    15: "22 de hărți comentate ale României interbelice: granițe, județe, evoluția teritorială, cu cronologie și explicații pentru fiecare hartă.",
+    16: "3 ore de povești citite calm, cu fundal sonor discret, împărțite în 20 de piste. Ideal pentru rutina de seară a copiilor de 3–8 ani.",
+    17: "Lecții audio de tip „ascultă și repetă”, cu pauze pentru exersare, transcriere PDF inclusă și vocabular de bază pentru conversații simple.",
+    18: "Ghid pas cu pas pentru alegerea temei: criterii, discuția cu coordonatorul, verificarea surselor, plus 60 de idei de teme organizate pe ramuri.",
+    19: "Model complet de structură pentru disertație în drept penal: capitole, subcapitole, metodologie, bibliografie orientativă și greșeli frecvente.",
+    20: "120 de teme actuale, fiecare cu o descriere scurtă, întrebări de cercetare posibile și 3–5 surse de pornire. Împărțite pe cele trei domenii.",
+    21: "Model de plan de lucru științific cu toate secțiunile explicate + un exemplu redactat integral. Include fișier DOCX editabil pentru propriul plan.",
+    22: "Sinteze pe cele mai importante capitole din psihiatrie: clasificări, criterii de diagnostic, tratamente, cu tabele comparative și scheme.",
+    23: "Ghid ilustrat de criminalistică: cercetarea locului faptei, urme, identificare, expertize. Cu studii de caz și întrebări de autoevaluare.",
+    24: "Termeni juridici uzuali în engleză și franceză, cu traducere, definiție și exemplu de utilizare în context. Organizat pe ramuri de drept.",
+}
+
+CAT_DESC = "Material realizat de autori cu experiență didactică, structurat progresiv, cu explicații pas cu pas, exemple rezolvate și barem de corectare."
+
 GRADIENTS = {
     "globe": "linear-gradient(135deg,#4F46E5,#0EA5A4)",
     "file": "linear-gradient(135deg,#6D28D9,#A78BFA)",
@@ -412,7 +496,10 @@ def cat_title(slug):
             return t
     return "Resurse"
 
-def head(title, desc, active):
+SITE_URL = "https://mckyto.github.io/caleidoscope-educational/"
+
+def head(title, desc, active, page=None, noindex=False):
+    """Generează <head> + header. `page` = numele fișierului (pentru canonical/OG)."""
     nav_items = [
         ("Acasă", "index.html", "home"),
         ("Produse", "produse.html", "produse"),
@@ -449,6 +536,17 @@ def head(title, desc, active):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
+<meta name="theme-color" content="#6D28D9">
+%(robots)s<link rel="canonical" href="%(canonical)s">
+<link rel="icon" href="data:image/svg+xml,%%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%%3E%%3Crect x='1' y='1' width='42' height='42' rx='13' fill='%%236D28D9'/%%3E%%3Cg stroke='%%23fff' stroke-width='1.6' fill='none'%%3E%%3Ccircle cx='22' cy='22' r='12'/%%3E%%3Cpath d='M22 10l10.4 18H11.6z'/%%3E%%3Cpath d='M22 34L11.6 16h20.8z'/%%3E%%3C/g%%3E%%3Ccircle cx='22' cy='22' r='3.4' fill='%%230EA5A4'/%%3E%%3C/svg%%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Caleidoscope Educational.ro">
+<meta property="og:title" content="%(title)s">
+<meta property="og:description" content="%(desc)s">
+<meta property="og:url" content="%(canonical)s">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Caleidoscope Educational.ro","url":"%(site)s","potentialAction":{"@type":"SearchAction","target":"%(site)sproduse.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <style>%(css)s</style>
 </head>
 <body>
@@ -473,13 +571,16 @@ def head(title, desc, active):
     <nav class="nav" id="nav">%(nav)s</nav>
     <div class="hdr-actions">
       <a class="icon-btn only-desktop" href="cont.html" aria-label="Contul meu">%(user)s</a>
+      <a class="icon-btn" href="favorite.html" aria-label="Favorite">%(heart)s<span class="cart-count" id="wishCount" style="background:var(--violet)">0</span></a>
       <button class="icon-btn" id="cartBtn" aria-label="Coșul meu">%(cart)s<span class="cart-count" id="cartCount">0</span></button>
       <button class="nav-toggle" id="navToggle" aria-label="Meniu">%(menu)s</button>
     </div>
   </div>
 </header>
-""" % dict(title=title, desc=desc, css=CSS, nav="".join(nav_html),
-           user=svg("user", 20), cart=svg("cart", 20), menu=svg("menu", 22))
+""" % dict(title=title.replace('"', "&quot;"), desc=desc.replace('"', "&quot;"), css=CSS, nav="".join(nav_html),
+           user=svg("user", 20), heart=svg("heart", 20), cart=svg("cart", 20), menu=svg("menu", 22),
+           canonical=SITE_URL + (page or (active + ".html" if active != "home" else "")),
+           site=SITE_URL, robots='<meta name="robots" content="noindex">\n' if noindex else "")
 
 FOOTER = """
 <footer class="ftr">
@@ -524,66 +625,120 @@ FOOTER = """
     </div>
     <div class="ftr-btm">
       <span>© 2026 Caleidoscope Educational.ro — Toate drepturile rezervate.</span>
+      <ul><li><a href="termeni.html">Termeni</a></li><li><a href="termeni.html#gdpr">GDPR</a></li><li><a href="termeni.html#retur">Retur</a></li><li><a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC – SAL</a></li><li><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">SOL/ODR</a></li></ul>
     </div>
   </div>
 </footer>
 <div class="toast" id="toast"></div>
+<button class="back-top" id="backTop" aria-label="Sus">__UP__</button>
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie-uri">
+  <p><b>Folosim cookie-uri</b> strict necesare pentru coș și preferințe. Cu acordul tău, folosim și cookie-uri de analiză. Detalii în <a href="termeni.html#cookies" style="color:var(--violet);text-decoration:underline">politica de cookie-uri</a>.</p>
+  <div class="row"><button class="btn btn-primary btn-sm" id="ckOk">Accept toate</button><button class="btn btn-ghost btn-sm" id="ckNo">Doar necesare</button></div>
+</div>
 
 <script>
+/* ===== Caleido app: coș, favorite, UI ===== */
 (function(){
-  var hdr=document.getElementById('hdr'), nav=document.getElementById('nav'), tg=document.getElementById('navToggle');
-  window.addEventListener('scroll',function(){ if(window.scrollY>10){hdr.classList.add('scrolled')}else{hdr.classList.remove('scrolled')} });
-  if(tg){ tg.addEventListener('click',function(){ nav.classList.toggle('open'); }); }
-  var key='caleido_cart';
-  function getCart(){ try{ return JSON.parse(localStorage.getItem(key))||[] }catch(e){ return [] } }
-  function paint(){ var el=document.getElementById('cartCount'); if(el){ el.textContent=getCart().length } }
+  var KEY='caleido_cart', WKEY='caleido_wish', CKEY='caleido_cookie';
+  function read(k){ try{ return JSON.parse(localStorage.getItem(k))||[] }catch(e){ return [] } }
+  function write(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+  function toast(msg){ var t=document.getElementById('toast'); if(!t) return; t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show')},2600); }
+
+  /* --- coș: [{id,title,price,qty}] (migrează formatul vechi fără qty) --- */
+  function getCart(){
+    var raw=read(KEY), out=[], seen={};
+    raw.forEach(function(it){ var id=String(it.id); if(seen[id]){ seen[id].qty+=(it.qty||1) } else { seen[id]={id:id,title:it.title,price:parseFloat(it.price)||0,qty:it.qty||1}; out.push(seen[id]) } });
+    return out;
+  }
+  function setCart(c){ write(KEY,c); paint(); window.dispatchEvent(new CustomEvent('cart:change')); }
+  function addToCart(id,title,price,qty){
+    var c=getCart(), f=c.filter(function(x){return x.id===String(id)})[0];
+    if(f){ f.qty+=(qty||1) } else { c.push({id:String(id),title:title,price:parseFloat(price)||0,qty:qty||1}) }
+    setCart(c); toast('„'+(title.length>38?title.slice(0,38)+'…':title)+'” a fost adăugat în coș');
+  }
+  function count(){ return getCart().reduce(function(s,x){return s+x.qty},0) }
+
+  /* --- favorite: [id] --- */
+  function getWish(){ return read(WKEY).map(String) }
+  function toggleWish(id){
+    var w=getWish(), i=w.indexOf(String(id));
+    if(i>-1){ w.splice(i,1); toast('Eliminat din favorite') } else { w.push(String(id)); toast('Adăugat la favorite ♥') }
+    write(WKEY,w); paint(); window.dispatchEvent(new CustomEvent('wish:change'));
+    return i===-1;
+  }
+
+  function paint(){
+    var el=document.getElementById('cartCount'); if(el){ el.textContent=count() }
+    var w=document.getElementById('wishCount'); if(w){ var n=getWish().length; w.textContent=n; w.style.display=n?'grid':'none' }
+    var ws=getWish();
+    document.querySelectorAll('.wish').forEach(function(b){ b.classList.toggle('on', ws.indexOf(String(b.dataset.id))>-1) });
+  }
+
+  window.Caleido={getCart:getCart,setCart:setCart,addToCart:addToCart,getWish:getWish,toggleWish:toggleWish,toast:toast,paint:paint};
+
+  /* --- delegare click: .add / .wish (merge și pentru elemente create dinamic) --- */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.add[data-id]'); if(a){ e.preventDefault(); addToCart(a.dataset.id,a.dataset.title,a.dataset.price,1); return }
+    var w=e.target.closest('.wish[data-id]'); if(w){ e.preventDefault(); toggleWish(w.dataset.id); }
+  });
   paint();
   window.addEventListener('storage',paint);
-  document.querySelectorAll('.add').forEach(function(b){
-    b.addEventListener('click',function(e){
-      e.preventDefault();
-      var c=getCart(); c.push({id:this.dataset.id,title:this.dataset.title,price:this.dataset.price});
-      localStorage.setItem(key, JSON.stringify(c)); paint();
-      var t=document.getElementById('toast'); t.textContent='„'+this.dataset.title.slice(0,35)+'…” a fost adăugat în coș';
-      t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},2600);
-    });
-  });
-  var cartBtn = document.getElementById('cartBtn');
-  if(cartBtn){ cartBtn.addEventListener('click', function(){ window.location.href = 'checkout.html'; }); }
+
+  /* --- header / nav --- */
+  var hdr=document.getElementById('hdr'), nav=document.getElementById('nav'), tg=document.getElementById('navToggle'), bt=document.getElementById('backTop');
+  window.addEventListener('scroll',function(){ var y=window.scrollY; hdr.classList.toggle('scrolled',y>10); if(bt){ bt.classList.toggle('show',y>500) } },{passive:true});
+  if(tg){ tg.addEventListener('click',function(){ var o=nav.classList.toggle('open'); tg.setAttribute('aria-expanded',o) }); }
+  if(bt){ bt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}) }) }
+  var cartBtn=document.getElementById('cartBtn'); if(cartBtn){ cartBtn.addEventListener('click',function(){ location.href='checkout.html' }) }
+
+  /* --- reveal la scroll --- */
+  var io = (typeof window.IntersectionObserver==='function') ? new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target) } }) },{rootMargin:'0px 0px -8% 0px'}) : null;
+  window.Caleido.reveal=function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io?io.observe(el):el.classList.add('in') }) };
+  window.Caleido.reveal();
+
+  /* --- cookie banner --- */
+  var ck=document.getElementById('cookie');
+  if(ck && !localStorage.getItem(CKEY)){ setTimeout(function(){ck.classList.add('show')},900);
+    document.getElementById('ckOk').onclick=function(){ localStorage.setItem(CKEY,'all'); ck.classList.remove('show') };
+    document.getElementById('ckNo').onclick=function(){ localStorage.setItem(CKEY,'necessary'); ck.classList.remove('show') };
+  }
 })();
 </script>
 </body>
 </html>
 """
 
-def footer():
+def footer(extra_js=""):
+    """Footer + JS comun. `extra_js` = script specific paginii, injectat înainte de </body>."""
     catlinks = "".join('<li><a href="produse.html?cat=%s">%s</a></li>' % (s, t) for s, t, d, i, g in CATEGORIES[:6])
-    return FOOTER.replace("__CATLINKS__", catlinks)
+    up = svg("arrow", 18, 2.2).replace('<svg ', '<svg style="transform:rotate(-90deg)" ')
+    return FOOTER.replace("__CATLINKS__", catlinks).replace("__UP__", up).replace("</body>", extra_js + "</body>")
 
 def product_card(p):
     grad = GRADIENTS.get(p["icon"], GRADIENTS["star"])
     old = '<small>%d LEI</small>' % p["old"] if p.get("old") else ''
     badge = '<span class="tag">%s</span>' % p["badge"] if p.get("badge") else ''
     return """
-    <article class="card reveal" data-cat="%(cat)s" data-lang="%(lang)s" data-level="%(level)s" data-fmt="%(fmt)s" data-price="%(price)d" data-title="%(title_lower)s">
+    <article class="card reveal" data-id="%(id)d" data-cat="%(cat)s" data-lang="%(lang)s" data-level="%(level)s" data-fmt="%(fmt)s" data-price="%(price)d" data-votes="%(votes)s" data-rating="%(rating)s" data-title="%(title_lower)s">
       <div class="cover" style="background:%(grad)s">
         %(badge)s
+        <button class="wish" data-id="%(id)d" aria-label="Adaugă la favorite">%(heart)s</button>
         <span class="fmt">%(fmt)s</span>
-        <span class="cico">%(icon)s</span>
+        <a class="cico" href="produs.html?id=%(id)d" aria-label="%(title_attr)s">%(icon)s</a>
       </div>
       <div class="card-body">
         <span class="cat">%(cattitle)s</span>
         <h3><a href="produs.html?id=%(id)d">%(title)s</a></h3>
-        <div class="meta"><span>%(ficon)s %(pages)s</span><span>%(gicon)s %(lang)s</span></div>
+        <div class="meta"><span>%(ficon)s %(pages)s</span><span>%(gicon)s %(lang)s</span><span class="level-pill">%(level)s</span></div>
         <div class="rating">★ %(rating)s <small>(%(votes)s)</small></div>
       </div>
       <div class="card-foot">
         <div class="price">%(price)d LEI %(old)s<div class="price-note">descărcare instantă</div></div>
-        <button class="add" data-id="%(id)d" data-title="%(title)s" data-price="%(price)d">%(cart)s Adaugă</button>
+        <button class="add" data-id="%(id)d" data-title="%(title_attr)s" data-price="%(price)d">%(cart)s Adaugă</button>
       </div>
     </article>""" % dict(
         cat=p["cat"], lang=p["lang"], level=p["level"], fmt=p["fmt"], price=p["price"],
-        title=p["title"], title_lower=p["title"].lower(), id=p["id"], grad=grad,
+        title=p["title"], title_attr=p["title"].replace('"', "&quot;"), title_lower=p["title"].lower().replace('"', "&quot;"), id=p["id"], grad=grad, heart=svg("heart", 16, 2),
         badge=badge, old=old, icon=svg(p["icon"], 28, 1.7), cattitle=cat_title(p["cat"]),
         ficon=svg("file", 13, 2), gicon=svg("globe", 13, 2),
         pages=p["pages"], rating=p["rating"], votes=p["votes"], cart=svg("cart", 15, 2))

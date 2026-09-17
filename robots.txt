@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /checkout.html
+Disallow: /cont.html
+Disallow: /favorite.html
+
+Sitemap: https://mckyto.github.io/caleidoscope-educational/sitemap.xml
