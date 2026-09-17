@@ -28,13 +28,6 @@ ul{list-style:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(1280px,92vw);margin:0 auto}
-.grad-text{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--violet)}
-.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.72rem 1.15rem;border-radius:999px;font-weight:650;font-size:.95rem;transition:.22s transform,.22s box-shadow,.22s background}
-.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 22px rgba(109,40,217,.32)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(109,40,217,.4)}
-.btn-ghost{background:#fff;color:var(--violet);border:1.5px solid var(--line)}
-.btn-ghost:hover{border-color:var(--violet);transform:translateY(-2px)}
 
 /* ---------- HEADER ---------- */
 .hdr{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -54,6 +47,56 @@ input,select,textarea{font:inherit;color:inherit}
 .icon-btn:hover{border-color:var(--violet);background:#F6F3FF}
 .cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:var(--pink);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 5px}
 
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--grad);color:#fff;overflow:hidden;padding:3.4rem 0 3.2rem}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(10px);opacity:.28;pointer-events:none}
+.hero:before{width:520px;height:520px;background:radial-gradient(circle,#fff,transparent 65%);top:-190px;left:-120px}
+.hero:after{width:620px;height:620px;background:radial-gradient(circle,#0EA5A4,transparent 62%);bottom:-330px;right:-140px;opacity:.35}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.65fr .85fr 1.05fr .42fr;gap:1.7rem;align-items:start}
+.hero h1{font-size:clamp(2rem,3.1vw,3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-top:1.4rem}
+.hero p.lead{font-size:1.02rem;color:rgba(255,255,255,.9);max-width:44rem;margin-top:1rem}
+.searchbar{display:flex;gap:.5rem;background:#fff;border-radius:999px;padding:.42rem;margin-top:1.6rem;max-width:640px;box-shadow:0 18px 40px rgba(16,24,40,.22)}
+.searchbar input{flex:1;border:0;outline:0;padding:.7rem 1.1rem;font-size:.95rem;border-radius:999px;background:transparent}
+.searchbar input::placeholder{color:#98A2B3}
+.searchbar button{background:var(--grad);color:#fff;font-weight:700;border-radius:999px;padding:.75rem 1.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:.34rem .85rem;border-radius:999px;font-size:.84rem;font-weight:600;backdrop-filter:blur(4px);transition:.2s}
+.chip:hover{background:#fff;color:var(--violet)}
+.dom-list{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:20px;padding:1.1rem;backdrop-filter:blur(6px)}
+.dom-list h3{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:.7rem;font-weight:700}
+.dom-list a{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .7rem;border-radius:12px;font-weight:650;font-size:.92rem;transition:.2s}
+.dom-list a:hover{background:rgba(255,255,255,.2);transform:translateX(3px)}
+.promo-card{background:#fff;color:var(--ink);border-radius:22px;padding:1.5rem;box-shadow:0 26px 55px rgba(23,12,58,.35)}
+.promo-card h2{font-size:1.35rem;line-height:1.25;font-weight:800}
+.promo-card p{color:var(--muted);font-size:.92rem;margin-top:.5rem}
+.lang-col{display:grid;gap:.55rem}
+.lang-col a{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:.6rem .5rem;font-weight:700;font-size:.85rem;justify-content:center;transition:.2s}
+.lang-col a:hover{background:#fff;color:var(--violet);transform:translateY(-2px)}
+.lang-col h3{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;text-align:center;margin-bottom:.1rem;font-weight:700}
+
+/* ---------- TRUST ---------- */
+.trust{background:#fff;border-bottom:1px solid var(--line)}
+.trust-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;padding:1.5rem 0}
+.trust-item{display:flex;gap:.75rem;align-items:flex-start}
+.trust-item svg{flex-shrink:0;color:var(--violet);margin-top:2px}
+.trust-item b{display:block;font-size:.92rem}
+.trust-item small{color:var(--muted);font-size:.8rem}
+
+/* ---------- SECTIONS ---------- */
+section{padding:4rem 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 2.4rem}
+.sec-head h2{font-size:clamp(1.6rem,2.4vw,2.15rem);font-weight:800;letter-spacing:-.02em;margin-top:.4rem}
+.sec-head p{color:var(--muted);margin-top:.6rem}
+
+/* categories */
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
+.cat-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:1.15rem 1rem;transition:.25s;display:flex;flex-direction:column;gap:.6rem;min-height:170px}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.cat-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff}
+.cat-card h3{font-size:.98rem;font-weight:750;line-height:1.25}
+.cat-card p{font-size:.8rem;color:var(--muted);margin-top:-.3rem}
+.cat-card .go{margin-top:auto;font-size:.84rem;font-weight:700;color:var(--violet);display:flex;align-items:center;gap:.35rem}
+
 /* ---------- FOOTER ---------- */
 .ftr{background:#150F2B;color:#C7C2E0;padding:3.2rem 0 1.2rem;margin-top:2rem}
 .ftr-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2rem}
@@ -62,8 +105,6 @@ input,select,textarea{font:inherit;color:inherit}
 .ftr a:hover{color:#fff;padding-left:3px}
 .ftr ul{display:grid;gap:.45rem}
 .ftr-btm{border-top:1px solid #2A2350;margin-top:2.2rem;padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:#9892B8}
-
-/* ---------- MISC ---------- */
 .toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ink);color:#fff;padding:.85rem 1.2rem;border-radius:14px;box-shadow:var(--shadow-lg);z-index:99;opacity:0;transform:translateY(12px);transition:.3s;pointer-events:none;font-size:.9rem}
 .toast.show{opacity:1;transform:none}
 </style>
@@ -72,16 +113,26 @@ input,select,textarea{font:inherit;color:inherit}
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="index.html">
-      <span class="brand-name">Caleido<span>scope</span></span>
+      <svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true">
+        <rect x="1" y="1" width="42" height="42" rx="13" fill="%236D28D9"/>
+        <g stroke="%23fff" stroke-width="1.6" fill="none"><circle cx="22" cy="22" r="12"/><path d="M22 10l10.4 18H11.6z"/><path d="M22 34L11.6 16h20.8z"/></g>
+        <circle cx="22" cy="22" r="3.4" fill="%230EA5A4"/>
+      </svg>
+      <span class="brand-txt">
+        <span class="brand-name">Caleido<span>scope</span></span>
+        <span class="brand-sub">Educational.ro · Resurse pentru un viitor mai bun</span>
+      </span>
     </a>
     <nav class="nav" id="nav">
-      <a href="index.html">Acasă</a>
-      <a href="produse.html">Produse</a>
-      <a href="categorii.html">Categorii</a>
-      <a href="despre.html">Despre noi</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="">Acasă</a>
+      <a href="produse.html" class="">Produse</a>
+      <a href="categorii.html" class="active">Categorii</a>
+      <a href="despre.html" class="">Despre noi</a>
+      <a href="blog.html" class="">Blog</a>
+      <a href="contact.html" class="">Contact</a>
     </nav>
     <div class="hdr-actions">
+      <a class="icon-btn" href="cont.html"><svg class="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
       <button class="icon-btn" id="cartBtn" aria-label="Coș"><svg class="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/></svg><span class="cart-count" id="cartCount">0</span></button>
     </div>
   </div>
@@ -92,11 +143,31 @@ input,select,textarea{font:inherit;color:inherit}
     <div class="ftr-top">
       <div>
         <h4>Caleidoscope Educational</h4>
-        <p>Materiale educaționale create de profesori și autori.</p>
+        <p>Materiale educaționale create de profesori și autori: exerciții, povești, rezumate, eseuri, hărți, audiobookuri.</p>
+      </div>
+      <div>
+        <h4>Categorii</h4>
+        <ul>
+          <li><a href="produse.html">Cărți și materiale</a></li>
+          <li><a href="produse.html">Exerciții și fișe</a></li>
+          <li><a href="produse.html">Povești de lectură</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informații utile</h4>
+        <ul>
+          <li><a href="despre.html">Despre noi</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="termeni.html">Termeni și condiții</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Suport clienți</h4>
+        <p>Luni–Vineri: 09:00 – 18:00<br>contact@caleidoscope-educational.ro</p>
       </div>
     </div>
     <div class="ftr-btm">
-      <span>© 2026 Caleidoscope Educational.ro</span>
+      <span>© 2026 Caleidoscope Educational.ro — Toate drepturile rezervate.</span>
     </div>
   </div>
 </footer>
