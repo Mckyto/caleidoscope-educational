@@ -1,0 +1,35 @@
+# Regenerează paginile statice la fiecare push pe main și verifică (pe PR-uri) că HTML-ul comis este sincronizat cu sursa Python.
+name: Build site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate pages
+        run: python generate.py
+      - name: Check generated files are up to date (PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet -- '*.html' sitemap.xml robots.txt; then
+            echo "::error::HTML-ul comis nu este sincronizat cu kit.py / generate.py. Rulează 'python generate.py' și comite rezultatul."
+            git --no-pager diff --stat; exit 1
+          fi
+      - name: Commit regenerated pages (main)
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A '*.html' sitemap.xml robots.txt .nojekyll
+          git diff --cached --quiet || (git commit -m "chore: regenerare pagini [skip ci]" && git push)
