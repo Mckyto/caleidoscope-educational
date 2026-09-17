@@ -582,15 +582,12 @@ FOOTER = """
     });
   });
   document.getElementById('cartBtn').addEventListener('click',function(){
-    var n=getCart().length;
-    var t=document.getElementById('toast');
-    t.textContent = n? ('Ai '+n+' produs(e) în coș. Checkout-ul se va conecta la procesatorul de plăți.') : 'Coșul tău este gol.';
-    t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},3000);
+    window.location.href = 'checkout.html';
   });
   var ck=document.getElementById('cookie');
   if(ck && !localStorage.getItem('caleido_cookie')){ setTimeout(function(){ck.classList.add('show')},900); }
   if(ck){ ck.querySelector('#cookieOk').onclick=function(){localStorage.setItem('caleido_cookie','all');ck.classList.remove('show')};
-          ck.querySelector('#cookieNo').onclick=function(){localStorage.setItem('caleido_cookie','min');ck.classList.remove('show')}; }
+        ck.querySelector('#cookieNo').onclick=function(){localStorage.setItem('caleido_cookie','min');ck.classList.remove('show');} }
   var io=new IntersectionObserver(function(es){es.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 })();
@@ -603,10 +600,10 @@ FOOTER = """
 def footer():
     catlinks = "".join('<li><a href="produse.html?cat=%s">%s</a></li>' % (s, t) for s, t, d, i, g in CATEGORIES)
     return (FOOTER.replace("__CATLINKS__", catlinks)
-                  .replace("__INSTA__", svg("insta", 18))
-                  .replace("__FB__", svg("fb", 18))
-                  .replace("__TT__", svg("tt", 18))
-                  .replace("__YT__", svg("yt", 18)))
+                .replace("__INSTA__", svg("insta", 18))
+                .replace("__FB__", svg("fb", 18))
+                .replace("__TT__", svg("tt", 18))
+                .replace("__YT__", svg("yt", 18)))
 
 
 def product_card(p):
