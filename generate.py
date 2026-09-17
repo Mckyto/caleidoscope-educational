@@ -182,10 +182,7 @@ def build_despre():
   <span class="eyebrow">Despre proiect</span>
   <h1 style="font-size: 2.5rem; font-weight: 800; margin-top: .4rem; margin-bottom: 1.5rem;">Misiunea noastră pentru educație</h1>
   <p style="font-size: 1.1rem; line-height: 1.7; color: var(--ink-2); margin-bottom: 1.2rem;">
-    <b>Caleidoscope Educational</b> s-a născut din pasiune pentru învățare și din dorința de a pune la dispoziția elevilor, studenților și profesorilor materiale didactice de cea mai înaltă calitate, clare și ușor de parcurs.
-  </p>
-  <p style="font-size: 1.1rem; line-height: 1.7; color: var(--ink-2); margin-bottom: 1.2rem;">
-    Fiecare resursă — fie că este vorba despre culegeri de exerciții, sinteze pentru examene, eseuri structurate sau ghiduri de limbi străine — este concepută cu rigurozitate academică și adaptată cerințelor actuale.
+    <b>Caleidoscope Educational</b> s-a născut din pasiune pentru învățare și din dorința de a pune la dispoziția elevilor, studenților și profesorilor materiale didactice de cea mai înaltă calitate.
   </p>
 </div>
 """ + footer()
@@ -287,16 +284,15 @@ if __name__ == "__main__":
     build_contact()
     build_checkout()
     
-    # Restul paginilor standard
     for p in ["blog", "termeni", "cont", "produs"]:
         html = head(p.capitalize() + " — Caleidoscope Educational", "Resurse educaționale", p) + f"""
         <div class="wrap" style="padding: 4rem 0 6rem; max-width: 800px;">
             <span class="eyebrow">Informații</span>
             <h1 style="font-size: 2.2rem; font-weight: 800; margin-top: .3rem; margin-bottom: 1rem;">{p.capitalize()}</h1>
-            <p style="color: var(--muted); line-height: 1.6;">Această secțiune face parte din platforma educațională Caleidoscope. Conținutul este actualizat la zi pentru toți utilizatorii.</p>
+            <p style="color: var(--muted); line-height: 1.6;">Această secțiune face parte din platforma educațională Caleidoscope Educational.ro.</p>
         </div>
         """ + footer()
         with open(f"{p}.html", "w", encoding="utf-8") as f:
             f.write(html)
         print(f"Generat: {p}.html")
-    print("Toate paginile au fost generate complet și profesional!")
+    print("Toate paginile și funcționalitățile au fost regenerate complet!")
