@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """Script principal de generare a paginilor pentru Caleidoscope Educational.ro"""
 
-from kit import head, footer, category_card, CATEGORIES, DOMAINS, LANGS, PRODUCTS, svg, GRADIENTS
+from kit import head, footer, category_card, product_card, CATEGORIES, DOMAINS, LANGS, PRODUCTS, svg, GRADIENTS
 import json
 
 def build_index():
     cats = "".join(category_card(*c) for c in CATEGORIES)
     doms = "".join(
         '<a href="produse.html?cat=%s">%s<span>%s</span></a>' % (
-            "limbi-straine-vocabular" if d == "Limbi străine" else
-            "rezumate-si-eseuri" if d == "Literatură" else
+            "limbi-straine-vocabular" if n == "Limbi străine" else
+            "rezumate-si-eseuri" if n == "Literatură" else
             "literatura-de-specialitate",
             n, "→")
         for n, s, i in DOMAINS)
