@@ -8,12 +8,13 @@
 <style>
 :root{
   --violet:#6D28D9; --violet-2:#7C3AED; --indigo:#4F46E5;
-  --teal:#0EA5A4; --pink:#EC4899; --amber:#F59E0B; --lime:#84CC16;
+  --teal:#0EA5A4; --pink:#EC4899; --amber:#F59E0B; --orange:#F97316; --lime:#84CC16;
   --ink:#101828; --ink-2:#1D2939; --muted:#667085; --line:#E7E4F5;
   --bg:#F8F7FF; --white:#fff;
-  --grad:linear-gradient(135deg,#4F46E5 0%,#6D28D9 45%,#7C3AED 72%,#0EA5A4 130%);
+  --grad:linear-gradient(135deg,#4F46E5 0%,#6D28D9 40%,#F97316 100%);
+  --grad-accent:linear-gradient(135deg,#F59E0B 0%,#F97316 50%,#EC4899 100%);
   --radius:18px; --shadow:0 10px 30px rgba(16,24,40,.08); --shadow-lg:0 22px 60px rgba(76,29,149,.18);
-  --grad-text:linear-gradient(90deg,#6D28D9,#0EA5A4);
+  --grad-text:linear-gradient(90deg,#6D28D9,#F97316);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -28,82 +29,83 @@ ul{list-style:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(1280px,92vw);margin:0 auto}
+.grad-text{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---------- HEADER ---------- */
 .hdr{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.hdr.scrolled{box-shadow:0 6px 24px rgba(16,24,40,.07)}
 .hdr-in{display:flex;align-items:center;gap:1.2rem;height:76px}
 .brand{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
-.brand-txt{display:flex;flex-direction:column;line-height:1.05}
 .brand-name{font-weight:800;font-size:1.32rem;letter-spacing:-.02em}
-.brand-name span{color:var(--violet)}
+.brand-name span{color:var(--orange)}
 .brand-sub{font-size:.66rem;letter-spacing:.06em;color:var(--muted);font-weight:600}
 .nav{display:flex;align-items:center;gap:.15rem;margin-left:auto}
 .nav a{position:relative;padding:.55rem .8rem;border-radius:12px;font-weight:600;font-size:.94rem;color:var(--ink-2);transition:.2s}
-.nav a:hover{color:var(--violet);background:#F4F1FF}
-.nav a.active{color:var(--violet);background:#F1EDFF}
+.nav a:hover{color:var(--orange);background:#FFF7ED}
+.nav a.active{color:var(--orange);background:#FFEDD5}
 .hdr-actions{display:flex;align-items:center;gap:.55rem;margin-left:.6rem}
 .icon-btn{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);transition:.2s}
-.icon-btn:hover{border-color:var(--violet);background:#F6F3FF}
+.icon-btn:hover{border-color:var(--orange);background:#FFF7ED}
 .cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:var(--pink);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 5px}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;background:var(--grad);color:#fff;overflow:hidden;padding:3.4rem 0 3.2rem}
 .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(10px);opacity:.28;pointer-events:none}
-.hero:before{width:520px;height:520px;background:radial-gradient(circle,#fff,transparent 65%);top:-190px;left:-120px}
-.hero:after{width:620px;height:620px;background:radial-gradient(circle,#0EA5A4,transparent 62%);bottom:-330px;right:-140px;opacity:.35}
+.hero:before{width:520px;height:520px;background:radial-gradient(circle,#F97316,transparent 65%);top:-190px;left:-120px}
+.hero:after{width:620px;height:620px;background:radial-gradient(circle,#F59E0B,transparent 62%);bottom:-330px;right:-140px;opacity:.35}
 .hero-grid{position:relative;display:grid;grid-template-columns:1.65fr .85fr 1.05fr .42fr;gap:1.7rem;align-items:start}
 .hero h1{font-size:clamp(2rem,3.1vw,3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-top:1.4rem}
 .hero p.lead{font-size:1.02rem;color:rgba(255,255,255,.9);max-width:44rem;margin-top:1rem}
 .searchbar{display:flex;gap:.5rem;background:#fff;border-radius:999px;padding:.42rem;margin-top:1.6rem;max-width:640px;box-shadow:0 18px 40px rgba(16,24,40,.22)}
 .searchbar input{flex:1;border:0;outline:0;padding:.7rem 1.1rem;font-size:.95rem;border-radius:999px;background:transparent}
 .searchbar input::placeholder{color:#98A2B3}
-.searchbar button{background:var(--grad);color:#fff;font-weight:700;border-radius:999px;padding:.75rem 1.5rem}
+.searchbar button{background:var(--grad-accent);color:#fff;font-weight:700;border-radius:999px;padding:.75rem 1.5rem}
+
 .dom-list{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:20px;padding:1.1rem;backdrop-filter:blur(6px)}
 .dom-list h3{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:.7rem;font-weight:700}
 .dom-list a{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .7rem;border-radius:12px;font-weight:650;font-size:.92rem;transition:.2s}
 .dom-list a:hover{background:rgba(255,255,255,.2);transform:translateX(3px)}
-.promo-card{background:#fff;color:var(--ink);border-radius:22px;padding:1.5rem;box-shadow:0 26px 55px rgba(23,12,58,.35)}
+
+.promo-card{background:#fff;color:var(--ink);border-radius:22px;padding:1.5rem;box-shadow:0 26px 55px rgba(23,12,58,.35);border-top:4px solid var(--orange)}
 .promo-card h2{font-size:1.35rem;line-height:1.25;font-weight:800}
 .promo-card p{color:var(--muted);font-size:.92rem;margin-top:.5rem}
+
 .lang-col{display:grid;gap:.55rem}
 .lang-col a{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:.6rem .5rem;font-weight:700;font-size:.85rem;justify-content:center;transition:.2s}
-.lang-col a:hover{background:#fff;color:var(--violet);transform:translateY(-2px)}
+.lang-col a:hover{background:#fff;color:var(--orange);transform:translateY(-2px)}
 .lang-col h3{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;text-align:center;margin-bottom:.1rem;font-weight:700}
 
 /* ---------- TRUST ---------- */
 .trust{background:#fff;border-bottom:1px solid var(--line)}
 .trust-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;padding:1.5rem 0}
 .trust-item{display:flex;gap:.75rem;align-items:flex-start}
-.trust-item svg{flex-shrink:0;color:var(--violet);margin-top:2px}
+.trust-item svg{flex-shrink:0;color:var(--orange);margin-top:2px}
 .trust-item b{display:block;font-size:.92rem}
 .trust-item small{color:var(--muted);font-size:.8rem}
 
 /* ---------- SECTIONS ---------- */
 section{padding:4rem 0}
 .sec-head{text-align:center;max-width:640px;margin:0 auto 2.4rem}
+.sec-head .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--orange)}
 .sec-head h2{font-size:clamp(1.6rem,2.4vw,2.15rem);font-weight:800;letter-spacing:-.02em;margin-top:.4rem}
 .sec-head p{color:var(--muted);margin-top:.6rem}
 
 /* categories */
 .cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
 .cat-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:1.15rem 1rem;transition:.25s;display:flex;flex-direction:column;gap:.6rem;min-height:170px}
-.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.cat-card:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(249,115,22,.15);border-color:var(--orange)}
 .cat-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff}
 .cat-card h3{font-size:.98rem;font-weight:750;line-height:1.25}
 .cat-card p{font-size:.8rem;color:var(--muted);margin-top:-.3rem}
-.cat-card .go{margin-top:auto;font-size:.84rem;font-weight:700;color:var(--violet);display:flex;align-items:center;gap:.35rem}
+.cat-card .go{margin-top:auto;font-size:.84rem;font-weight:700;color:var(--orange);display:flex;align-items:center;gap:.35rem}
 
 /* ---------- FOOTER ---------- */
-.ftr{background:#150F2B;color:#C7C2E0;padding:3.2rem 0 1.2rem;margin-top:2rem}
+.ftr{background:#18121E;color:#E5E7EB;padding:3.2rem 0 1.2rem;margin-top:2rem;border-top:4px solid var(--orange)}
 .ftr-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2rem}
 .ftr h4{color:#fff;font-size:.95rem;margin-bottom:.9rem;font-weight:750}
-.ftr a{color:#C7C2E0;font-size:.9rem;transition:.2s}
-.ftr a:hover{color:#fff;padding-left:3px}
+.ftr a{color:#D1D5DB;font-size:.9rem;transition:.2s}
+.ftr a:hover{color:var(--orange);padding-left:3px}
 .ftr ul{display:grid;gap:.45rem}
-.ftr-btm{border-top:1px solid #2A2350;margin-top:2.2rem;padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:#9892B8}
-.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ink);color:#fff;padding:.85rem 1.2rem;border-radius:14px;box-shadow:var(--shadow-lg);z-index:99;opacity:0;transform:translateY(12px);transition:.3s;pointer-events:none;font-size:.9rem}
-.toast.show{opacity:1;transform:none}
+.ftr-btm{border-top:1px solid #2D2338;margin-top:2.2rem;padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:#9CA3AF}
 </style>
 </head>
 <body>
@@ -111,9 +113,9 @@ section{padding:4rem 0}
   <div class="wrap hdr-in">
     <a class="brand" href="index.html">
       <svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true">
-        <rect x="1" y="1" width="42" height="42" rx="13" fill="%236D28D9"/>
+        <rect x="1" y="1" width="42" height="42" rx="13" fill="%23F97316"/>
         <g stroke="%23fff" stroke-width="1.6" fill="none"><circle cx="22" cy="22" r="12"/><path d="M22 10l10.4 18H11.6z"/><path d="M22 34L11.6 16h20.8z"/></g>
-        <circle cx="22" cy="22" r="3.4" fill="%230EA5A4"/>
+        <circle cx="22" cy="22" r="3.4" fill="%23F59E0B"/>
       </svg>
       <span class="brand-txt">
         <span class="brand-name">Caleido<span>scope</span></span>
@@ -135,9 +137,10 @@ section{padding:4rem 0}
   </div>
 </header>
 
-        <div class="wrap" style="padding: 4rem 0;">
-            <h1>Produs</h1>
-            <p>Pagină generată automat și integrată în platformă.</p>
+        <div class="wrap" style="padding: 4rem 0 6rem; max-width: 800px;">
+            <span class="eyebrow">Informații</span>
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin-top: .3rem; margin-bottom: 1rem;">Produs</h1>
+            <p style="color: var(--muted); line-height: 1.6;">Această secțiune face parte din platforma educațională Caleidoscope. Conținutul este actualizat la zi pentru toți utilizatorii.</p>
         </div>
         
 <footer class="ftr">
