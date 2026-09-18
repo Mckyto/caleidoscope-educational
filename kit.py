@@ -123,13 +123,14 @@ section{padding:4rem 0}
 .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
 .card{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
-.cover{height:130px;display:grid;place-items:center;position:relative;color:#fff}
+.cover{height:130px;display:grid;place-items:center;position:relative;color:#fff;overflow:hidden}
 .cover .cico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(3px)}
 .cover .tag{position:absolute;top:.6rem;left:.6rem;background:rgba(255,255,255,.92);color:var(--ink);font-size:.68rem;font-weight:800;padding:.22rem .55rem;border-radius:999px;letter-spacing:.04em}
 .cover .fmt{position:absolute;bottom:.6rem;right:.6rem;background:rgba(16,24,40,.55);font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:8px;letter-spacing:.04em}
-/* copertă cu imagine reală (ex. schițele ilustrate) */
-.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(2px) saturate(.9) brightness(.9);opacity:.82;transform:scale(1.02);transition:filter .35s ease,transform .35s ease,opacity .35s ease;will-change:transform,filter,opacity}
-.card:hover .cover .photo,.card:focus-within .cover .photo,.cover.has-img:hover .photo,.cover.has-img:focus-within .photo{filter:blur(0) saturate(1) brightness(1);opacity:1;transform:scale(1)}
+/* premium reveal with micro-zoom and soft glow */
+.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(1.5px) saturate(.9) brightness(.9);opacity:.82;transform:scale(1.03);transition:filter .45s ease,transform .45s ease,opacity .45s ease,box-shadow .45s ease;will-change:transform,filter,opacity}
+.card:hover .cover .photo,.card:focus-within .cover .photo,.cover.has-img:hover .photo,.cover.has-img:focus-within .photo{filter:blur(0) saturate(1.04) brightness(1);opacity:1;transform:scale(1.01)}
+.card:hover .cover,.card:focus-within .cover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
 .cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in;z-index:1}
 .cover .tag,.cover .fmt{z-index:2}
 .cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.55);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
@@ -379,7 +380,7 @@ ICONS = {
     "checkc": '<circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 6-6"/>',
     "arrow": '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>',
     "mail": '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/>',
-    "phone": '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a' ,
+    "phone": '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a',
     "pin": '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
     "clock": '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
     "cart": '<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/>',
@@ -439,4 +440,3 @@ SITE_URL = "https://mckyto.github.io/caleidoscope-educational/"
 
 # NOTE: the rest of the file is unchanged; this patch only adds the blur/reveal CSS for real cover images.
 """
-
