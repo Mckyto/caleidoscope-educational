@@ -127,6 +127,13 @@ section{padding:4rem 0}
 .cover .cico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(3px)}
 .cover .tag{position:absolute;top:.6rem;left:.6rem;background:rgba(255,255,255,.92);color:var(--ink);font-size:.68rem;font-weight:800;padding:.22rem .55rem;border-radius:999px;letter-spacing:.04em}
 .cover .fmt{position:absolute;bottom:.6rem;right:.6rem;background:rgba(16,24,40,.55);font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:8px;letter-spacing:.04em}
+/* copertă cu imagine reală (ex. schițele ilustrate) */
+.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in}
+.cover .tag,.cover .fmt{z-index:2}
+.cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.5);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
+.cover.has-img .cico:hover{background:rgba(109,40,217,.85)}
+.cover.has-img .fmt{background:rgba(16,24,40,.75)}
 .card-body{padding:1rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
 .card-body .cat{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--violet)}
 .card-body h3{font-size:.98rem;font-weight:700;line-height:1.3}
@@ -451,8 +458,8 @@ PRODUCTS = [
     dict(id=32, title="Audiobook: Povești populare românești, volumul 2 (24 de povești)", cat="audiobookuri", lang="Română", level="3–8 ani", fmt="MP3", pages="2 h 45 min", price=35, old=0, badge="Audio", rating=4.9, votes=47, icon="audio"),
     dict(id=33, title="Ghid de documentare: norme APA 7 + 120 de exemple de citare", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF + DOCX", pages="38 pagini", price=39, old=0, badge="Nou", rating=4.8, votes=22, icon="cap"),
     dict(id=34, title="Drept constituțional – sinteze de studiu pentru facultate", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="96 pagini", price=59, old=75, badge="", rating=4.8, votes=38, icon="shield"),
-    dict(id=35, title="Schiță ilustrată: „O scrisoare pierdută” de I.L. Caragiale – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.9, votes=12, icon="story"),
-    dict(id=36, title="Schiță ilustrată: „Plumb” de George Bacovia – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.8, votes=9, icon="book"),
+    dict(id=35, title="Schiță ilustrată: „O scrisoare pierdută” de I.L. Caragiale – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.9, votes=12, icon="story", img="uploads/schita-o-scrisoare-pierduta.jpg"),
+    dict(id=36, title="Schiță ilustrată: „Plumb” de George Bacovia – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.8, votes=9, icon="book", img="uploads/schita-plumb.jpg"),
     dict(id=37, title="Rezumat „Enigma Otiliei” – G. Călinescu (structură + personaje)", cat="rezumate-si-eseuri", lang="Română", level="Liceu", fmt="PDF", pages="34 pagini", price=19, old=0, badge="", rating=4.8, votes=52, icon="file"),
     dict(id=38, title="Eseu: umorul ca critică a societății în „O scrisoare pierdută”", cat="rezumate-si-eseuri", lang="Română", level="Bac", fmt="PDF", pages="20 pagini", price=22, old=0, badge="", rating=4.7, votes=31, icon="file"),
     dict(id=39, title="Schiță ilustrată: „Ispita” de Ion Slavici – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.9, votes=11, icon="story"),
@@ -783,10 +790,14 @@ def product_card(p):
     grad = GRADIENTS.get(p["icon"], GRADIENTS["star"])
     old = '<small>%d LEI</small>' % p["old"] if p.get("old") else ''
     badge = '<span class="tag">%s</span>' % p["badge"] if p.get("badge") else ''
+    img = p.get("img", "")
+    title_attr = p["title"].replace('"', "&quot;")
+    photo = ('<img class="photo" src="%s" alt="Copertă: %s" loading="lazy" decoding="async" '
+             'width="1024" height="1536">' % (img, title_attr)) if img else ""
     return """
     <article class="card reveal" data-id="%(id)d" data-cat="%(cat)s" data-lang="%(lang)s" data-level="%(level)s" data-fmt="%(fmt)s" data-price="%(price)d" data-votes="%(votes)s" data-rating="%(rating)s" data-title="%(title_lower)s">
-      <div class="cover" style="background:%(grad)s">
-        %(badge)s
+      <div class="cover%(has_img)s" style="background:%(grad)s">
+        %(photo)s%(badge)s
         <button class="wish" data-id="%(id)d" aria-label="Adaugă la favorite">%(heart)s</button>
         <span class="fmt">%(fmt)s</span>
         <a class="cico" href="produs.html?id=%(id)d" aria-label="%(title_attr)s">%(icon)s</a>
@@ -803,8 +814,9 @@ def product_card(p):
       </div>
     </article>""" % dict(
         cat=p["cat"], lang=p["lang"], level=p["level"], fmt=p["fmt"], price=p["price"],
-        title=p["title"], title_attr=p["title"].replace('"', "&quot;"), title_lower=p["title"].lower().replace('"', "&quot;"), id=p["id"], grad=grad, heart=svg("heart", 16, 2),
-        badge=badge, old=old, icon=svg(p["icon"], 28, 1.7), cattitle=cat_title(p["cat"]),
+        title=p["title"], title_attr=title_attr, title_lower=p["title"].lower().replace('"', "&quot;"), id=p["id"], grad=grad, heart=svg("heart", 16, 2),
+        badge=badge, old=old, icon=svg(p["icon"], 28, 1.7), cattitle=cat_title(p["cat"]), photo=photo,
+        has_img=" has-img" if img else "",
         ficon=svg("file", 13, 2), gicon=svg("globe", 13, 2),
         pages=p["pages"], rating=p["rating"], votes=p["votes"], cart=svg("cart", 15, 2))
 

@@ -17,6 +17,7 @@ CHECK = svg("check", 18, 2.4)
 # Subset serializabil al produselor, folosit de paginile care randează pe client (produs, favorite, checkout)
 PRODUCTS_JSON = json.dumps(
     [dict({k: p[k] for k in ("id", "title", "cat", "lang", "level", "fmt", "pages", "price", "old", "badge", "rating", "votes", "icon")},
+          img=p.get("img", ""),
           cattitle=cat_title(p["cat"]), desc=DESCRIPTIONS.get(p["id"], CAT_DESC)) for p in PRODUCTS],
     ensure_ascii=False)
 GRADIENTS_JSON = json.dumps(GRADIENTS)
@@ -31,7 +32,9 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 function ico(n,size){ var P={file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>',cart:'<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/>',book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'};
   return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(P[n]||P.book)+'</svg>' }
 function cardHTML(x){
-  return '<article class="card reveal" data-id="'+x.id+'"><div class="cover" style="background:'+(G[x.icon]||G.file)+'">'
+  var photo = x.img? '<img class="photo" src="'+esc(x.img)+'" alt="Copertă: '+esc(x.title)+'" loading="lazy" decoding="async" width="1024" height="1536">':'';
+  return '<article class="card reveal" data-id="'+x.id+'"><div class="cover'+(x.img?' has-img':'')+'" style="background:'+(G[x.icon]||G.file)+'">'
+   +photo
    +(x.badge?'<span class="tag">'+esc(x.badge)+'</span>':'')
    +'<button class="wish" data-id="'+x.id+'" aria-label="Favorite">'+ico('heart',16)+'</button>'
    +'<span class="fmt">'+esc(x.fmt)+'</span><a class="cico" href="produs.html?id='+x.id+'">'+ico(x.icon,28)+'</a></div>'
@@ -635,7 +638,7 @@ def build_produs():
 """
     js = """
 <script>
-var DATA=%s;
+var DATA=%s, SITE='%s';
 %s
 (function(){
   var id=parseInt((new URLSearchParams(location.search)).get('id')||'0',10);
@@ -657,9 +660,11 @@ var DATA=%s;
   var wished=Caleido.getWish().indexOf(String(p.id))>-1;
   box.innerHTML=
    '<div class="grid-2" style="align-items:start;gap:2.4rem">'
-   +'<div><div class="cover" style="height:340px;border-radius:22px;background:'+(G[p.icon]||G.file)+'">'
+   +'<div><div class="cover'+(p.img?' has-img':'')+'" style="height:340px;border-radius:22px;background:'+(G[p.icon]||G.file)+'">'
+   +(p.img?'<a class="photo-link" href="'+esc(p.img)+'" target="_blank" rel="noopener" title="Deschide schița în mărime completă" aria-label="Deschide schița în mărime completă"><img class="photo" src="'+esc(p.img)+'" alt="Copertă: '+esc(p.title)+'" decoding="async" width="1024" height="1536"></a>':'')
    +(p.badge?'<span class="tag" style="top:1rem;left:1rem">'+esc(p.badge)+'</span>':'')+(disc?'<span class="tag" style="top:1rem;right:1rem;left:auto;background:var(--pink);color:#fff">-'+disc+'%%</span>':'')
-   +'<span class="fmt" style="bottom:1rem;right:1rem">'+esc(p.fmt)+'</span><span class="cico" style="width:96px;height:96px">'+ico(p.icon,46)+'</span></div>'
+   +'<span class="fmt" style="bottom:1rem;right:1rem">'+esc(p.fmt)+'</span>'+(p.img?'':'<span class="cico" style="width:96px;height:96px">'+ico(p.icon,46)+'</span>')+'</div>'
+   +(p.img?'<p style="font-size:.82rem;color:var(--muted);margin-top:.6rem">Apasă pe schiță pentru a o vedea în mărime completă (A3).</p>':'')
    +'<div class="spec"><div><b>Format</b>'+esc(p.fmt)+'</div><div><b>Dimensiune</b>'+esc(p.pages)+'</div><div><b>Nivel</b>'+esc(p.level)+'</div><div><b>Limbă</b>'+esc(p.lang)+'</div></div>'
    +'<div class="tile" style="margin-top:1rem"><h3>Ce primești</h3><ul class="desc-list"><li>Fișier '+esc(p.fmt)+' — '+esc(p.pages)+', optimizat pentru print A4</li><li>Extras gratuit (3 pagini) înainte de cumpărare</li><li>Actualizări gratuite timp de 12 luni</li><li>Licență de utilizare personală / o clasă</li><li>Factură fiscală automată pe e-mail</li></ul></div></div>'
    +'<div><a href="produse.html?cat='+p.cat+'" class="eyebrow">'+esc(p.cattitle)+'</a>'
@@ -693,13 +698,15 @@ var DATA=%s;
   document.getElementById('related').innerHTML=rel.slice(0,4).map(cardHTML).join('');
   /* JSON-LD Product */
   var ld=document.createElement('script'); ld.type='application/ld+json';
-  ld.text=JSON.stringify({"@context":"https://schema.org","@type":"Product","name":p.title,"description":p.desc,"category":p.cattitle,"inLanguage":"ro",
+  var ldo={"@context":"https://schema.org","@type":"Product","name":p.title,"description":p.desc,"category":p.cattitle,"inLanguage":"ro",
     "aggregateRating":{"@type":"AggregateRating","ratingValue":p.rating,"reviewCount":p.votes},
-    "offers":{"@type":"Offer","priceCurrency":"RON","price":p.price,"availability":"https://schema.org/InStock","url":location.href}});
+    "offers":{"@type":"Offer","priceCurrency":"RON","price":p.price,"availability":"https://schema.org/InStock","url":location.href}};
+  if(p.img) ldo.image=SITE+p.img;
+  ld.text=JSON.stringify(ldo);
   document.head.appendChild(ld);
   Caleido.paint(); Caleido.reveal();
 })();
-</script>""" % (PRODUCTS_JSON, CARD_JS)
+</script>""" % (PRODUCTS_JSON, SITE_URL, CARD_JS)
     write("produs.html", head("Produs — Caleidoscope Educational.ro", "Detalii resursă educațională, extras gratuit și descărcare instantă.", "produse", page="produs.html") + body + footer(js))
 
 
