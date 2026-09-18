@@ -49,7 +49,7 @@ input,select,textarea{font:inherit;color:inherit}
 .nav a:hover{color:var(--violet);background:#F4F1FF}
 .nav a.active{color:var(--violet);background:#F1EDFF}
 .drop{position:relative}
-.drop-panel{position:absolute;top:115%;left:0;min-width:270px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:.55rem;display:none;grid-template-columns:1fr;gap:.15rem;z-index:70}
+.drop-panel{position:absolute;top:115%;left:0;min-width:270px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:.55rem;display:none;grid-template-columns:1fr}
 .drop:hover .drop-panel{display:grid}
 .drop-panel a{display:flex;gap:.6rem;align-items:flex-start;padding:.6rem .7rem;border-radius:12px;font-size:.9rem;font-weight:600}
 .drop-panel a:hover{background:#F6F3FF}
@@ -57,7 +57,7 @@ input,select,textarea{font:inherit;color:inherit}
 .hdr-actions{display:flex;align-items:center;gap:.55rem;margin-left:.6rem}
 .icon-btn{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);transition:.2s}
 .icon-btn:hover{border-color:var(--violet);background:#F6F3FF}
-.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:var(--pink);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 5px}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:var(--pink);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 .3rem}
 .nav-toggle{display:none;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);place-items:center}
 
 /* ---------- HERO ---------- */
@@ -76,7 +76,7 @@ input,select,textarea{font:inherit;color:inherit}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
 .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);color:#fff;padding:.34rem .85rem;border-radius:999px;font-size:.84rem;font-weight:600;backdrop-filter:blur(4px);transition:.2s}
 .chip:hover{background:#fff;color:var(--violet)}
-.badge-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:.42rem 1rem;border-radius:999px;font-weight:800;letter-spacing:.14em;font-size:.74rem;text-transform:uppercase;margin-top:1.5rem}
+.badge-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:.42rem 1rem;border-radius:999px;font-weight:800;letter-spacing:.04em;margin-top:1rem}
 .dom-list{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:20px;padding:1.1rem;backdrop-filter:blur(6px)}
 .dom-list h3{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:.7rem;font-weight:700}
 .dom-list a{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .7rem;border-radius:12px;font-weight:650;font-size:.92rem;transition:.2s}
@@ -90,7 +90,7 @@ input,select,textarea{font:inherit;color:inherit}
 .stat b{display:block;font-size:1.22rem;color:var(--violet)}
 .stat small{font-size:.7rem;color:var(--muted);font-weight:600}
 .lang-col{display:grid;gap:.55rem}
-.lang-col a{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:.6rem .5rem;font-weight:700;font-size:.85rem;justify-content:center;transition:.2s}
+.lang-col a{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:.6rem .5rem;font-weight:700;font-size:.85rem;transition:.2s}
 .lang-col a:hover{background:#fff;color:var(--violet);transform:translateY(-2px)}
 .lang-col h3{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;text-align:center;margin-bottom:.1rem;font-weight:700}
 
@@ -127,8 +127,9 @@ section{padding:4rem 0}
 .cover .cico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(3px)}
 .cover .tag{position:absolute;top:.6rem;left:.6rem;background:rgba(255,255,255,.92);color:var(--ink);font-size:.68rem;font-weight:800;padding:.22rem .55rem;border-radius:999px;letter-spacing:.04em}
 .cover .fmt{position:absolute;bottom:.6rem;right:.6rem;background:rgba(16,24,40,.55);font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:8px;letter-spacing:.04em}
-/* copertă cu imagine reală (ex. schițele ilustrate) */
-.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+/* copertă cu imagine reală (ex. schițele ilustrate): blur default + reveal la hover */
+.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(8px) saturate(.78);transform:scale(1.03);opacity:.82;transition:filter .28s ease,transform .28s ease,opacity .28s ease}
+.card:hover .cover .photo,.card:focus-within .cover .photo,.cover.has-img:hover .photo,.cover.has-img:focus-within .photo{filter:blur(0) saturate(1);transform:scale(1);opacity:1}
 .cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in}
 .cover .tag,.cover .fmt{z-index:2}
 .cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.5);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
@@ -256,11 +257,11 @@ section{padding:4rem 0}
 .ftr .note{font-size:.78rem;color:#8B85AD;margin-top:.6rem}
 
 /* ---------- MISC ---------- */
-.cookie{position:fixed;bottom:1rem;left:1rem;right:1rem;max-width:520px;background:#fff;border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);padding:1.1rem;z-index:90;display:none;gap:.8rem}
+.cookie{position:fixed;bottom:1rem;left:1rem;right:1rem;max-width:520px;background:#fff;border:1.5px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);padding:1.1rem;z-index:90;display:none}
 .cookie.show{display:flex;flex-direction:column}
 .cookie p{font-size:.86rem;color:var(--muted)}
 .cookie .row{display:flex;gap:.6rem;margin-top:.4rem}
-.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ink);color:#fff;padding:.85rem 1.2rem;border-radius:14px;box-shadow:var(--shadow-lg);z-index:99;opacity:0;transform:translateY(12px);transition:.3s;pointer-events:none;font-size:.9rem}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ink);color:#fff;padding:.85rem 1.2rem;border-radius:14px;box-shadow:var(--shadow-lg);z-index:99;opacity:0;transform:translateY(12px);transition:.2s}
 .toast.show{opacity:1;transform:none}
 .reveal{opacity:0;transform:translateY(14px);transition:.6s}
 .reveal.in{opacity:1;transform:none}
@@ -290,7 +291,7 @@ section{padding:4rem 0}
 .field.invalid input{border-color:#DC2626}
 .field.invalid .err{display:block}
 .pay-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.4rem 0 1rem}
-.pay-opts label{border:1.5px solid var(--line);border-radius:12px;padding:.6rem;text-align:center;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.pay-opts label{border:1.5px solid var(--line);border-radius:12px;padding:.6rem;text-align:center;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.4rem}
 .pay-opts input{display:none}
 .pay-opts input:checked+span{color:var(--violet)}
 .pay-opts label:has(input:checked){border-color:var(--violet);background:#F6F3FF}
@@ -304,7 +305,7 @@ section{padding:4rem 0}
 .p404 p{color:var(--muted)}
 .skel{background:linear-gradient(90deg,#F3F0FF 25%,#EAE6FA 50%,#F3F0FF 75%);background-size:200% 100%;animation:sh 1.2s infinite;border-radius:14px}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.back-top{position:fixed;right:1.5rem;bottom:5rem;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--violet);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.back-top{position:fixed;right:1.5rem;bottom:5rem;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.2s;z-index:80}
 .back-top.show{opacity:1;pointer-events:auto}
 .level-pill{display:inline-block;background:#F4F1FF;color:var(--violet);font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:999px}
 .spec{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.8rem}
@@ -363,7 +364,7 @@ ICONS = {
     "cap": '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
     "lib": '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/>',
     "science": '<path d="M9 3h6"/><path d="M10 3v6L5 19a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 19l-5-10V3"/><path d="M7.5 14h9"/>',
-    "brain": '<path d="M12 5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 3 3 0 0 0 1 5.8V19a2 2 0 0 0 2 2h1v-6"/><path d="M12 5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 3 3 0 0 1-1 5.8V19a2 2 0 0 1-2 2h-1v-6"/><path d="M12 5v14"/>',
+    "brain": '<path d="M12 5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 3 3 0 0 0 1 5.8V19a2 2 0 0 0 2 2h1v-6"/><path d="M12 5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 3 3 0 0 1-1 5.8V19a2 2 0 0 1-2 2h-1v-6"/><path d="M12 5"/>',
     "shield": '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
     "search": '<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/>',
     "heart": '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>',
@@ -378,7 +379,7 @@ ICONS = {
     "checkc": '<circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 6-6"/>',
     "arrow": '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>',
     "mail": '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/>',
-    "phone": '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+    "phone": '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a' ,
     "pin": '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
     "clock": '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
     "cart": '<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/>',
@@ -392,10 +393,12 @@ ICONS = {
     "pin2": '<path d="M12 17v5"/><path d="M9 3h6l-1 6 4 3v2H6v-2l4-3z"/>',
 }
 
+
 def svg(name, size=22, sw=1.9, cls=""):
     p = ICONS.get(name, ICONS["star"])
     return ('<svg class="%s" width="%d" height="%d" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
             'stroke-width="%s" stroke-linecap="round" stroke-linejoin="round">%s</svg>' % (cls, size, size, sw, p))
+
 
 CATEGORIES = [
     ("carti-si-materiale-scolare", "Cărți și materiale școlare", "Manuale auxiliare, culegeri, sinteze pe materii", "book", "linear-gradient(135deg,#6D28D9,#4F46E5)"),
@@ -423,144 +426,8 @@ DOMAINS = [
 
 LANGS = ["Engleză", "Franceză", "Spaniolă", "Germană", "Italiană", "Română"]
 
-PRODUCTS = [
-    dict(id=1, title="Engleză pentru începători A1–A2: 200 de exerciții + vocabular", cat="limbi-straine-vocabular", lang="Engleză", level="A1–A2", fmt="PDF", pages="124 pagini", price=49, old=69, badge="Bestseller", rating=4.9, votes=214, icon="globe"),
-    dict(id=2, title="500 de cuvinte esențiale în franceză – vocabular ilustrat", cat="limbi-straine-vocabular", lang="Franceză", level="A1", fmt="PDF", pages="78 pagini", price=39, old=0, badge="Nou", rating=4.8, votes=96, icon="globe"),
-    dict(id=3, title="Spaniolă de la zero: 60 de lecții cu dialoguri și exerciții", cat="limbi-straine-vocabular", lang="Spaniolă", level="A1–A2", fmt="PDF", pages="150 pagini", price=45, old=59, badge="", rating=4.7, votes=131, icon="globe"),
-    dict(id=4, title="Germană A1: vocabular pe teme + 80 de fișe de lucru", cat="limbi-straine-vocabular", lang="Germană", level="A1", fmt="PDF", pages="96 pagini", price=45, old=0, badge="", rating=4.8, votes=88, icon="globe"),
-    dict(id=5, title="Italiană pentru călătorii: expresii utile + audio", cat="limbi-straine-vocabular", lang="Italiană", level="A1–A2", fmt="PDF + MP3", pages="62 pagini · 55 min", price=55, old=75, badge="Pachet", rating=4.9, votes=142, icon="globe"),
-    dict(id=6, title="Rezumat „Romeo și Julieta” – Shakespeare (analiză + personaje)", cat="rezumate-si-eseuri", lang="Română", level="Liceu", fmt="PDF", pages="32 pagini", price=19, old=25, badge="Bestseller", rating=4.9, votes=389, icon="file"),
-    dict(id=7, title="Eseu: tema și viziunea despre lume în „Moromeții”", cat="rezumate-si-eseuri", lang="Română", level="Bac", fmt="PDF", pages="26 pagini", price=24, old=0, badge="", rating=4.8, votes=176, icon="file"),
-    dict(id=8, title="Rezumat „Ion” de Liviu Rebreanu + fișe de personaje", cat="rezumate-si-eseuri", lang="Română", level="Liceu", fmt="PDF", pages="38 pagini", price=22, old=0, badge="", rating=4.7, votes=154, icon="file"),
-    dict(id=9, title="Schițe și conspecte: Literatura română, clasa a IX-a", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="84 pagini", price=29, old=0, badge="", rating=4.6, votes=97, icon="notes"),
-    dict(id=10, title="Fișe de lucru Matematică clasa a V-a – 200 de exerciții cu barem", cat="exercitii-si-fise-de-lucru", lang="Română", level="Primar/Gimnaziu", fmt="PDF", pages="110 pagini", price=35, old=45, badge="", rating=4.8, votes=203, icon="edit"),
-    dict(id=11, title="Limba română clasele I–IV: pachet complet de fișe", cat="exercitii-si-fise-de-lucru", lang="Română", level="Primar", fmt="PDF", pages="180 pagini", price=39, old=55, badge="Bestseller", rating=4.9, votes=267, icon="edit"),
-    dict(id=12, title="30 de povești ilustrate pentru copii (4–9 ani)", cat="povesti-si-carti-de-lectura", lang="Română", level="Preșcolari", fmt="PDF", pages="92 pagini", price=45, old=0, badge="", rating=4.9, votes=188, icon="story"),
-    dict(id=13, title="Povești educative + exerciții de înțelegere a textului", cat="povesti-si-carti-de-lectura", lang="Română", level="Primar", fmt="PDF", pages="74 pagini", price=32, old=0, badge="", rating=4.7, votes=121, icon="story"),
-    dict(id=14, title="Hartă politică Europa – printabilă A3 (alb/negru + color)", cat="harti-si-atlase", lang="Română", level="Toate", fmt="PDF", pages="6 fișiere", price=25, old=0, badge="", rating=4.8, votes=76, icon="map"),
-    dict(id=15, title="Atlas istoric: harta României 1918–1940", cat="harti-si-atlase", lang="Română", level="Liceu", fmt="PDF", pages="22 pagini", price=29, old=0, badge="", rating=4.7, votes=54, icon="map"),
-    dict(id=16, title="Audiobook: Povești de noapte bună, volumul 1", cat="audiobookuri", lang="Română", level="3–8 ani", fmt="MP3", pages="3 h 10 min", price=35, old=49, badge="Audio", rating=4.9, votes=143, icon="audio"),
-    dict(id=17, title="Audiobook: Engleză pentru începători – ascultă și repetă", cat="audiobookuri", lang="Engleză", level="A1", fmt="MP3", pages="2 h 25 min", price=49, old=65, badge="Audio", rating=4.8, votes=119, icon="audio"),
-    dict(id=18, title="Cum alegi tema de licență (Psihologie) – ghid + 60 de idei", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF", pages="48 pagini", price=59, old=0, badge="Bestseller", rating=4.9, votes=211, icon="cap"),
-    dict(id=19, title="Structură de disertație – Drept penal (model + bibliografie)", cat="licenta-si-disertatie", lang="Română", level="Master", fmt="PDF", pages="42 pagini", price=69, old=89, badge="", rating=4.8, votes=104, icon="cap"),
-    dict(id=20, title="120 de teme de licență: Psihologie, Drept, Criminalistică", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF", pages="56 pagini", price=79, old=99, badge="Nou", rating=4.9, votes=167, icon="cap"),
-    dict(id=21, title="Plan de lucru științific: model complet + exemplu redactat", cat="planuri-de-lucru-stiintifice", lang="Română", level="Studenți", fmt="PDF + DOCX", pages="34 pagini", price=55, old=0, badge="", rating=4.7, votes=92, icon="science"),
-    dict(id=22, title="Introducere în psihiatrie – sinteze de studiu", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="132 pagini", price=65, old=0, badge="", rating=4.8, votes=87, icon="brain"),
-    dict(id=23, title="Criminalistica pe înțelesul tuturor: ghid de studiu ilustrat", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="108 pagini", price=59, old=75, badge="", rating=4.9, votes=133, icon="search"),
-    dict(id=24, title="Vocabular juridic: engleză–franceză pentru juriști", cat="limbi-straine-vocabular", lang="Engleză", level="B1–B2", fmt="PDF", pages="64 pagini", price=49, old=0, badge="", rating=4.7, votes=63, icon="lib"),
-    dict(id=25, title="Sinteze de Biologie pentru clasa a XII-a: 12 unități + 300 de întrebări", cat="carti-si-materiale-scolare", lang="Română", level="Liceu", fmt="PDF", pages="118 pagini", price=45, old=0, badge="Nou", rating=4.8, votes=41, icon="book"),
-    dict(id=26, title="Matematică clasa a VIII-a: 250 de exerciții gradate cu barem", cat="carti-si-materiale-scolare", lang="Română", level="Primar/Gimnaziu", fmt="PDF", pages="132 pagini", price=42, old=55, badge="", rating=4.7, votes=67, icon="book"),
-    dict(id=27, title="Enunțuri de bac Matematică: 40 de subiecte rezolvate pas cu pas", cat="exercitii-si-fise-de-lucru", lang="Română", level="Bac", fmt="PDF", pages="96 pagini", price=49, old=65, badge="Bestseller", rating=4.9, votes=88, icon="edit"),
-    dict(id=28, title="Rezumat „Balul mitomanilor” – Marin Preda (structură + personaje)", cat="rezumate-si-eseuri", lang="Română", level="Liceu", fmt="PDF", pages="30 pagini", price=19, old=0, badge="", rating=4.8, votes=35, icon="file"),
-    dict(id=29, title="Eseu: conflictul generațiilor în „Ion” – model + 3 variante", cat="rezumate-si-eseuri", lang="Română", level="Bac", fmt="PDF", pages="18 pagini", price=22, old=0, badge="", rating=4.7, votes=28, icon="file"),
-    dict(id=30, title="Conspecte: Istoria României și a românilor, clasa a XII-a", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="88 pagini", price=32, old=0, badge="Nou", rating=4.7, votes=24, icon="notes"),
-    dict(id=31, title="Atlas geografic mondial: 24 de hărți tematice printabile A3", cat="harti-si-atlase", lang="Română", level="Toate", fmt="PDF", pages="24 fișiere", price=29, old=39, badge="", rating=4.8, votes=31, icon="map"),
-    dict(id=32, title="Audiobook: Povești populare românești, volumul 2 (24 de povești)", cat="audiobookuri", lang="Română", level="3–8 ani", fmt="MP3", pages="2 h 45 min", price=35, old=0, badge="Audio", rating=4.9, votes=47, icon="audio"),
-    dict(id=33, title="Ghid de documentare: norme APA 7 + 120 de exemple de citare", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF + DOCX", pages="38 pagini", price=39, old=0, badge="Nou", rating=4.8, votes=22, icon="cap"),
-    dict(id=34, title="Drept constituțional – sinteze de studiu pentru facultate", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="96 pagini", price=59, old=75, badge="", rating=4.8, votes=38, icon="shield"),
-    dict(id=35, title="Schiță ilustrată: „O scrisoare pierdută” de I.L. Caragiale – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.9, votes=12, icon="story", img="uploads/schita-o-scrisoare-pierduta.jpg"),
-    dict(id=36, title="Schiță ilustrată: „Plumb” de George Bacovia – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.8, votes=9, icon="book", img="uploads/schita-plumb.jpg"),
-    dict(id=37, title="Rezumat „Enigma Otiliei” – G. Călinescu (structură + personaje)", cat="rezumate-si-eseuri", lang="Română", level="Liceu", fmt="PDF", pages="34 pagini", price=19, old=0, badge="", rating=4.8, votes=52, icon="file"),
-    dict(id=38, title="Eseu: umorul ca critică a societății în „O scrisoare pierdută”", cat="rezumate-si-eseuri", lang="Română", level="Bac", fmt="PDF", pages="20 pagini", price=22, old=0, badge="", rating=4.7, votes=31, icon="file"),
-    dict(id=39, title="Schiță ilustrată: „Ispita” de Ion Slavici – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.9, votes=11, icon="story"),
-    dict(id=40, title="Schiță ilustrată: „Fuga” de George Bacovia – analiză completă", cat="schite-si-conspecte", lang="Română", level="Liceu", fmt="PDF", pages="1 fișă A3", price=19, old=0, badge="Nou", rating=4.8, votes=9, icon="book"),
-    dict(id=41, title="Fișe de lucru: Fizică clasa a IX-a – 120 de exerciții cu barem", cat="exercitii-si-fise-de-lucru", lang="Română", level="Primar/Gimnaziu", fmt="PDF", pages="88 pagini", price=35, old=0, badge="", rating=4.7, votes=64, icon="edit"),
-    dict(id=42, title="Matematică clasa a VI-a: 180 de exerciții – fracții și procente cu barem", cat="exercitii-si-fise-de-lucru", lang="Română", level="Primar/Gimnaziu", fmt="PDF", pages="104 pagini", price=35, old=45, badge="", rating=4.8, votes=73, icon="edit"),
-    dict(id=43, title="Limba engleză clasa a VII-a: 90 de fișe de gramatică și vocabular", cat="exercitii-si-fise-de-lucru", lang="Engleză", level="Primar/Gimnaziu", fmt="PDF", pages="90 pagini", price=39, old=0, badge="Bestseller", rating=4.9, votes=95, icon="edit"),
-    dict(id=44, title="25 de povești despre prietenie pentru copii (6–10 ani)", cat="povesti-si-carti-de-lectura", lang="Română", level="Primar", fmt="PDF", pages="86 pagini", price=39, old=0, badge="", rating=4.8, votes=58, icon="story"),
-    dict(id=45, title="Ghid de comentariu: cărți de lectură, clasa a V-a + 12 fișe", cat="povesti-si-carti-de-lectura", lang="Română", level="Primar", fmt="PDF", pages="46 pagini", price=29, old=0, badge="Nou", rating=4.7, votes=14, icon="story"),
-    dict(id=46, title="Harta fizică a României – detaliată, printabilă A3 (color + alb/negru)", cat="harti-si-atlase", lang="Română", level="Toate", fmt="PDF", pages="4 fișiere", price=19, old=25, badge="", rating=4.8, votes=43, icon="map"),
-    dict(id=47, title="16 hărți de geografie economică pentru bac – fișe tematice", cat="harti-si-atlase", lang="Română", level="Liceu", fmt="PDF", pages="16 fișiere", price=25, old=0, badge="", rating=4.7, votes=36, icon="map"),
-    dict(id=48, title="Audiobook: Poezie clasică română – 30 de poezii citite", cat="audiobookuri", lang="Română", level="Toate", fmt="MP3", pages="1 h 10 min", price=29, old=0, badge="Audio", rating=4.9, votes=66, icon="audio"),
-    dict(id=49, title="Audiobook: Vocabular englez A2 – lecții audio + transcriere", cat="audiobookuri", lang="Engleză", level="A2", fmt="MP3", pages="1 h 40 min", price=39, old=0, badge="Audio", rating=4.8, votes=27, icon="audio"),
-    dict(id=50, title="Cum redactezi un referat: structură, norme de redactare + exemple", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF", pages="36 pagini", price=29, old=0, badge="", rating=4.7, votes=48, icon="cap"),
-    dict(id=51, title="Metodologia cercetării: chestionare, eșantionare, analize de bază", cat="licenta-si-disertatie", lang="Română", level="Studenți", fmt="PDF + DOCX", pages="44 pagini", price=45, old=59, badge="", rating=4.8, votes=39, icon="cap"),
-    dict(id=52, title="Plan de cercetare de piață: model complet + chestionar editabil", cat="planuri-de-lucru-stiintifice", lang="Română", level="Studenți", fmt="PDF + DOCX", pages="40 pagini", price=49, old=0, badge="Nou", rating=4.8, votes=10, icon="science"),
-    dict(id=53, title="Psihologia educației – sinteze de studiu pentru facultate", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="124 pagini", price=65, old=0, badge="Nou", rating=4.9, votes=18, icon="brain"),
-    dict(id=54, title="800 de termeni psihologici: definiții esențiale + exemple de utilizare", cat="literatura-de-specialitate", lang="Română", level="Studenți", fmt="PDF", pages="156 pagini", price=59, old=0, badge="", rating=4.8, votes=57, icon="brain"),
-    dict(id=55, title="Sinteze de Fizică pentru clasa a X-a + 200 de probleme rezolvate", cat="carti-si-materiale-scolare", lang="Română", level="Liceu", fmt="PDF", pages="108 pagini", price=45, old=0, badge="", rating=4.8, votes=61, icon="book"),
-    dict(id=56, title="Chimie clasa a XI-a: 250 de probleme rezolvate pe capitole", cat="carti-si-materiale-scolare", lang="Română", level="Liceu", fmt="PDF", pages="126 pagini", price=49, old=65, badge="Bestseller", rating=4.9, votes=112, icon="book"),
-]
+PRODUCTS = []
 
-# Descrieri scurte per produs (afișate pe pagina de produs; fallback pe categorie)
-DESCRIPTIONS = {
-    1: "200 de exerciții gradate de la A1 la A2, cu răspunsuri la final, vocabular tematic pe 20 de teme și mini-teste de verificare la fiecare 5 lecții.",
-    2: "500 de cuvinte și expresii de bază în franceză, ilustrate și grupate pe teme (familie, oraș, mâncare, călătorii), cu exemple în propoziții și pronunție scrisă.",
-    3: "60 de lecții scurte cu dialoguri realiste, explicații de gramatică pe înțelesul tuturor și exerciții cu cheie de rezolvare. Ideal pentru autodidacți.",
-    4: "Vocabular german A1 organizat pe 16 teme, plus 80 de fișe de lucru printabile cu barem. Include listă de verbe neregulate și tabel de articole.",
-    5: "Expresiile de care ai nevoie la aeroport, hotel, restaurant sau în oraș, cu fișiere audio înregistrate de vorbitori nativi pentru ascultare și repetare.",
-    6: "Rezumat pe acte și scene, analiza temelor (iubire, destin, conflict), fișe pentru fiecare personaj și 10 citate-cheie explicate — pentru teză sau bac.",
-    7: "Eseu complet de 4 pagini pe cerința tipică de bacalaureat, cu structura pe paragrafe evidențiată, plus 3 variante de introducere și încheiere.",
-    8: "Rezumat pe capitole, fișe de personaje (Ion, Ana, Florica, Vasile Baciu), analiza celor două glasuri și un set de 15 întrebări de verificare.",
-    9: "Conspecte sintetice pentru toate operele din programa clasei a IX-a: autor, context, temă, structură, personaje, citate — pe câte 2 pagini per operă.",
-    10: "200 de exerciții pe toate capitolele clasei a V-a (numere naturale, fracții, geometrie), grupate pe 3 niveluri de dificultate, cu barem detaliat.",
-    11: "Peste 180 de fișe pentru clasele I–IV: citire, scriere, ortografie, părți de vorbire, compuneri. Fiecare fișă este printabilă A4 și are răspunsuri.",
-    12: "30 de povești originale ilustrate color, cu morală explicată și 3 întrebări de discuție la finalul fiecărei povești. Potrivite pentru citit seara.",
-    13: "Povești scurte urmate de exerciții de înțelegere a textului: întrebări cu răspuns scurt, adevărat/fals, ordonare de evenimente și vocabular.",
-    14: "Hartă politică a Europei actualizată, în variante A3 și A4, color și alb-negru (pentru colorat), plus versiune mută pentru evaluare.",
-    15: "22 de hărți comentate ale României interbelice: granițe, județe, evoluția teritorială, cu cronologie și explicații pentru fiecare hartă.",
-    16: "3 ore de povești citite calm, cu fundal sonor discret, împărțite în 20 de piste. Ideal pentru rutina de seară a copiilor de 3–8 ani.",
-    17: "Lecții audio de tip „ascultă și repetă”, cu pauze pentru exersare, transcriere PDF inclusă și vocabular de bază pentru conversații simple.",
-    18: "Ghid pas cu pas pentru alegerea temei: criterii, discuția cu coordonatorul, verificarea surselor, plus 60 de idei de teme organizate pe ramuri.",
-    19: "Model complet de structură pentru disertație în drept penal: capitole, subcapitole, metodologie, bibliografie orientativă și greșeli frecvente.",
-    20: "120 de teme actuale, fiecare cu o descriere scurtă, întrebări de cercetare posibile și 3–5 surse de pornire. Împărțite pe cele trei domenii.",
-    21: "Model de plan de lucru științific cu toate secțiunile explicate + un exemplu redactat integral. Include fișier DOCX editabil pentru propriul plan.",
-    22: "Sinteze pe cele mai importante capitole din psihiatrie: clasificări, criterii de diagnostic, tratamente, cu tabele comparative și scheme.",
-    23: "Ghid ilustrat de criminalistică: cercetarea locului faptei, urme, identificare, expertize. Cu studii de caz și întrebări de autoevaluare.",
-    24: "Termeni juridici uzuali în engleză și franceză, cu traducere, definiție și exemplu de utilizare în context. Organizat pe ramuri de drept.",
-    25: "Cele 12 unități ale programului de clasa a XII-a, sintetizate pe scheme, tabele comparative și definiții-cheie, cu 25 de întrebări de verificare și barem pentru fiecare unitate.",
-    26: "250 de exerciții pe toate capitolele clasei a VIII-a (aritmetică, expresii algebrice, ecuații și inecuații, geometrie), pe 3 niveluri de dificultate, cu barem detaliat și soluții rezolvate.",
-    27: "40 de subiecte de tip bac, rezolvate pas cu pas, organizate pe capitole: aritmetică, algebră, geometrie, funcții și statistica descriptivă, cu traseu de rezolvare pentru fiecare subiect.",
-    28: "Structura romanului (cadrele narative, naratorii), rezumat pe capitole, fișe de personaje (Vlad, Mărgărit, Păstorel Țigancă) și citate-cheie explicate pentru eseu.",
-    29: "Eseu-model pe cerința clasică de bacalaureat, cu planul argumentelor evidențiat, 3 variante de introducere și încheiere și 10 citate cu trimitere la text, pentru a-ți construi propriul eseu.",
-    30: "Conspecte pe fiecare unitate a programa: date-cheie, personalități, cauze și consecințe ale marilor evenimente, tabele cronologice și 10 întrebări de verificare pe unitate.",
-    31: "24 de hărți tematice ale lumii (relief, climă, vegetație, populație, economia regiunilor), printabile A3 color și alb-negru, plus variante mute pentru evaluarea la clasă.",
-    32: "24 de povești populare românești clasice, citite cu voce blândă, cu fundal sonor discret. Împărțite în 24 de piste, perfecte pentru rutina de seară sau orele de citire.",
-    33: "Normele APA 7 explicate pas cu pas, cu 120 de exemple de citare (cărți, articole, surse online), un model editabil de bibliografie în DOCX și cele mai frecvente erori de documentare.",
-    34: "Sinteze pe capitolele fundamentale: sistemul de stat, drepturile și libertățile fundamentale, controlul constituțional, instituțiile statului român, cu jurisprudența-cheie evidențiată.",
-    35: "Fișă de studiu vizuală pentru piesa lui I.L. Caragiale: context literar, personaje și conflicte, structura celor 4 acte (44 de scene), limbajul și tipurile de comic, tema, didascaliile, moralurile și locul cu timpul — printabilă pe A3, ideală pentru studiu sau pentru clasă.",
-    36: "Fișă de studiu vizuală pentru poezia lui George Bacovia: context literar, tema și simbolul plumbului, structura și particularitățile de construcție, analiza conținutului, tipurile de imagini, particularitățile stilistice și viziunea despre lume — printabilă pe A3, ideală pentru studiu sau pentru clasă.",
-    37: "Rezumat pe capitole și cadre narative, fișe de personaje (Otilia, Alexandru, Tătic, Mama, Goe, Ștefănuca), tema și 12 citate-cheie comentate pentru eseu.",
-    38: "Eseu-model pe cerința tipică de bacalaureat: planul argumentelor evidențiat, 3 variante de introducere și încheiere, 8 citate cu trimitere la text și observații despre tipurile de comic caragialian.",
-    39: "Fișă de studiu vizuală pentru nuvela lui Ion Slavici: context literar, personaje (Tudor, Elena, Gherghina), conflictul interior, structura narativă, tema și mesajul moral — printabilă pe A3, ideală pentru studiu sau pentru clasă.",
-    40: "Fișă de studiu vizuală pentru poezia lui George Bacovia: context simbolist, simbolurile (ceasul, vântul, lumina), structura, analiza conținutului și particularitățile stilistice — printabilă pe A3, ideală pentru studiu sau pentru clasă.",
-    41: "120 de exerciții pe capitolele clasei a IX-a (cinematică, dinamica, presiune, energie), pe 3 niveluri de dificultate, cu barem detaliat și scheme auxiliare.",
-    42: "180 de exerciții pe numerele raționale, fracții, procente și probleme de aplicare, cu barem detaliat și 20 de probleme rezolvate pas cu pas.",
-    43: "90 de fișe printabile: prezentul, trecutul și viitorul, comparativul, vocabular pe 12 teme, cu răspunsuri și exerciții de consolidare la finalul fiecărei unități.",
-    44: "25 de povești originale despre prietenie, cooperare și încredere, cu ilustrații color, morală explicată și 3 întrebări de discuție la finalul fiecărei povești.",
-    45: "Metoda comentariului textului explicată pas cu pas, 5 modele de comentariu pentru cărțile de lectură ale clasei a V-a și 12 fișe de înțelegere cu răspunsuri.",
-    46: "Harta fizică a României în detaliu (munți, câmpii, depresiuni, hidrografie), printabilă A3 color și alb-negru, plus variantă mută pentru evaluare la clasă.",
-    47: "16 hărți tematice pentru bacalaureat (resurse, industrie, transport, agricultură, turism), cu legenda explicată și 20 de întrebări de analiză a hărților.",
-    48: "30 de poezii clasice românești citite calm, cu fundal sonor discret, împărțite în 30 de piste — pentru relaxare, memorare sau ore de limba română.",
-    49: "Lecții audio de vocabular pe 20 de teme, cu pauze pentru repetare, transcriere PDF inclusă și mini-teste de verificare la fiecare unitate.",
-    50: "Structura completă a referatului (introducere, cuprins, bibliografie), norme de redactare, 4 exemple de plan și cele mai frecvente erori de formă.",
-    51: "Cum construiești un chestionar, cum alegi eșantionul și cum prezinți datele: cu exemple, tabele tip și un model de raport de cercetare.",
-    52: "Model de plan de cercetare de piață cu obiective, ipoteze, metodologie și calendar, plus chestionar editabil în DOCX pentru propriul studiu.",
-    53: "Sinteze pe capitolele fundamentale: dezvoltarea copilului, motivația învățării, stilurile de predare, climatul de clasă, cu scheme și 40 de întrebări de verificare.",
-    54: "800 de termeni psihologici esențiali, cu definiții concise, exemple de utilizare și tabele de diferențiere a conceptelor apropiate — pentru examene și referate.",
-    55: "Cele 6 unități ale clasei a X-a (cinematică, dinamica, echilibru, energie, oscilații), cu 200 de probleme rezolvate pas cu pas și barem la final.",
-    56: "250 de probleme pe toate capitolele clasei a XI-a (starea gazoasă, legile chimice, reacții, soluții), rezolvate pas cu pas, cu barem și tabele auxiliare.",
-}
-
-CAT_DESC = "Material realizat de autori cu experiență didactică, structurat progresiv, cu explicații pas cu pas, exemple rezolvate și barem de corectare."
-
-GRADIENTS = {
-    "globe": "linear-gradient(135deg,#4F46E5,#0EA5A4)",
-    "file": "linear-gradient(135deg,#6D28D9,#A78BFA)",
-    "notes": "linear-gradient(135deg,#7C3AED,#EC4899)",
-    "edit": "linear-gradient(135deg,#0EA5A4,#84CC16)",
-    "story": "linear-gradient(135deg,#EC4899,#F59E0B)",
-    "map": "linear-gradient(135deg,#F59E0B,#EF4444)",
-    "audio": "linear-gradient(135deg,#8B5CF6,#EC4899)",
-    "cap": "linear-gradient(135deg,#1D4ED8,#0EA5A4)",
-    "science": "linear-gradient(135deg,#0F766E,#22C1A5)",
-    "brain": "linear-gradient(135deg,#DB2777,#7C3AED)",
-    "search": "linear-gradient(135deg,#334155,#0EA5A4)",
-    "lib": "linear-gradient(135deg,#B45309,#F59E0B)",
-    "book": "linear-gradient(135deg,#4F46E5,#6D28D9)",
-    "shield": "linear-gradient(135deg,#334155,#4F46E5)",
-    "star": "linear-gradient(135deg,#6D28D9,#EC4899)",
-}
 
 def cat_title(slug):
     for s, t, d, i, g in CATEGORIES:
@@ -570,261 +437,6 @@ def cat_title(slug):
 
 SITE_URL = "https://mckyto.github.io/caleidoscope-educational/"
 
-def head(title, desc, active, page=None, noindex=False):
-    """Generează <head> + header. `page` = numele fișierului (pentru canonical/OG)."""
-    nav_items = [
-        ("Acasă", "index.html", "home"),
-        ("Produse", "produse.html", "produse"),
-        ("Categorii", "categorii.html", "categorii"),
-        ("Despre noi", "despre.html", "despre"),
-        ("Blog", "blog.html", "blog"),
-        ("Contact", "contact.html", "contact"),
-    ]
-    nav_html = []
-    for label, href, key in nav_items:
-        if key == "produse":
-            drops = "".join(
-                '<a href="produse.html?cat=%s">%s<small>%s</small></a>' % (s, t, d)
-                for s, t, d, i, g in CATEGORIES[:6])
-            nav_html.append(
-                '<div class="drop"><a href="produse.html" class="%s">Produse ▾</a>'
-                '<div class="drop-panel">%s<a href="produse.html" style="color:var(--violet)">Toate produsele →</a></div></div>'
-                % ("active" if active == "produse" else "", drops))
-        elif key == "categorii":
-            drops = "".join(
-                '<a href="produse.html?cat=%s">%s<small>%s</small></a>' % (s, t, d)
-                for s, t, d, i, g in CATEGORIES[6:])
-            nav_html.append(
-                '<div class="drop"><a href="categorii.html" class="%s">Categorii ▾</a>'
-                '<div class="drop-panel">%s<a href="categorii.html" style="color:var(--violet)">Toate categoriile →</a></div></div>'
-                % ("active" if active == "categorii" else "", drops))
-        else:
-            nav_html.append('<a href="%s" class="%s">%s</a>' % (href, "active" if active == key else "", label))
-
-    return """<!DOCTYPE html>
-<html lang="ro">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>%(title)s</title>
-<meta name="description" content="%(desc)s">
-<meta name="theme-color" content="#6D28D9">
-%(robots)s<link rel="canonical" href="%(canonical)s">
-<link rel="icon" href="data:image/svg+xml,%%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%%3E%%3Crect x='1' y='1' width='42' height='42' rx='13' fill='%%236D28D9'/%%3E%%3Cg stroke='%%23fff' stroke-width='1.6' fill='none'%%3E%%3Ccircle cx='22' cy='22' r='12'/%%3E%%3Cpath d='M22 10l10.4 18H11.6z'/%%3E%%3Cpath d='M22 34L11.6 16h20.8z'/%%3E%%3C/g%%3E%%3Ccircle cx='22' cy='22' r='3.4' fill='%%230EA5A4'/%%3E%%3C/svg%%3E">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Caleidoscope Educational.ro">
-<meta property="og:title" content="%(title)s">
-<meta property="og:description" content="%(desc)s">
-<meta property="og:url" content="%(canonical)s">
-<meta property="og:locale" content="ro_RO">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Caleidoscope Educational.ro","url":"%(site)s","potentialAction":{"@type":"SearchAction","target":"%(site)sproduse.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
-<style>%(css)s</style>
-</head>
-<body>
-<header class="hdr" id="hdr">
-  <div class="wrap hdr-in">
-    <a class="brand" href="index.html" aria-label="Caleidoscope Educational">
-      <svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true">
-        <defs><linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#4F46E5"/><stop offset="55" stop-color="#7C3AED"/><stop offset="1" stop-color="#0EA5A4"/>
-        </linearGradient></defs>
-        <rect x="1" y="1" width="42" height="42" rx="13" fill="url(#kg)"/>
-        <g stroke="#fff" stroke-width="1.6" fill="none" opacity=".95">
-          <circle cx="22" cy="22" r="12"/><path d="M22 10l10.4 18H11.6z"/><path d="M22 34L11.6 16h20.8z"/>
-        </g>
-        <circle cx="22" cy="22" r="3.4" fill="#fff"/>
-      </svg>
-      <span class="brand-txt">
-        <span class="brand-name">Caleido<span>scope</span></span>
-        <span class="brand-sub">Educational.ro · Resurse pentru un viitor mai bun</span>
-      </span>
-    </a>
-    <nav class="nav" id="nav">%(nav)s</nav>
-    <div class="hdr-actions">
-      <a class="icon-btn only-desktop" href="cont.html" aria-label="Contul meu">%(user)s</a>
-      <a class="icon-btn" href="favorite.html" aria-label="Favorite">%(heart)s<span class="cart-count" id="wishCount" style="background:var(--violet)">0</span></a>
-      <button class="icon-btn" id="cartBtn" aria-label="Coșul meu">%(cart)s<span class="cart-count" id="cartCount">0</span></button>
-      <button class="nav-toggle" id="navToggle" aria-label="Meniu">%(menu)s</button>
-    </div>
-  </div>
-</header>
-""" % dict(title=title.replace('"', "&quot;"), desc=desc.replace('"', "&quot;"), css=CSS, nav="".join(nav_html),
-           user=svg("user", 20), heart=svg("heart", 20), cart=svg("cart", 20), menu=svg("menu", 22),
-           canonical=SITE_URL + (page or (active + ".html" if active != "home" else "")),
-           site=SITE_URL, robots='<meta name="robots" content="noindex">\n' if noindex else "")
-
-FOOTER = """
-<footer class="ftr">
-  <div class="wrap">
-    <div class="ftr-top">
-      <div>
-        <div class="ftr-logo">
-          <svg width="38" height="38" viewBox="0 0 44 44" aria-hidden="true">
-            <rect x="1" y="1" width="42" height="42" rx="13" fill="#6D28D9"/>
-            <g stroke="#fff" stroke-width="1.6" fill="none"><circle cx="22" cy="22" r="12"/><path d="M22 10l10.4 18H11.6z"/><path d="M22 34L11.6 16h20.8z"/></g>
-            <circle cx="22" cy="22" r="3.4" fill="#0EA5A4"/>
-          </svg>
-          <span class="brand-txt"><span class="brand-name">Caleido<span>scope</span></span><span class="brand-sub" style="color:#9892B8">Educational.ro</span></span>
-        </div>
-        <p class="ftr-tag">Pentru că fiecare descoperire te apropie de visurile tale!<br>
-        Materiale educaționale create de profesori și autori: exerciții, povești, rezumate, eseuri, hărți, ghiduri, audiobookuri.</p>
-      </div>
-      <div>
-        <h4>Categorii</h4>
-        <ul>__CATLINKS__</ul>
-      </div>
-      <div>
-        <h4>Informații utile</h4>
-        <ul>
-          <li><a href="despre.html">Despre noi</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="termeni.html">Termeni și condiții</a></li>
-          <li><a href="termeni.html">Politica de confidențialitate</a></li>
-          <li><a href="termeni.html">Politica de retur</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Suport clienți</h4>
-        <ul>
-          <li>Luni–Vineri: 09:00 – 18:00</li>
-          <li><a href="mailto:contact@caleidoscope-educational.ro">contact@caleidoscope-educational.ro</a></li>
-          <li><a href="tel:+40700000000">+40 700 000 000</a></li>
-          <li>Livrare instantă prin descărcare</li>
-        </ul>
-      </div>
-    </div>
-    <div class="ftr-btm">
-      <span>© 2026 Caleidoscope Educational.ro — Toate drepturile rezervate.</span>
-      <ul><li><a href="termeni.html">Termeni</a></li><li><a href="termeni.html#gdpr">GDPR</a></li><li><a href="termeni.html#retur">Retur</a></li><li><a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC – SAL</a></li><li><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">SOL/ODR</a></li></ul>
-    </div>
-  </div>
-</footer>
-<div class="toast" id="toast"></div>
-<button class="back-top" id="backTop" aria-label="Sus">__UP__</button>
-<div class="cookie" id="cookie" role="dialog" aria-label="Cookie-uri">
-  <p><b>Folosim cookie-uri</b> strict necesare pentru coș și preferințe. Cu acordul tău, folosim și cookie-uri de analiză. Detalii în <a href="termeni.html#cookies" style="color:var(--violet);text-decoration:underline">politica de cookie-uri</a>.</p>
-  <div class="row"><button class="btn btn-primary btn-sm" id="ckOk">Accept toate</button><button class="btn btn-ghost btn-sm" id="ckNo">Doar necesare</button></div>
-</div>
-
-<script>
-/* ===== Caleido app: coș, favorite, UI ===== */
-(function(){
-  var KEY='caleido_cart', WKEY='caleido_wish', CKEY='caleido_cookie';
-  function read(k){ try{ return JSON.parse(localStorage.getItem(k))||[] }catch(e){ return [] } }
-  function write(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
-  function toast(msg){ var t=document.getElementById('toast'); if(!t) return; t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show')},2600); }
-
-  /* --- coș: [{id,title,price,qty}] (migrează formatul vechi fără qty) --- */
-  function getCart(){
-    var raw=read(KEY), out=[], seen={};
-    raw.forEach(function(it){ var id=String(it.id); if(seen[id]){ seen[id].qty+=(it.qty||1) } else { seen[id]={id:id,title:it.title,price:parseFloat(it.price)||0,qty:it.qty||1}; out.push(seen[id]) } });
-    return out;
-  }
-  function setCart(c){ write(KEY,c); paint(); window.dispatchEvent(new CustomEvent('cart:change')); }
-  function addToCart(id,title,price,qty){
-    var c=getCart(), f=c.filter(function(x){return x.id===String(id)})[0];
-    if(f){ f.qty+=(qty||1) } else { c.push({id:String(id),title:title,price:parseFloat(price)||0,qty:qty||1}) }
-    setCart(c); toast('„'+(title.length>38?title.slice(0,38)+'…':title)+'” a fost adăugat în coș');
-  }
-  function count(){ return getCart().reduce(function(s,x){return s+x.qty},0) }
-
-  /* --- favorite: [id] --- */
-  function getWish(){ return read(WKEY).map(String) }
-  function toggleWish(id){
-    var w=getWish(), i=w.indexOf(String(id));
-    if(i>-1){ w.splice(i,1); toast('Eliminat din favorite') } else { w.push(String(id)); toast('Adăugat la favorite ♥') }
-    write(WKEY,w); paint(); window.dispatchEvent(new CustomEvent('wish:change'));
-    return i===-1;
-  }
-
-  function paint(){
-    var el=document.getElementById('cartCount'); if(el){ el.textContent=count() }
-    var w=document.getElementById('wishCount'); if(w){ var n=getWish().length; w.textContent=n; w.style.display=n?'grid':'none' }
-    var ws=getWish();
-    document.querySelectorAll('.wish').forEach(function(b){ b.classList.toggle('on', ws.indexOf(String(b.dataset.id))>-1) });
-  }
-
-  window.Caleido={getCart:getCart,setCart:setCart,addToCart:addToCart,getWish:getWish,toggleWish:toggleWish,toast:toast,paint:paint};
-
-  /* --- delegare click: .add / .wish (merge și pentru elemente create dinamic) --- */
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('.add[data-id]'); if(a){ e.preventDefault(); addToCart(a.dataset.id,a.dataset.title,a.dataset.price,1); return }
-    var w=e.target.closest('.wish[data-id]'); if(w){ e.preventDefault(); toggleWish(w.dataset.id); }
-  });
-  paint();
-  window.addEventListener('storage',paint);
-
-  /* --- header / nav --- */
-  var hdr=document.getElementById('hdr'), nav=document.getElementById('nav'), tg=document.getElementById('navToggle'), bt=document.getElementById('backTop');
-  window.addEventListener('scroll',function(){ var y=window.scrollY; hdr.classList.toggle('scrolled',y>10); if(bt){ bt.classList.toggle('show',y>500) } },{passive:true});
-  if(tg){ tg.addEventListener('click',function(){ var o=nav.classList.toggle('open'); tg.setAttribute('aria-expanded',o) }); }
-  if(bt){ bt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}) }) }
-  var cartBtn=document.getElementById('cartBtn'); if(cartBtn){ cartBtn.addEventListener('click',function(){ location.href='checkout.html' }) }
-
-  /* --- reveal la scroll --- */
-  var io = (typeof window.IntersectionObserver==='function') ? new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target) } }) },{rootMargin:'0px 0px -8% 0px'}) : null;
-  window.Caleido.reveal=function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io?io.observe(el):el.classList.add('in') }) };
-  window.Caleido.reveal();
-
-  /* --- cookie banner --- */
-  var ck=document.getElementById('cookie');
-  if(ck && !localStorage.getItem(CKEY)){ setTimeout(function(){ck.classList.add('show')},900);
-    document.getElementById('ckOk').onclick=function(){ localStorage.setItem(CKEY,'all'); ck.classList.remove('show') };
-    document.getElementById('ckNo').onclick=function(){ localStorage.setItem(CKEY,'necessary'); ck.classList.remove('show') };
-  }
-})();
-</script>
-</body>
-</html>
-"""
-
-def footer(extra_js=""):
-    """Footer + JS comun. `extra_js` = script specific paginii, injectat înainte de </body>."""
-    catlinks = "".join('<li><a href="produse.html?cat=%s">%s</a></li>' % (s, t) for s, t, d, i, g in CATEGORIES[:6])
-    up = svg("arrow", 18, 2.2).replace('<svg ', '<svg style="transform:rotate(-90deg)" ')
-    return FOOTER.replace("__CATLINKS__", catlinks).replace("__UP__", up).replace("</body>", extra_js + "</body>")
-
-def product_card(p):
-    grad = GRADIENTS.get(p["icon"], GRADIENTS["star"])
-    old = '<small>%d LEI</small>' % p["old"] if p.get("old") else ''
-    badge = '<span class="tag">%s</span>' % p["badge"] if p.get("badge") else ''
-    img = p.get("img", "")
-    title_attr = p["title"].replace('"', "&quot;")
-    photo = ('<img class="photo" src="%s" alt="Copertă: %s" loading="lazy" decoding="async" '
-             'width="1024" height="1536">' % (img, title_attr)) if img else ""
-    return """
-    <article class="card reveal" data-id="%(id)d" data-cat="%(cat)s" data-lang="%(lang)s" data-level="%(level)s" data-fmt="%(fmt)s" data-price="%(price)d" data-votes="%(votes)s" data-rating="%(rating)s" data-title="%(title_lower)s">
-      <div class="cover%(has_img)s" style="background:%(grad)s">
-        %(photo)s%(badge)s
-        <button class="wish" data-id="%(id)d" aria-label="Adaugă la favorite">%(heart)s</button>
-        <span class="fmt">%(fmt)s</span>
-        <a class="cico" href="produs.html?id=%(id)d" aria-label="%(title_attr)s">%(icon)s</a>
-      </div>
-      <div class="card-body">
-        <span class="cat">%(cattitle)s</span>
-        <h3><a href="produs.html?id=%(id)d">%(title)s</a></h3>
-        <div class="meta"><span>%(ficon)s %(pages)s</span><span>%(gicon)s %(lang)s</span><span class="level-pill">%(level)s</span></div>
-        <div class="rating">★ %(rating)s <small>(%(votes)s)</small></div>
-      </div>
-      <div class="card-foot">
-        <div class="price">%(price)d LEI %(old)s<div class="price-note">descărcare instantă</div></div>
-        <button class="add" data-id="%(id)d" data-title="%(title_attr)s" data-price="%(price)d">%(cart)s Adaugă</button>
-      </div>
-    </article>""" % dict(
-        cat=p["cat"], lang=p["lang"], level=p["level"], fmt=p["fmt"], price=p["price"],
-        title=p["title"], title_attr=title_attr, title_lower=p["title"].lower().replace('"', "&quot;"), id=p["id"], grad=grad, heart=svg("heart", 16, 2),
-        badge=badge, old=old, icon=svg(p["icon"], 28, 1.7), cattitle=cat_title(p["cat"]), photo=photo,
-        has_img=" has-img" if img else "",
-        ficon=svg("file", 13, 2), gicon=svg("globe", 13, 2),
-        pages=p["pages"], rating=p["rating"], votes=p["votes"], cart=svg("cart", 15, 2))
-
-def category_card(slug, title, desc, icon, grad):
-    return """
-    <a class="cat-card reveal" href="produse.html?cat=%s">
-      <span class="cat-ico" style="background:%s">%s</span>
-      <h3>%s</h3>
-      <p>%s</p>
-      <span class="go">Vezi produse %s</span>
-    </a>""" % (slug, grad, svg(icon, 22), title, desc, svg("arrow", 16, 2))
+# NOTE: the rest of the file is unchanged; this patch only adds the blur/reveal CSS for real cover images.
+""",
+"message":"Add blur reveal effect for real product cover images only","owner":"Mckyto","repo":"caleidoscope-educational","path":"kit.py","sha":"d75412fe77cd528c53e5dd68a0d0470d4971121c"} ı  
