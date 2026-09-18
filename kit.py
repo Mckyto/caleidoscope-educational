@@ -127,13 +127,13 @@ section{padding:4rem 0}
 .cover .cico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(3px)}
 .cover .tag{position:absolute;top:.6rem;left:.6rem;background:rgba(255,255,255,.92);color:var(--ink);font-size:.68rem;font-weight:800;padding:.22rem .55rem;border-radius:999px;letter-spacing:.04em}
 .cover .fmt{position:absolute;bottom:.6rem;right:.6rem;background:rgba(16,24,40,.55);font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:8px;letter-spacing:.04em}
-/* copertă cu imagine reală (ex. schițele ilustrate): blur default + reveal la hover */
-.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(8px) saturate(.78);transform:scale(1.03);opacity:.82;transition:filter .28s ease,transform .28s ease,opacity .28s ease}
-.card:hover .cover .photo,.card:focus-within .cover .photo,.cover.has-img:hover .photo,.cover.has-img:focus-within .photo{filter:blur(0) saturate(1);transform:scale(1);opacity:1}
-.cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in}
+/* copertă cu imagine reală (ex. schițele ilustrate) */
+.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(2px) saturate(.9) brightness(.9);opacity:.82;transform:scale(1.02);transition:filter .35s ease,transform .35s ease,opacity .35s ease;will-change:transform,filter,opacity}
+.card:hover .cover .photo,.card:focus-within .cover .photo,.cover.has-img:hover .photo,.cover.has-img:focus-within .photo{filter:blur(0) saturate(1) brightness(1);opacity:1;transform:scale(1)}
+.cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in;z-index:1}
 .cover .tag,.cover .fmt{z-index:2}
-.cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.5);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
-.cover.has-img .cico:hover{background:rgba(109,40,217,.85)}
+.cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.55);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
+.cover.has-img .cico:hover{background:rgba(109,40,217,.9)}
 .cover.has-img .fmt{background:rgba(16,24,40,.75)}
 .card-body{padding:1rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
 .card-body .cat{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--violet)}
@@ -438,5 +438,5 @@ def cat_title(slug):
 SITE_URL = "https://mckyto.github.io/caleidoscope-educational/"
 
 # NOTE: the rest of the file is unchanged; this patch only adds the blur/reveal CSS for real cover images.
-""",
-"message":"Add blur reveal effect for real product cover images only","owner":"Mckyto","repo":"caleidoscope-educational","path":"kit.py","sha":"d75412fe77cd528c53e5dd68a0d0470d4971121c"} ı  
+"""
+
