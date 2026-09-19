@@ -34,6 +34,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;display:block}
+[hidden]{display:none!important}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -138,13 +139,31 @@ section{padding:4rem 0}
 .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
 .card{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
-.cover{height:130px;display:grid;place-items:center;position:relative;color:#fff}
+.cover{height:130px;display:grid;place-items:center;position:relative;color:#fff;overflow:hidden}
 .cover .cico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(3px)}
 .cover .tag{position:absolute;top:.6rem;left:.6rem;background:rgba(255,255,255,.92);color:var(--ink);font-size:.68rem;font-weight:800;padding:.22rem .55rem;border-radius:999px;letter-spacing:.04em}
 .cover .fmt{position:absolute;bottom:.6rem;right:.6rem;background:rgba(16,24,40,.55);font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:8px;letter-spacing:.04em}
-/* copertă cu imagine reală (ex. schițele ilustrate) */
-.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
-.cover .photo-link{position:absolute;inset:0;display:block;cursor:zoom-in}
+/* copertă cu fișier real (schițele ilustrate): blurată până la cumpărare; clară, cu zoom și descărcare, după */
+.cover .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:filter .5s ease,transform .5s ease;-webkit-user-drag:none;user-select:none}
+.cover .photo-link{position:absolute;inset:0;display:block;z-index:1}
+.cover.locked .photo{filter:blur(4px) saturate(.85) brightness(.8);transform:scale(1.12)}
+.cover.owned .photo-link{cursor:zoom-in}
+.card:hover .cover.owned .photo{transform:scale(1.04)}
+.cover .lock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:inline-flex;align-items:center;gap:.4rem;max-width:92%;background:rgba(16,24,40,.74);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.03em;line-height:1.25;padding:.42rem .8rem;border-radius:999px;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(4px);box-shadow:0 8px 24px rgba(16,24,40,.35);pointer-events:none;text-align:center}
+.cover .lock svg{flex-shrink:0}
+.cover .lock.lg{flex-direction:column;gap:.35rem;padding:1rem 1.4rem;border-radius:18px;font-size:.98rem;letter-spacing:0}
+.cover .lock.lg small{display:block;font-weight:600;font-size:.78rem;opacity:.9}
+.cover .owned-tag{position:absolute;top:.6rem;left:50%;transform:translateX(-50%);z-index:2;display:inline-flex;align-items:center;gap:.3rem;background:#059669;color:#fff;font-size:.68rem;font-weight:800;padding:.22rem .6rem;border-radius:999px;letter-spacing:.04em;white-space:nowrap;box-shadow:0 4px 12px rgba(5,150,105,.35)}
+.cover:not(.owned) .owned-tag,.cover:not(.locked) .lock{display:none}
+.unlock-note{display:flex;gap:.6rem;align-items:flex-start;background:#F4F1FF;border:1.5px solid #DDD6FE;border-radius:14px;padding:.75rem .9rem;font-size:.86rem;color:var(--ink-2);margin-top:.8rem;line-height:1.45}
+.unlock-note svg{flex-shrink:0;color:var(--violet);margin-top:2px}
+.unlock-note a{color:var(--violet);font-weight:700;text-decoration:underline}
+.unlock-note.ok{background:#ECFDF5;border-color:#A7F3D0}
+.unlock-note.ok svg{color:#059669}
+.dl-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+.dl-list{display:grid;gap:.5rem;margin-top:.8rem}
+.dl-item{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:#F8F7FF;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;font-size:.88rem;font-weight:600}
+.dl-item .acts{display:flex;gap:.4rem;flex-shrink:0}
 .cover .tag,.cover .fmt{z-index:2}
 .cover.has-img .cico{position:absolute;left:.6rem;bottom:.6rem;width:38px;height:38px;border-radius:12px;background:rgba(16,24,40,.5);border:1.5px solid rgba(255,255,255,.55);z-index:2;transition:.2s}
 .cover.has-img .cico:hover{background:rgba(109,40,217,.85)}
@@ -331,6 +350,7 @@ section{padding:4rem 0}
 @media(max-width:560px){
   .cart-line{grid-template-columns:1fr auto;row-gap:.4rem}
   .pay-opts{grid-template-columns:1fr}
+  .dl-item{flex-direction:column;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
@@ -516,14 +536,48 @@ section{padding:4rem 0}
     return i===-1;
   }
 
+  /* --- produse cumpărate: derivate din comenzile salvate pe acest dispozitiv (caleido_orders) --- */
+  var OKEY='caleido_orders', FILES={"35": {"full": "uploads/schita-o-scrisoare-pierduta.jpg", "preview": "uploads/preview/schita-o-scrisoare-pierduta.jpg", "title": "Schiță ilustrată: „O scrisoare pierdută” de I.L. Caragiale – analiză completă", "ext": "JPG"}, "36": {"full": "uploads/schita-plumb.jpg", "preview": "uploads/preview/schita-plumb.jpg", "title": "Schiță ilustrată: „Plumb” de George Bacovia – analiză completă", "ext": "JPG"}};
+  function getOwned(){
+    var ids=[];
+    read(OKEY).forEach(function(o){ (o&&o.items||[]).forEach(function(it){ var id=String(it.id); if(ids.indexOf(id)<0) ids.push(id) }) });
+    return ids;
+  }
+  function isOwned(id){ return getOwned().indexOf(String(id))>-1 }
+  function fileFor(id){ return FILES[String(id)]||null }
+
+  /* Fișierele reale (schițele) rămân blurate — se încarcă doar previzualizarea — până când produsul
+     apare într-o comandă. După cumpărare: imagine clară, zoom în mărime completă și buton de descărcare.
+     Elementele cu data-owned-only / data-locked-only="ID" se afișează doar în starea respectivă. */
+  function applyLocks(){
+    var own=getOwned();
+    document.querySelectorAll('.cover[data-id]').forEach(function(c){
+      var id=String(c.dataset.id), f=FILES[id]; if(!f) return;
+      var ok=own.indexOf(id)>-1, img=c.querySelector('.photo'), a=c.querySelector('.photo-link');
+      c.classList.toggle('owned',ok); c.classList.toggle('locked',!ok);
+      if(img){
+        var src=ok?f.full:f.preview; if(img.getAttribute('src')!==src){ img.setAttribute('src',src) }
+        var t=img.dataset.alt||f.title; img.alt=ok?t:'Previzualizare blurată: '+t;
+      }
+      if(a){
+        if(ok){ a.href=f.full; a.target='_blank'; a.rel='noopener'; a.title='Deschide în mărime completă' }
+        else { a.href=a.dataset.lockedHref||('produs.html?id='+id); a.removeAttribute('target'); a.removeAttribute('rel'); a.title='Se deblochează după cumpărare' }
+      }
+    });
+    document.querySelectorAll('[data-owned-only]').forEach(function(el){ el.hidden=own.indexOf(String(el.dataset.ownedOnly))<0 });
+    document.querySelectorAll('[data-locked-only]').forEach(function(el){ el.hidden=own.indexOf(String(el.dataset.lockedOnly))>-1 });
+  }
+
   function paint(){
     var el=document.getElementById('cartCount'); if(el){ el.textContent=count() }
     var w=document.getElementById('wishCount'); if(w){ var n=getWish().length; w.textContent=n; w.style.display=n?'grid':'none' }
     var ws=getWish();
     document.querySelectorAll('.wish').forEach(function(b){ b.classList.toggle('on', ws.indexOf(String(b.dataset.id))>-1) });
+    applyLocks();
   }
 
-  window.Caleido={getCart:getCart,setCart:setCart,addToCart:addToCart,getWish:getWish,toggleWish:toggleWish,toast:toast,paint:paint};
+  window.Caleido={getCart:getCart,setCart:setCart,addToCart:addToCart,getWish:getWish,toggleWish:toggleWish,toast:toast,paint:paint,
+                  getOwned:getOwned,isOwned:isOwned,fileFor:fileFor,applyLocks:applyLocks};
 
   /* --- delegare click: .add / .wish (merge și pentru elemente create dinamic) --- */
   document.addEventListener('click',function(e){

@@ -8,7 +8,7 @@ Toate paginile sunt scrise în directorul curent (rădăcina repo-ului, servită
 import json
 from datetime import date
 
-from kit import (head, footer, category_card, product_card, cat_title, svg,
+from kit import (head, footer, category_card, product_card, cat_title, file_info, svg,
                  CATEGORIES, DOMAINS, LANGS, PRODUCTS, GRADIENTS, DESCRIPTIONS, CAT_DESC, SITE_URL)
 
 ARROW = svg("arrow", 17, 2)
@@ -17,7 +17,7 @@ CHECK = svg("check", 18, 2.4)
 # Subset serializabil al produselor, folosit de paginile care randează pe client (produs, favorite, checkout)
 PRODUCTS_JSON = json.dumps(
     [dict({k: p[k] for k in ("id", "title", "cat", "lang", "level", "fmt", "pages", "price", "old", "badge", "rating", "votes", "icon")},
-          img=p.get("img", ""),
+          img=p.get("img", ""), preview=(file_info(p) or {}).get("preview", ""),
           cattitle=cat_title(p["cat"]), desc=DESCRIPTIONS.get(p["id"], CAT_DESC)) for p in PRODUCTS],
     ensure_ascii=False)
 GRADIENTS_JSON = json.dumps(GRADIENTS)
@@ -29,11 +29,14 @@ COUPONS = {"BUNVENIT10": 10, "SCOALA15": 15, "STUDENT20": 20}
 CARD_JS = """
 var G=%s;
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
-function ico(n,size){ var P={file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>',cart:'<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/>',book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'};
+function ico(n,size){ var P={file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.9 8.9 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/>',cart:'<circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M1 2h3l2.6 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 6H5"/>',book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',check:'<path d="M20 6L9 17l-5-5"/>',checkc:'<circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 6-6"/>',download:'<path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',eye:'<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>'};
   return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(P[n]||P.book)+'</svg>' }
+/* Produs cu fișier real (x.img): se randează BLURAT (doar previzualizarea x.preview), cu lacăt; Caleido.applyLocks()
+   îl deblochează — imagine clară, zoom și buton „Descarcă” în locul lui „Adaugă” — după ce apare într-o comandă. */
 function cardHTML(x){
-  var photo = x.img? '<img class="photo" src="'+esc(x.img)+'" alt="Copertă: '+esc(x.title)+'" loading="lazy" decoding="async" width="1024" height="1536">':'';
-  return '<article class="card reveal" data-id="'+x.id+'"><div class="cover'+(x.img?' has-img':'')+'" style="background:'+(G[x.icon]||G.file)+'">'
+  var photo = x.img? '<a class="photo-link" href="produs.html?id='+x.id+'" title="Se deblochează după cumpărare"><img class="photo" src="'+esc(x.preview)+'" alt="Previzualizare blurată: '+esc(x.title)+'" data-alt="'+esc(x.title)+'" loading="lazy" decoding="async" width="200" height="300" draggable="false"></a>'
+    +'<span class="lock">'+ico('lock',13)+' Se deblochează după cumpărare</span><span class="owned-tag">'+ico('check',12)+' Achiziționat</span>':'';
+  return '<article class="card reveal" data-id="'+x.id+'"><div class="cover'+(x.img?' has-img locked" data-id="'+x.id+'"':'"')+' style="background:'+(G[x.icon]||G.file)+'">'
    +photo
    +(x.badge?'<span class="tag">'+esc(x.badge)+'</span>':'')
    +'<button class="wish" data-id="'+x.id+'" aria-label="Favorite">'+ico('heart',16)+'</button>'
@@ -42,7 +45,8 @@ function cardHTML(x){
    +'<div class="meta"><span>'+ico('file',13)+' '+esc(x.pages)+'</span><span>'+ico('globe',13)+' '+esc(x.lang)+'</span><span class="level-pill">'+esc(x.level)+'</span></div>'
    +'<div class="rating">★ '+x.rating+' <small>('+x.votes+')</small></div></div>'
    +'<div class="card-foot"><div class="price">'+x.price+' LEI '+(x.old?'<small>'+x.old+' LEI</small>':'')+'<div class="price-note">descărcare instantă</div></div>'
-   +'<button class="add" data-id="'+x.id+'" data-title="'+esc(x.title)+'" data-price="'+x.price+'">'+ico('cart',15)+' Adaugă</button></div></article>';
+   +'<button class="add" data-id="'+x.id+'" data-title="'+esc(x.title)+'" data-price="'+x.price+'"'+(x.img?' data-locked-only="'+x.id+'"':'')+'>'+ico('cart',15)+' Adaugă</button>'
+   +(x.img?'<a class="add" href="'+esc(x.img)+'" download data-owned-only="'+x.id+'" hidden>'+ico('download',15)+' Descarcă</a>':'')+'</div></article>';
 }
 """ % GRADIENTS_JSON
 
@@ -612,8 +616,12 @@ def build_checkout():
     orders.unshift({no:no,date:new Date().toISOString(),items:cart,total:total,email:mail,coupon:coupon||null}); localStorage.setItem('caleido_orders',JSON.stringify(orders));
     Caleido.setCart([]); sessionStorage.removeItem('caleido_coupon');
     /* Demo: aici s-ar face redirect către procesatorul de plăți. */
+    /* Fișierele reale (schițele) din comandă s-au deblocat (Caleido.getOwned citește caleido_orders): se pot vedea și descărca imediat. */
+    var files=cart.map(function(it){ return {it:it,f:Caleido.fileFor(it.id)} }).filter(function(x){ return x.f });
     grid.innerHTML='<div class="success" style="grid-column:1/-1"><div class="ok"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>'
       +'<h2>Mulțumim! Comanda '+no+' a fost înregistrată.</h2><p>Total: <b>'+total+'</b>. Vei primi factura și linkurile de descărcare pe <b>'+esc(mail)+'</b>. (Demo: nu s-a efectuat nicio plată reală.)</p>'
+      +(files.length?'<div class="tile" style="margin-top:1.4rem;text-align:left"><h3>__DL__ Fișele tale s-au deblocat</h3><p>Le poți vedea clar și descărca acum — și oricând, din pagina produsului sau din contul tău.</p><div class="dl-list">'
+        +files.map(function(x){ return '<div class="dl-item"><span>'+esc(x.it.title)+'</span><span class="acts"><a class="btn btn-ghost btn-sm" href="'+esc(x.f.full)+'" target="_blank" rel="noopener">Vezi</a><a class="btn btn-primary btn-sm" href="'+esc(x.f.full)+'" download>Descarcă ('+esc(x.f.ext)+')</a></span></div>' }).join('')+'</div></div>':'')
       +'<div style="display:flex;gap:.6rem;justify-content:center;margin-top:1.4rem;flex-wrap:wrap"><a class="btn btn-primary" href="cont.html">Vezi comanda în cont</a><a class="btn btn-ghost" href="produse.html">Continuă cumpărăturile</a></div></div>';
     window.scrollTo({top:0,behavior:'smooth'});
   });
@@ -621,6 +629,7 @@ def build_checkout():
   render();
 })();
 </script>""" % (json.dumps(COUPONS), PRODUCTS_JSON)
+    js = js.replace("__DL__", svg("download", 18, 2.2).replace('<svg ', '<svg style="vertical-align:-3px;color:var(--violet)" '))
     write("checkout.html", head("Checkout — Caleidoscope Educational.ro", "Finalizare comandă: coș, cod de reducere, date de facturare.", "produse", page="checkout.html", noindex=True) + body + footer(js))
 
 
@@ -658,21 +667,30 @@ var DATA=%s, SITE='%s';
   var disc=p.old?Math.round((1-p.price/p.old)*100):0;
   var stars=function(r){ var f=Math.round(r); return '★★★★★'.slice(0,f)+'<span style="color:#D0D5DD">'+'★★★★★'.slice(f)+'</span>' };
   var wished=Caleido.getWish().indexOf(String(p.id))>-1;
+  /* Fișier real (schiță): blurat + lacăt până la cumpărare; Caleido.applyLocks() (din Caleido.paint) arată imaginea
+     clară, linkul de zoom și butoanele de descărcare de îndată ce produsul apare într-o comandă. */
+  var f=Caleido.fileFor(p.id);
   box.innerHTML=
    '<div class="grid-2" style="align-items:start;gap:2.4rem">'
-   +'<div><div class="cover'+(p.img?' has-img':'')+'" style="height:340px;border-radius:22px;background:'+(G[p.icon]||G.file)+'">'
-   +(p.img?'<a class="photo-link" href="'+esc(p.img)+'" target="_blank" rel="noopener" title="Deschide schița în mărime completă" aria-label="Deschide schița în mărime completă"><img class="photo" src="'+esc(p.img)+'" alt="Copertă: '+esc(p.title)+'" decoding="async" width="1024" height="1536"></a>':'')
+   +'<div><div class="cover'+(f?' has-img locked" data-id="'+p.id+'"':'"')+' style="height:340px;border-radius:22px;background:'+(G[p.icon]||G.file)+'">'
+   +(f?'<a class="photo-link" href="#cumpara" data-locked-href="#cumpara" title="Se deblochează după cumpărare"><img class="photo" src="'+esc(f.preview)+'" alt="Previzualizare blurată: '+esc(p.title)+'" data-alt="'+esc(p.title)+'" decoding="async" width="200" height="300" draggable="false"></a>'
+      +'<span class="lock lg">'+ico('lock',24)+'<span>Previzualizare blurată</span><small>Schița completă se deblochează după cumpărare</small></span>'
+      +'<span class="owned-tag" style="top:1rem">'+ico('check',12)+' Achiziționat</span>':'')
    +(p.badge?'<span class="tag" style="top:1rem;left:1rem">'+esc(p.badge)+'</span>':'')+(disc?'<span class="tag" style="top:1rem;right:1rem;left:auto;background:var(--pink);color:#fff">-'+disc+'%%</span>':'')
-   +'<span class="fmt" style="bottom:1rem;right:1rem">'+esc(p.fmt)+'</span>'+(p.img?'':'<span class="cico" style="width:96px;height:96px">'+ico(p.icon,46)+'</span>')+'</div>'
-   +(p.img?'<p style="font-size:.82rem;color:var(--muted);margin-top:.6rem">Apasă pe schiță pentru a o vedea în mărime completă (A3).</p>':'')
+   +'<span class="fmt" style="bottom:1rem;right:1rem">'+esc(p.fmt)+'</span>'+(f?'':'<span class="cico" style="width:96px;height:96px">'+ico(p.icon,46)+'</span>')+'</div>'
+   +(f?'<div class="unlock-note" data-locked-only="'+p.id+'">'+ico('lock',18)+'<span><b>Conținut protejat.</b> Schița este afișată blurat. Imediat după cumpărare o poți vedea clar, în mărime completă (A3), și o poți descărca de aici sau din <a href="cont.html">contul tău</a>.</span></div>'
+      +'<div class="unlock-note ok" data-owned-only="'+p.id+'" hidden>'+ico('checkc',18)+'<span><b>Ai achiziționat această schiță.</b> Apasă pe imagine pentru mărime completă sau descarc-o de mai jos — oricând, fără limită.</span></div>'
+      +'<div class="dl-row" data-owned-only="'+p.id+'" hidden><a class="btn btn-primary" href="'+esc(f.full)+'" download>'+ico('download',18)+' Descarcă schița ('+esc(f.ext)+')</a><a class="btn btn-ghost" href="'+esc(f.full)+'" target="_blank" rel="noopener">'+ico('eye',18)+' Vezi în mărime completă</a></div>':'')
    +'<div class="spec"><div><b>Format</b>'+esc(p.fmt)+'</div><div><b>Dimensiune</b>'+esc(p.pages)+'</div><div><b>Nivel</b>'+esc(p.level)+'</div><div><b>Limbă</b>'+esc(p.lang)+'</div></div>'
-   +'<div class="tile" style="margin-top:1rem"><h3>Ce primești</h3><ul class="desc-list"><li>Fișier '+esc(p.fmt)+' — '+esc(p.pages)+', optimizat pentru print A4</li><li>Extras gratuit (3 pagini) înainte de cumpărare</li><li>Actualizări gratuite timp de 12 luni</li><li>Licență de utilizare personală / o clasă</li><li>Factură fiscală automată pe e-mail</li></ul></div></div>'
+   +'<div class="tile" style="margin-top:1rem"><h3>Ce primești</h3><ul class="desc-list"><li>Fișier '+esc(p.fmt)+' — '+esc(p.pages)+', optimizat pentru print A4</li>'
+   +(f?'<li>Previzualizare blurată gratuit; schița completă se deblochează instant după plată și se poate descărca oricând</li>':'<li>Extras gratuit (3 pagini) înainte de cumpărare</li>')
+   +'<li>Actualizări gratuite timp de 12 luni</li><li>Licență de utilizare personală / o clasă</li><li>Factură fiscală automată pe e-mail</li></ul></div></div>'
    +'<div><a href="produse.html?cat='+p.cat+'" class="eyebrow">'+esc(p.cattitle)+'</a>'
    +'<h1 style="font-size:1.75rem;font-weight:800;margin:.5rem 0 .6rem;line-height:1.2;letter-spacing:-.01em">'+esc(p.title)+'</h1>'
    +'<div class="rating" style="font-size:.95rem">'+stars(p.rating)+' <b style="color:var(--ink);margin-left:.3rem">'+p.rating+'</b> <small>('+p.votes+' recenzii)</small></div>'
    +'<div class="price" style="font-size:2.1rem;margin:1rem 0 .3rem;display:flex;align-items:baseline;gap:.7rem">'+p.price+' LEI '+(p.old?'<small style="font-size:1rem;display:inline">'+p.old+' LEI</small>':'')+'</div>'
    +'<div class="price-note">TVA inclus · descărcare instantă · factură fiscală automată</div>'
-   +'<div style="display:flex;gap:.6rem;margin:1.4rem 0;flex-wrap:wrap;align-items:center">'
+   +'<div id="cumpara" style="display:flex;gap:.6rem;margin:1.4rem 0;flex-wrap:wrap;align-items:center;scroll-margin-top:110px">'
    +'<div class="qty" style="height:46px"><button id="qm" aria-label="Scade">−</button><span id="qv">1</span><button id="qp" aria-label="Crește">+</button></div>'
    +'<button class="btn btn-primary" id="addBig" style="padding:.85rem 1.5rem">'+ico('cart',18)+' Adaugă în coș</button>'
    +'<button class="btn btn-ghost wish" id="wishBig" data-id="'+p.id+'" style="position:static;width:auto;height:auto;border-radius:999px;background:#fff">'+ico('heart',18)+' <span>'+(wished?'La favorite':'Favorite')+'</span></button></div>'
@@ -701,7 +719,7 @@ var DATA=%s, SITE='%s';
   var ldo={"@context":"https://schema.org","@type":"Product","name":p.title,"description":p.desc,"category":p.cattitle,"inLanguage":"ro",
     "aggregateRating":{"@type":"AggregateRating","ratingValue":p.rating,"reviewCount":p.votes},
     "offers":{"@type":"Offer","priceCurrency":"RON","price":p.price,"availability":"https://schema.org/InStock","url":location.href}};
-  if(p.img) ldo.image=SITE+p.img;
+  if(f) ldo.image=SITE+f.preview; /* doar previzualizarea blurată — fișierul complet nu se publică în JSON-LD */
   ld.text=JSON.stringify(ldo);
   document.head.appendChild(ld);
   Caleido.paint(); Caleido.reveal();
@@ -811,6 +829,11 @@ def build_cont():
     </div>
   </div>
   <div>
+    <div class="tile" id="filesTile" style="margin-bottom:1.2rem" hidden>
+      <h3>Fișele tale</h3>
+      <p>Schițele cumpărate sunt deblocate: le poți vedea în mărime completă și descărca oricând.</p>
+      <div class="dl-list" id="files"></div>
+    </div>
     <div class="tile" id="ordersTile">
       <h3>Comenzile tale (pe acest dispozitiv)</h3>
       <div id="orders" style="margin-top:.8rem"></div>
@@ -836,12 +859,19 @@ def build_cont():
     f.querySelectorAll('input').forEach(function(el){ var v=el.checkValidity(); el.closest('.field').classList.toggle('invalid',!v); if(!v) ok=false });
     if(ok) Caleido.toast('Demo: autentificarea va fi conectată la sistemul magazinului.'); });
   var orders=[]; try{ orders=JSON.parse(localStorage.getItem('caleido_orders'))||[] }catch(e){}
+  var esc=function(s){ return String(s).replace(/</g,'&lt;').replace(/"/g,'&quot;') };
+  /* Fișele reale deblocate prin cumpărare (Caleido.getOwned citește comenzile de pe acest dispozitiv) */
+  var own=Caleido.getOwned().map(function(id){ return {id:id,f:Caleido.fileFor(id)} }).filter(function(x){ return x.f });
+  if(own.length){ document.getElementById('filesTile').hidden=false;
+    document.getElementById('files').innerHTML=own.map(function(x){ return '<div class="dl-item"><a href="produs.html?id='+x.id+'">'+esc(x.f.title)+'</a><span class="acts"><a class="btn btn-ghost btn-sm" href="'+esc(x.f.full)+'" target="_blank" rel="noopener">Vezi</a><a class="btn btn-primary btn-sm" href="'+esc(x.f.full)+'" download>Descarcă ('+esc(x.f.ext)+')</a></span></div>' }).join(''); }
   var box=document.getElementById('orders');
   if(!orders.length){ box.innerHTML='<p style="color:var(--muted);font-size:.9rem">Nu ai comenzi înregistrate încă. <a href="produse.html" style="color:var(--violet);font-weight:700">Vezi catalogul</a>.</p>'; return }
   box.innerHTML=orders.slice(0,10).map(function(o){ var d=new Date(o.date);
     return '<details style="border:1.5px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem"><summary style="cursor:pointer;display:flex;justify-content:space-between;gap:1rem;font-weight:700;font-size:.9rem;list-style:none"><span>'+o.no+' <small style="color:var(--muted);font-weight:600">· '+d.toLocaleDateString('ro-RO')+'</small></span><span style="color:var(--violet)">'+o.total+'</span></summary>'
-      +'<ul style="margin-top:.6rem;display:grid;gap:.3rem">'+o.items.map(function(i){ return '<li style="font-size:.86rem;display:flex;justify-content:space-between;gap:1rem"><a href="produs.html?id='+i.id+'">'+String(i.title).replace(/</g,'&lt;')+'</a><span style="white-space:nowrap">'+i.qty+' × '+i.price+' LEI</span></li>' }).join('')+'</ul>'
-      +'<p style="font-size:.8rem;color:var(--muted);margin-top:.6rem">Linkurile de descărcare au fost trimise la '+String(o.email).replace(/</g,'&lt;')+' (demo).</p></details>' }).join('');
+      +'<ul style="margin-top:.6rem;display:grid;gap:.3rem">'+o.items.map(function(i){ var f=Caleido.fileFor(i.id);
+          return '<li style="font-size:.86rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap"><a href="produs.html?id='+i.id+'">'+esc(i.title)+'</a><span style="white-space:nowrap">'+i.qty+' × '+i.price+' LEI'
+            +(f?' · <a href="'+esc(f.full)+'" target="_blank" rel="noopener" style="color:var(--violet);font-weight:700">Vezi</a> · <a href="'+esc(f.full)+'" download style="color:var(--violet);font-weight:700">Descarcă</a>':'')+'</span></li>' }).join('')+'</ul>'
+      +'<p style="font-size:.8rem;color:var(--muted);margin-top:.6rem">Linkurile de descărcare au fost trimise la '+esc(o.email)+' (demo).</p></details>' }).join('');
 })();
 </script>"""
     write("cont.html", head("Contul meu — Caleidoscope Educational.ro", "Autentificare în contul de client Caleidoscope Educational.", "cont", noindex=True) + body + footer(js))

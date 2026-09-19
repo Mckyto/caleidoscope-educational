@@ -22,7 +22,8 @@ jobs:
       - name: Check generated files are up to date (PR)
         if: github.event_name == 'pull_request'
         run: |
-          if ! git diff --quiet -- '*.html' sitemap.xml robots.txt; then
+          # -I: ignoră liniile <lastmod> (data curentă), altfel verificarea ar eșua în orice altă zi decât cea a generării
+          if ! git diff --quiet -I '<lastmod>' -- '*.html' sitemap.xml robots.txt; then
             echo "::error::HTML-ul comis nu este sincronizat cu kit.py / generate.py. Rulează 'python generate.py' și comite rezultatul."
             git --no-pager diff --stat; exit 1
           fi
