@@ -25,8 +25,20 @@ Nu există dependențe externe. Workflow-ul `.github/workflows/build.yml` regene
 - Coș în `localStorage` cu cantități, cupoane (`BUNVENIT10`, `SCOALA15`, `STUDENT20`), validare formular și confirmare comandă (demo, fără plată reală).
 - Favorite (♥) + „vizualizate recent”.
 - Pagină de produs randată pe client din `?id=`, cu descriere, specificații, produse similare, JSON-LD `Product`.
+- **Fișiere reale blurate până la cumpărare** (schițele ilustrate, produsele cu `img=`): în catalog, pe pagina de produs, la favorite și în „similare” se încarcă doar o previzualizare blurată (`uploads/preview/…`) cu lacăt. După plasarea comenzii (demo, `caleido_orders` în `localStorage`) produsul se deblochează automat: imagine clară, zoom în mărime completă și butoane **Descarcă** — pe confirmarea comenzii, pe card („Descarcă” în locul lui „Adaugă”), pe pagina produsului și în `cont.html` („Fișele tale”). Logica este în JS-ul comun din `kit.py` (`Caleido.getOwned / isOwned / fileFor / applyLocks`).
 - SEO: canonical, Open Graph, JSON-LD (`WebSite`, `FAQPage`), `sitemap.xml`, `robots.txt`, pagină `404.html`.
 
 ## Adăugarea unui produs
 
 Adaugă un `dict(...)` în `PRODUCTS` din `kit.py` (id unic), opțional o descriere în `DESCRIPTIONS`, apoi rulează `python3 generate.py`.
+
+### Produs cu fișier real (blurat până la cumpărare)
+
+1. Pune fișierul în `uploads/` (ex. `uploads/schita-x.jpg`).
+2. Generează previzualizarea blurată (mică, ilizibilă) în `uploads/preview/` — necesită ImageMagick, doar local, o singură dată:
+   ```bash
+   convert uploads/schita-x.jpg -strip -resize 200x300 -gaussian-blur 0x3.5 -quality 60 -interlace Plane uploads/preview/schita-x.jpg
+   ```
+3. În `PRODUCTS` setează `img="uploads/schita-x.jpg"` și `preview="uploads/preview/schita-x.jpg"` (dacă lipsește `preview`, se folosește implicit `uploads/preview/<același nume>`), apoi rulează `python3 generate.py`.
+
+> Site-ul este static (GitHub Pages), deci deblocarea se face în browser, pe baza comenzilor salvate local. Fișierul complet rămâne accesibil public prin URL-ul lui direct; pentru protecție reală, livrarea trebuie făcută de un backend / procesator de plăți (link semnat sau e-mail după plată).
