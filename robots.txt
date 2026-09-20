@@ -3,5 +3,7 @@ Allow: /
 Disallow: /checkout.html
 Disallow: /cont.html
 Disallow: /favorite.html
+Disallow: /admin.html
+Disallow: /admin/
 
 Sitemap: https://mckyto.github.io/caleidoscope-educational/sitemap.xml
