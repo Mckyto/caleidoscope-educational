@@ -907,7 +907,7 @@ def build_seo_files():
     urls = "".join('  <url><loc>%s%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq><priority>%s</priority></url>\n'
                    % (SITE_URL, u.replace("&", "&amp;"), today, cf, pr) for u, pr, cf in pages)
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % urls)
-    write("robots.txt", "User-agent: *\nAllow: /\nDisallow: /checkout.html\nDisallow: /cont.html\nDisallow: /favorite.html\n\nSitemap: %ssitemap.xml\n" % SITE_URL)
+    write("robots.txt", "User-agent: *\nAllow: /\nDisallow: /checkout.html\nDisallow: /cont.html\nDisallow: /favorite.html\nDisallow: /admin.html\nDisallow: /admin/\n\nSitemap: %ssitemap.xml\n" % SITE_URL)
     with open(".nojekyll", "w") as f:
         f.write("")
     print("Generat: .nojekyll")

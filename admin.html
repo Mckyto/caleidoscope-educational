@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panou administrare — Caleidoscope Educational.ro</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%90%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --violet:#6D28D9; --violet-2:#7C3AED; --indigo:#4F46E5; --teal:#0EA5A4;
+  --ink:#101828; --muted:#667085; --line:#E7E4F5; --bg:#F8F7FF;
+  --grad:linear-gradient(135deg,#4F46E5 0%,#6D28D9 45%,#7C3AED 72%,#0EA5A4 130%);
+  --ok:#059669; --err:#DC2626; --radius:18px;
+  --shadow:0 10px 30px rgba(16,24,40,.08); --shadow-lg:0 22px 60px rgba(76,29,149,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;min-height:100vh}
+a{color:var(--violet)}
+.wrap{width:min(880px,92vw);margin:0 auto}
+header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:.9rem;height:70px}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.brand .logo{width:38px;height:38px;border-radius:12px;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:1.05rem;box-shadow:0 6px 16px rgba(109,40,217,.35)}
+.brand span{color:var(--violet)}
+.chip{margin-left:auto;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--violet);background:#F3EEFF;border:1px solid var(--line);padding:.28rem .7rem;border-radius:999px}
+.chip.on{color:#065F46;background:#ECFDF5;border-color:#A7F3D0}
+main{padding:1.6rem 0 4rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.2rem}
+h1{font-size:1.55rem;letter-spacing:-.02em;margin-bottom:.3rem}
+h2{font-size:1.18rem;letter-spacing:-.01em;margin-bottom:.2rem}
+.lead{color:var(--muted);font-size:.95rem;margin-bottom:1.1rem}
+.field{margin-bottom:.95rem}
+label{display:block;font-weight:700;font-size:.86rem;margin-bottom:.3rem}
+label small{color:var(--muted);font-weight:600}
+input[type=text],input[type=password],input[type=number],select,textarea{
+  width:100%;padding:.68rem .85rem;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-size:.95rem;transition:.18s;border-color:var(--line)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 4px rgba(109,40,217,.12)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.72rem 1.2rem;border-radius:999px;font-weight:700;font-size:.95rem;cursor:pointer;border:0;transition:.2s}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 22px rgba(109,40,217,.32);width:100%}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(109,40,217,.4)}
+.btn-primary:disabled{opacity:.6;cursor:wait;transform:none}
+.btn-ghost{background:#fff;color:var(--violet);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--violet)}
+.btn-sm{padding:.4rem .8rem;font-size:.82rem;width:auto}
+.alert{padding:.8rem 1rem;border-radius:12px;font-size:.9rem;margin-bottom:1rem;display:none}
+.alert.show{display:block}
+.alert.err{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+.alert.ok{background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0}
+.hint{font-size:.82rem;color:var(--muted);margin-top:.35rem}
+details.token-help{margin:.4rem 0 1rem;font-size:.86rem;color:var(--muted)}
+details.token-help summary{cursor:pointer;font-weight:700;color:var(--violet)}
+details.token-help ol{margin:.5rem 0 .2rem 1.2rem}
+.pw-meter{height:6px;border-radius:99px;background:var(--line);margin-top:.4rem;overflow:hidden}
+.pw-meter i{display:block;height:100%;width:0;background:var(--err);transition:.3s}
+.log{margin-top:1rem;border:1px solid var(--line);border-radius:12px;background:#FAFAFF;display:none}
+.log.show{display:block}
+.log .step{display:flex;gap:.6rem;align-items:flex-start;padding:.55rem .9rem;font-size:.88rem;border-bottom:1px dashed var(--line)}
+.log .step:last-child{border-bottom:0}
+.log .st{flex-shrink:0;width:1.25rem;text-align:center}
+.log .step.run .st{color:var(--violet)}
+.log .step.ok .st{color:var(--ok)}
+.log .step.fail .st{color:var(--err)}
+.log .step small{display:block;color:var(--muted)}
+.list-item{display:flex;gap:.8rem;align-items:center;padding:.7rem .4rem;border-bottom:1px dashed var(--line);font-size:.92rem}
+.list-item:last-child{border-bottom:0}
+.list-item .t{font-weight:700}
+.list-item .m{color:var(--muted);font-size:.8rem}
+.list-item .grow{flex:1;min-width:0}
+.success-box{display:none;text-align:center;padding:1.2rem .6rem}
+.success-box.show{display:block}
+.success-box .big{font-size:2.4rem}
+.actions-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+ footer{border-top:1px solid var(--line);background:#fff;padding:1.2rem 0;text-align:center;color:var(--muted);font-size:.82rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand"><div class="logo">🔐</div><div>Caleidoscope&nbsp;<span>Educational</span></div></div>
+    <div class="chip" id="chip">Admin</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== VIZUALIZARE: SETUP / RESETEAZĂ CONTUL ===== -->
+  <section id="view-setup" hidden>
+    <div class="card">
+      <h1 id="setup-title">Resetează contul de administrator</h1>
+      <p class="lead" id="setup-lead">Contul este salvat în repo (criptat cu parola ta), astfel încât să te poți autentifica cu <b>nume + parolă</b> de pe orice dispozitiv.</p>
+      <div class="alert err" id="setup-err"></div>
+      <form id="f-setup" autocomplete="off">
+        <div class="field">
+          <label for="s-token">Token GitHub (fine-grained)</label>
+          <input type="password" id="s-token" placeholder="github_pat_…" autocomplete="off" required>
+          <div class="hint">Tokenul este criptat (AES-GCM, cheie derivată din parolă) înainte de a fi salvat în repo.</div>
+          <details class="token-help">
+            <summary>Cum obții tokenul? (2 minute)</summary>
+            <ol>
+              <li>Intră pe <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+              <li>Repository access: <b>Only select repositories</b> → alege <b>Mckyto/caleidoscope-educational</b>.</li>
+              <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
+              <li>Generate → copiază tokenul (începe cu <code>github_pat_</code>) aici.</li>
+            </ol>
+          </details>
+        </div>
+        <div class="field">
+          <label for="s-name">Nume administrator</label>
+          <input type="text" id="s-name" placeholder="ex: Mckyto" minlength="3" maxlength="40" required>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="s-pass">Parolă <small>(minim 12 caractere)</small></label>
+            <input type="password" id="s-pass" minlength="12" required autocomplete="new-password">
+            <div class="pw-meter"><i id="s-meter"></i></div>
+          </div>
+          <div class="field">
+            <label for="s-pass2">Confirmă parola</label>
+            <input type="password" id="s-pass2" minlength="12" required autocomplete="new-password">
+          </div>
+        </div>
+        <div class="field">
+          <label style="display:flex;gap:.5rem;align-items:center;font-weight:600">
+            <input type="checkbox" id="s-remember" style="width:auto"> Ține-mă autentificat pe acest dispozitiv
+          </label>
+          <div class="hint">Bifezi doar pe dispozitivele tale private — salvează tokenul decriptat local (localStorage).</div>
+        </div>
+        <button class="btn btn-primary" id="s-submit" type="submit">Creează contul</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== VIZUALIZARE: LOGIN ===== -->
+  <section id="view-login" hidden>
+    <div class="card" style="max-width:520px;margin:2.5rem auto">
+      <h1>Autentificare administrator</h1>
+      <p class="lead">Introdu <b>numele</b> și <b>parola</b> contului de administrator.</p>
+      <div class="alert err" id="login-err"></div>
+      <form id="f-login">
+        <div class="field"><label for="l-name">Nume</label><input type="text" id="l-name" required autocomplete="username"></div>
+        <div class="field"><label for="l-pass">Parolă</label><input type="password" id="l-pass" required autocomplete="current-password"></div>
+        <button class="btn btn-primary" id="l-submit" type="submit">Intră în panou</button>
+        <p class="hint" style="text-align:center;margin-top:.8rem">Ai uitat parola sau vrei alt cont? <a href="#" id="go-reset">Resetează contul</a> (e nevoie de un token GitHub valid).</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== VIZUALIZARE: DASHBOARD ===== -->
+  <section id="view-dash" hidden>
+    <div class="card">
+      <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <h1>Bine ai venit, <span id="d-name">admin</span>! 👋</h1>
+          <p class="lead" style="margin:0">Publici produse noi direct pe site — fără Git, din browser.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="d-reload-list">↻ Reîmprospătează lista</button>
+        <button class="btn btn-ghost btn-sm" id="d-logout">Deconectare</button>
+        <button class="btn btn-ghost btn-sm" id="d-reset">Resetează contul</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📥 Încarcă produs nou</h2>
+      <p class="lead">Produsul este adăugat în <code>admin/produse-admin.json</code>; workflow-ul „Build site” regenerează paginile și site-ul se actualizează în <b>~1–2 minute</b>.</p>
+      <div class="alert err" id="p-err"></div>
+      <div class="alert ok" id="p-ok"></div>
+      <form id="f-produs">
+        <div class="field">
+          <label for="p-title">Titlu produs *</label>
+          <input type="text" id="p-title" minlength="5" maxlength="120" placeholder="ex: Rezumat „Baltagul” – Sadoveanu (analiză + personaje)" required>
+        </div>
+        <div class="grid3">
+          <div class="field">
+            <label for="p-cat">Categorie *</label>
+            <select id="p-cat" required></select>
+          </div>
+          <div class="field">
+            <label for="p-lang">Limba *</label>
+            <select id="p-lang" required></select>
+          </div>
+          <div class="field">
+            <label for="p-level">Nivel / clasă *</label>
+            <input type="text" id="p-level" list="lvl-list" placeholder="ex: Liceu, Gimnaziu, A1–B2…" required>
+            <datalist id="lvl-list">
+              <option>Preșcolari</option><option>Primar</option><option>Primar/Gimnaziu</option><option>Gimnaziu</option>
+              <option>Liceu</option><option>Bac</option><option>Studenți</option><option>A1</option><option>A1–A2</option>
+              <option>A2</option><option>B1</option><option>B2</option><option>Toate nivelurile</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field">
+            <label for="p-fmt">Format *</label>
+            <select id="p-fmt"><option>PDF</option><option>JPG</option><option>PNG</option><option>MP3</option></select>
+          </div>
+          <div class="field">
+            <label for="p-pages">Extensie *</label>
+            <input type="text" id="p-pages" placeholder="ex: 48 pagini sau 32 minute" required>
+          </div>
+          <div class="field">
+            <label for="p-icon">Iconiță</label>
+            <select id="p-icon"></select>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field">
+            <label for="p-price">Preț (LEI) *</label>
+            <input type="number" id="p-price" min="1" max="999" required>
+          </div>
+          <div class="field">
+            <label for="p-old">Preț tăiat (LEI) <small>(0 = fără)</small></label>
+            <input type="number" id="p-old" min="0" max="999" value="0">
+          </div>
+          <div class="field">
+            <label for="p-badge">Insignă</label>
+            <select id="p-badge"><option value="">—</option><option>Nou</option><option>Bestseller</option><option>Promoție</option></select>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field">
+            <label for="p-rating">Rating <small>(1–5)</small></label>
+            <input type="number" id="p-rating" min="3.5" max="5" step="0.1" value="4.8" required>
+          </div>
+          <div class="field">
+            <label for="p-votes">Număr voturi</label>
+            <input type="number" id="p-votes" min="0" max="9999" value="42" required>
+          </div>
+          <div class="field"></div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="p-cover">Copertă / schiță (imagine) <small>— opțional, se blurează până la cumpărare</small></label>
+            <input type="file" id="p-cover" accept="image/jpeg,image/png,image/webp">
+            <div class="hint">JPG/PNG/WebP, max 8 MB. Apare pe card ca previzualizare blurată cu lacăt.</div>
+          </div>
+          <div class="field">
+            <label for="p-file">Fișierul complet <small>— opțional, livrat după comandă</small></label>
+            <input type="file" id="p-file" accept=".pdf,image/jpeg,image/png,audio/mpeg">
+            <div class="hint">PDF/JPG/PNG/MP3, max 25 MB. Dacă lipsește, coperta servește și ca fișier complet (schițe).</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="p-submit" type="submit">🚀 Publică produsul</button>
+      </form>
+      <div class="log" id="p-log"></div>
+      <div class="success-box" id="p-success">
+        <div class="big">🎉</div>
+        <h2>Produs publicat!</h2>
+        <p class="lead">Se generează paginile automat. În <b>~1–2 minute</b> produsul apare pe site.</p>
+        <div class="actions-row" style="justify-content:center">
+          <a class="btn btn-ghost btn-sm" id="ok-view" target="_blank" rel="noopener">Vezi catalogul</a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/Mckyto/caleidoscope-educational/actions/workflows/build.yml" target="_blank" rel="noopener">Vezi workflow-ul „Build site”</a>
+          <button class="btn btn-primary btn-sm" id="ok-again" type="button">Încarcă alt produs</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📚 Produse adăugate din panou</h2>
+      <p class="lead" id="ap-lead">Se încarcă…</p>
+      <div id="ap-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer> 🔐 Panou de administrare — Caleidoscope Educational.ro · pagina nu este indexată și nu figurează în meniul public </footer>
+
+<script>
+"use strict";
+/* ================= CONFIG ================= */
+var REPO   = "Mckyto/caleidoscope-educational";
+var BRANCH = "main";
+var ACC    = "admin/cont-admin.json";      // contul de administrator (token criptat)
+var PRODS  = "admin/produse-admin.json";   // produsele adăugate din panou
+var RAW    = "https://raw.githubusercontent.com/" + REPO + "/" + BRANCH + "/";
+var API    = "https://api.github.com";
+var ITER   = 310000; /* PBKDF2-SHA256, recomandare OWASP */
+
+var CATEGORIES = [
+  ["carti-si-materiale-scolare","Cărți și materiale școlare"],
+  ["exercitii-si-fise-de-lucru","Exerciții și fișe de lucru"],
+  ["povesti-si-carti-de-lectura","Povești și cărți de lectură"],
+  ["harti-si-atlase","Hărți și atlase"],
+  ["rezumate-si-eseuri","Rezumate și eseuri"],
+  ["schite-si-conspecte","Schițe și conspecte"],
+  ["limbi-straine-vocabular","Limbi străine – vocabular"],
+  ["audiobookuri","Audiobookuri"],
+  ["licenta-si-disertatie","Licență și disertație"],
+  ["literatura-de-specialitate","Literatură de specialitate"],
+  ["planuri-de-lucru-stiintifice","Planuri de lucru științifice"],
+  ["si-multe-altele","Și multe altele"]
+];
+var LANGS = ["Engleză","Franceză","Spaniolă","Germană","Italiană","Română"];
+var ICONS = ["book","edit","notes","globe","map","story","audio","cap","science","brain","search","shield","lib","file"];
+
+var state = { token: null, name: null };
+
+/* ================= UTILITARE ================= */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function show(view){
+  ["view-setup","view-login","view-dash"].forEach(function(v){ $(v).hidden = (v !== view); });
+  window.scrollTo(0,0);
+}
+function err(el, msg){ var e=$(el); e.textContent = msg || ""; e.classList.toggle("show", !!msg); }
+function normName(n){ return String(n||"").trim().replace(/\s+/g," ").toLowerCase(); }
+function slugify(s){
+  var map = {"ă":"a","â":"a","î":"i","ș":"s","ț":"t","ş":"s","ţ":"t","Ă":"a","Â":"a","Î":"i","Ș":"s","Ț":"t"};
+  return String(s).split("").map(function(c){ return map[c] !== undefined ? map[c] : c; }).join("")
+    .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,60) || "produs";
+}
+function randBytes(n){ var u = new Uint8Array(n); crypto.getRandomValues(u); return u; }
+
+var TE = new TextEncoder(), TD = new TextDecoder();
+function b64u(bytes){ var s=""; new Uint8Array(bytes).forEach(function(b){ s += String.fromCharCode(b); }); return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function ub64u(s){ s = String(s).replace(/-/g,"+").replace(/_/g,"/"); while(s.length % 4) s += "="; var bin = atob(s); var u = new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) u[i] = bin.charCodeAt(i); return u; }
+function b64std(bytes){ var s=""; new Uint8Array(bytes).forEach(function(b){ s += String.fromCharCode(b); }); return btoa(s); }
+
+function sha256hex(str){
+  return crypto.subtle.digest("SHA-256", TE.encode(str)).then(function(h){
+    return Array.prototype.map.call(new Uint8Array(h), function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+  });
+}
+function deriveBits(password, saltBytes, bits){
+  return crypto.subtle.importKey("raw", TE.encode(password), "PBKDF2", false, ["deriveBits"])
+    .then(function(km){ return crypto.subtle.deriveBits({name:"PBKDF2", hash:"SHA-256", salt:saltBytes, iterations:ITER}, km, bits); });
+}
+function deriveKey(password, saltBytes){
+  return crypto.subtle.importKey("raw", TE.encode(password), "PBKDF2", false, ["deriveKey"])
+    .then(function(km){ return crypto.subtle.deriveKey({name:"PBKDF2", hash:"SHA-256", salt:saltBytes, iterations:ITER}, km, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]); });
+}
+function fixedTimeEq(a, b){
+  a = String(a); b = String(b);
+  var diff = a.length === b.length ? 0 : 1;
+  for(var i=0; i<Math.max(a.length,b.length); i++){ diff |= (a.charCodeAt(i)||0) ^ (b.charCodeAt(i)||0); }
+  return diff === 0;
+}
+
+/* ================= GITHUB API ================= */
+function gh(path, opts){
+  opts = opts || {};
+  opts.headers = Object.assign({ "Accept":"application/vnd.github+json", "Authorization":"Bearer "+state.token, "Content-Type":"application/json" }, opts.headers || {});
+  return fetch(API + path, opts);
+}
+function checkToken(token){
+  return fetch(API + "/repos/" + REPO, { headers:{ "Accept":"application/vnd.github+json", "Authorization":"Bearer "+token } })
+    .then(function(r){
+      if(r.status === 401) throw new Error("Token invalid sau expirat (401). Generează unul nou.");
+      if(!r.ok) throw new Error("GitHub a răspuns cu eroarea " + r.status + ".");
+      return r.json();
+    })
+    .then(function(j){
+      if(!j.permissions || !j.permissions.push) throw new Error("Tokenul NU are permisiune de scriere. Setează Permissions → Contents: Read and write.");
+      return true;
+    });
+}
+function getSha(path){
+  return gh("/repos/" + REPO + "/contents/" + path + "?ref=" + BRANCH).then(function(r){
+    if(r.status === 200) return r.json().then(function(j){ return j.sha; });
+    if(r.status === 404) return null;
+    throw new Error("Nu pot verifica „" + path + "” (HTTP " + r.status + ").");
+  });
+}
+function putFile(path, bytes, message){
+  return getSha(path).then(function(sha){
+    var body = { message: message, content: b64std(bytes), branch: BRANCH };
+    if(sha) body.sha = sha;
+    return gh("/repos/" + REPO + "/contents/" + path, { method:"PUT", body: JSON.stringify(body) });
+  }).then(function(r){
+    if(!r.ok) return r.text().then(function(t){ throw new Error("Scrierea „" + path + "” a eșuat (HTTP " + r.status + "). " + t.slice(0,200)); });
+    return r.json();
+  });
+}
+function fetchRaw(path){
+  return fetch(RAW + path + "?t=" + Date.now(), { cache:"no-store" }).then(function(r){
+    if(r.status === 404) return null;
+    if(!r.ok) throw new Error("Descărcarea „" + path + "” a eșuat (HTTP " + r.status + ").");
+    return r.text();
+  });
+}
+
+/* ================= CONT: CREARE / VERIFICARE ================= */
+function buildAccount(name, password, token){
+  var kdfSalt = randBytes(16), encSalt = randBytes(16), iv = randBytes(12);
+  return sha256hex(normName(name)).then(function(nameHash){
+    return deriveBits(password, kdfSalt, 256).then(function(verify){
+      return deriveKey(password, encSalt).then(function(key){
+        return crypto.subtle.encrypt({name:"AES-GCM", iv:iv}, key, TE.encode(token)).then(function(ct){
+          return {
+            v: 1,
+            nameHash: nameHash,
+            kdf: { iterations: ITER, salt: b64u(kdfSalt) },
+            verify: b64u(verify),
+            enc: { salt: b64u(encSalt), iv: b64u(iv), ct: b64u(ct) },
+            repo: REPO, branch: BRANCH,
+            createdAt: new Date().toISOString()
+          };
+        });
+      });
+    });
+  });
+}
+function verifyAccount(acc, name, password){
+  var nHashPromise = sha256hex(normName(name));
+  return nHashPromise.then(function(nh){
+    if(!fixedTimeEq(nh, acc.nameHash)) throw new Error("NUME_GRESIT");
+    return deriveBits(password, ub64u(acc.kdf.salt), 256).then(function(verify){
+      if(!fixedTimeEq(b64u(verify), acc.verify)) throw new Error("PAROLA_GRESITA");
+      return deriveKey(password, ub64u(acc.enc.salt)).then(function(key){
+        return crypto.subtle.decrypt({name:"AES-GCM", iv: ub64u(acc.enc.iv)}, key, ub64u(acc.enc.ct));
+      });
+    });
+  }).then(function(pt){ return TD.decode(pt); });
+}
+
+/* ================= SESIUNE ================= */
+function saveSession(remember){
+  sessionStorage.setItem("caleido_admin_token", state.token);
+  sessionStorage.setItem("caleido_admin_name", state.name);
+  if(remember){
+    localStorage.setItem("caleido_admin_remember", JSON.stringify({ token: state.token, name: state.name }));
+  }
+}
+function clearSession(){
+  sessionStorage.removeItem("caleido_admin_token");
+  sessionStorage.removeItem("caleido_admin_name");
+  localStorage.removeItem("caleido_admin_remember");
+  state.token = null; state.name = null;
+}
+function enterDash(name, remember){
+  state.name = name;
+  $("d-name").textContent = name;
+  $("chip").textContent = "Admin · " + name;
+  $("chip").classList.add("on");
+  saveSession(remember);
+  show("view-dash");
+  loadAdminProducts();
+}
+
+/* ================= BOOT ================= */
+(function boot(){
+  var remembered = null;
+  try{ remembered = JSON.parse(localStorage.getItem("caleido_admin_remember") || "null"); }catch(e){}
+  if(remembered && remembered.token){
+    state.token = remembered.token;
+    checkToken(remembered.token)
+      .then(function(){ enterDash(remembered.name || "admin", false); })
+      .catch(function(){ clearSession(); boot2(); });
+  } else { boot2(); }
+})();
+function boot2(){
+  fetchRaw(ACC).then(function(txt){
+    if(txt){ try{ JSON.parse(txt); show("view-login"); return; }catch(e){} }
+    show("view-setup");
+  }).catch(function(){ show("view-setup"); });
+}
+
+/* ================= SETUP ================= */
+$("s-pass").addEventListener("input", function(){
+  var v = this.value, score = 0;
+  if(v.length >= 12) score += 34; if(v.length >= 16) score += 16;
+  if(/[a-z]/.test(v) && /[A-Z]/.test(v)) score += 20;
+  if(/\d/.test(v)) score += 15;
+  if(/[^A-Za-z0-9]/.test(v)) score += 15;
+  var m = $("s-meter"); m.style.width = Math.min(100, score) + "%";
+  m.style.background = score < 55 ? "var(--err)" : (score < 85 ? "#F59E0B" : "var(--ok)");
+});
+$("f-setup").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  err("setup-err", null);
+  var token = $("s-token").value.trim(), name = $("s-name").value.trim();
+  var pw = $("s-pass").value, pw2 = $("s-pass2").value, remember = $("s-remember").checked;
+  if(token.length < 20) return err("setup-err", "Tokenul pare prea scurt. Copiază tokenul complet (începe cu github_pat_…).");
+  if(name.length < 3)  return err("setup-err", "Numele trebuie să aibă cel puțin 3 caractere.");
+  if(pw.length < 12)   return err("setup-err", "Parola trebuie să aibă minim 12 caractere.");
+  if(!(/[a-zA-Z]/.test(pw) && /\d/.test(pw))) return err("setup-err", "Parola trebuie să conțină cel puțin litere și cifre.");
+  if(pw !== pw2)       return err("setup-err", "Parolele nu coincid.");
+  var btn = $("s-submit"); btn.disabled = true; btn.textContent = "Se validează tokenul…";
+  checkToken(token).then(function(){
+    btn.textContent = "Se criptează și se salvează contul…";
+    return buildAccount(name, pw, token);
+  }).then(function(acc){
+    state.token = token;
+    return putFile(ACC, TE.encode(JSON.stringify(acc, null, 1) + "\n"), "admin: cont de administrator (re)configurat");
+  }).then(function(){
+    enterDash(name, remember);
+  }).catch(function(e){
+    err("setup-err", e.message || String(e));
+    btn.disabled = false; btn.textContent = "Creează contul";
+  });
+});
+
+/* ================= LOGIN ================= */
+$("go-reset").addEventListener("click", function(ev){ ev.preventDefault(); show("view-setup"); });
+$("f-login").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  err("login-err", null);
+  var name = $("l-name").value, pw = $("l-pass").value;
+  var btn = $("l-submit"); btn.disabled = true; btn.textContent = "Se verifică…";
+  fetchRaw(ACC).then(function(txt){
+    if(!txt) throw new Error("Nu există cont configurat. Folosește „Resetează contul”.");
+    return verifyAccount(JSON.parse(txt), name, pw);
+  }).then(function(token){
+    state.token = token;
+    return checkToken(token);
+  }).then(function(){
+    enterDash(name.trim().replace(/\s+/g," ").replace(/\b\w/g,function(c){return c.toUpperCase();}), false);
+  }).catch(function(e){
+    var m = e.message === "NUME_GRESIT" || e.message === "PAROLA_GRESITA" ? "Nume sau parolă greșită." : (e.message || String(e));
+    err("login-err", m);
+    btn.disabled = false; btn.textContent = "Intră în panou";
+  });
+});
+
+/* ================= DASHBOARD: ACȚIUNI ================= */
+$("d-logout").addEventListener("click", function(){ clearSession(); $("chip").classList.remove("on"); $("chip").textContent = "Admin"; show("view-login"); $("l-pass").value = ""; });
+$("d-reset").addEventListener("click", function(){
+  if(confirm("Resetezi contul de administrator? Configurația veche (și tokenul salvat) va fi înlocuită. Continui?")){
+    clearSession(); $("chip").classList.remove("on"); $("chip").textContent = "Admin";
+    $("setup-title").textContent = "Resetează contul de administrator";
+    show("view-setup"); window.scrollTo(0,0);
+  }
+});
+
+/* ================= FORMULAR PRODUS ================= */
+(function fillSelects(){
+  $("p-cat").innerHTML = CATEGORIES.map(function(c){ return '<option value="'+c[0]+'">'+esc(c[1])+"</option>"; }).join("");
+  $("p-lang").innerHTML = LANGS.map(function(l){ return "<option>"+esc(l)+"</option>"; }).join("");
+  $("p-icon").innerHTML = ICONS.map(function(i){ return "<option>"+i+"</option>"; }).join("");
+})();
+
+function readBytes(file){
+  return new Promise(function(res, rej){
+    var r = new FileReader();
+    r.onload = function(){ res(new Uint8Array(r.result)); };
+    r.onerror = function(){ rej(new Error("Nu pot citi fișierul „" + file.name + "”.")); };
+    r.readAsArrayBuffer(file);
+  });
+}
+function stepLog(container, steps){
+  var log = $(container); log.classList.add("show");
+  log.innerHTML = steps.map(function(s){ return '<div class="step run" id="st-'+s.id+'"><span class="st">⏳</span><span>'+esc(s.label)+"</span></div>"; }).join("");
+  return {
+    ok: function(id, extra){ var el=$("st-"+id); el.className="step ok"; el.querySelector(".st").textContent="✅"; if(extra) el.innerHTML += " <small>"+esc(extra)+"</small>"; },
+    fail: function(id, extra){ var el=$("st-"+id); el.className="step fail"; el.querySelector(".st").textContent="❌"; if(extra) el.innerHTML += " <small>"+esc(extra)+"</small>"; }
+  };
+}
+
+var lastQuery = "";
+$("f-produs").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  err("p-err", null); $("p-ok").classList.remove("show"); $("p-success").classList.remove("show");
+
+  var title  = $("p-title").value.trim();
+  var cat    = $("p-cat").value, lang = $("p-lang").value, level = $("p-level").value.trim();
+  var fmt    = $("p-fmt").value, pages = $("p-pages").value.trim();
+  var price  = parseInt($("p-price").value, 10), old = parseInt($("p-old").value, 10) || 0;
+  var badge  = $("p-badge").value, icon = $("p-icon").value;
+  var rating = parseFloat($("p-rating").value), votes = parseInt($("p-votes").value, 10) || 0;
+  var coverF = $("p-cover").files[0] || null, fullF = $("p-file").files[0] || null;
+
+  if(title.length < 5)                    return err("p-err", "Titlul trebuie să aibă cel puțin 5 caractere.");
+  if(!(price >= 1))                       return err("p-err", "Prețul trebuie să fie cel puțin 1 LEI.");
+  if(old && old <= price)                 return err("p-err", "Prețul tăiat trebuie să fie mai mare decât prețul normal.");
+  if(!level)                              return err("p-err", "Completează nivelul/clasa.");
+  if(!pages)                              return err("p-err", "Completează extensia (ex: 48 pagini).");
+  if(coverF && coverF.size > 8*1024*1024) return err("p-err", "Coperta depășește 8 MB.");
+  if(fullF && fullF.size > 25*1024*1024)  return err("p-err", "Fișierul complet depășește 25 MB.");
+
+  var btn = $("p-submit"); btn.disabled = true; btn.textContent = "Se publică…";
+  var slug = slugify(title) + "-" + Math.random().toString(36).slice(2,6);
+  var entry = { title:title, cat:cat, lang:lang, level:level, fmt:fmt, pages:pages, price:price,
+                old:old, badge:badge, rating:rating, votes:votes, icon:icon, addedAt:new Date().toISOString() };
+  var img = null, preview = null;
+  var steps = [];
+  if(coverF) steps.push({ id:"cover", label:"Se încarcă coperta / schița…" });
+  if(fullF)  steps.push({ id:"full",  label:"Se încarcă fișierul complet…" });
+  steps.push({ id:"json", label:"Se actualizează catalogul (admin/produse-admin.json)…" });
+  var log = stepLog("p-log", steps);
+
+  var chain = Promise.resolve();
+  if(coverF){
+    chain = chain.then(function(){ return readBytes(coverF); }).then(function(bytes){
+      var ext = (coverF.name.split(".").pop() || "jpg").toLowerCase();
+      return putFile("uploads/preview/" + slug + "." + ext, bytes, "Copertă produs: " + title).then(function(){
+        preview = "uploads/preview/" + slug + "." + ext;
+        if(!fullF){
+          return putFile("uploads/" + slug + "." + ext, bytes, "Fișier produs: " + title).then(function(){ img = "uploads/" + slug + "." + ext; });
+        }
+        log.ok("cover");
+      });
+    }).then(function(){ log.ok("cover"); },
+      function(e){ log.fail("cover", e.message); throw e; });
+  }
+  if(fullF){
+    chain = chain.then(function(){ return readBytes(fullF); }).then(function(bytes){
+      var ext = (fullF.name.split(".").pop() || "pdf").toLowerCase();
+      return putFile("uploads/" + slug + "." + ext, bytes, "Fișier produs: " + title).then(function(){ img = "uploads/" + slug + "." + ext; });
+    }).then(function(){ log.ok("full"); },
+      function(e){ log.fail("full", e.message); throw e; });
+  }
+  chain = chain.then(function(){
+    if(img) entry.img = img;
+    if(preview) entry.preview = preview;
+    return fetchRaw(PRODS).then(function(txt){
+      var list = [];
+      if(txt){ try{ list = JSON.parse(txt); }catch(e){ throw new Error("Fișierul admin/produse-admin.json este corupt în repo."); } }
+      if(!Array.isArray(list)) list = [];
+      list.push(entry);
+      return putFile(PRODS, TE.encode(JSON.stringify(list, null, 1) + "\n"), "Produs nou din panou: " + title);
+    });
+  }).then(function(){
+    log.ok("json");
+    lastQuery = encodeURIComponent(title.split(/[:(–-]/)[0].trim().slice(0, 40));
+    $("ok-view").href = "produse.html?q=" + lastQuery;
+    $("p-success").classList.add("show");
+    $("f-produs").reset();
+    $("s-meter").style.width = "0";
+    loadAdminProducts();
+  }).catch(function(e){
+    err("p-err", e.message || String(e));
+  }).finally(function(){
+    btn.disabled = false; btn.textContent = "🚀 Publică produsul";
+  });
+});
+$("ok-again").addEventListener("click", function(){
+  $("p-success").classList.remove("show"); $("p-log").classList.remove("show"); window.scrollTo(0,0);
+});
+
+/* ================= LISTĂ PRODUSE ADMIN ================= */
+function loadAdminProducts(){
+  $("ap-lead").textContent = "Se încarcă…";
+  $("ap-list").innerHTML = "";
+  fetchRaw(PRODS).then(function(txt){
+    var list = [];
+    if(txt){ try{ list = JSON.parse(txt); }catch(e){ list = []; } }
+    if(!Array.isArray(list)) list = [];
+    if(!list.length){
+      $("ap-lead").textContent = "Încă nu ai adăugat produse din panou. Primele vor primi ID-urile 57, 58, …";
+      return;
+    }
+    $("ap-lead").textContent = list.length + " produs(e) adăugate din panou (ID-urile li se atribuie la generare, continuând de la 56).";
+    $("ap-list").innerHTML = list.slice().reverse().map(function(p, i){
+      var idx = list.length - 1 - i;
+      return '<div class="list-item"><div class="grow"><div class="t">' + esc(p.title) + "</div>" +
+        '<div class="m">' + esc(p.cat || "") + " · " + esc(p.lang || "") + " · " + (p.price||"?") + " LEI · ID est. " + (57 + idx) + "</div></div>" +
+        '<button class="btn btn-ghost btn-sm" data-del="' + idx + '">Șterge</button></div>';
+    }).join("");
+    Array.prototype.forEach.call($("ap-list").querySelectorAll("[data-del]"), function(b){
+      b.addEventListener("click", function(){ deleteProduct(parseInt(b.getAttribute("data-del"), 10)); });
+    });
+  }).catch(function(e){
+    $("ap-lead").textContent = "Nu pot încărca lista: " + (e.message || e);
+  });
+}
+function deleteProduct(idx){
+  if(!confirm("Ștergi acest produs din catalog? (Fișierele încărcate rămân în repo.)")) return;
+  fetchRaw(PRODS).then(function(txt){
+    var list = JSON.parse(txt || "[]");
+    if(!Array.isArray(list)) list = [];
+    var removed = list.splice(idx, 1)[0];
+    return putFile(PRODS, TE.encode(JSON.stringify(list, null, 1) + "\n"), "Eliminare produs din panou: " + (removed ? removed.title : "?"));
+  }).then(function(){
+    loadAdminProducts();
+    err("p-err", null);
+    $("p-ok").textContent = "Produsul a fost eliminat. Site-ul se actualizează în ~1–2 minute.";
+    $("p-ok").classList.add("show");
+  }).catch(function(e){ err("p-err", e.message || String(e)); });
+}
+$("d-reload-list").addEventListener("click", loadAdminProducts);
+</script>
+</body>
+</html>

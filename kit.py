@@ -506,6 +506,23 @@ PRODUCTS = [
     dict(id=56, title="Chimie clasa a XI-a: 250 de probleme rezolvate pe capitole", cat="carti-si-materiale-scolare", lang="Română", level="Liceu", fmt="PDF", pages="126 pagini", price=49, old=65, badge="Bestseller", rating=4.9, votes=112, icon="book"),
 ]
 
+# --- Produse adăugate din panoul de administrare (admin.html -> admin/produse-admin.json) ---
+# Fișierul este opțional: dacă lipsește sau este invalid, catalogul rămâne cel de mai sus.
+# ID-urile sunt reatribuite automat, continuând de la cel mai mare id existent.
+try:
+    import os as _os
+    with open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "admin", "produse-admin.json"), encoding="utf-8") as _af:
+        _admin_products = [dict(_p) for _p in json.load(_af) if isinstance(_p, dict) and _p.get("title")]
+    if _admin_products:
+        _next_id = max(_p["id"] for _p in PRODUCTS) + 1
+        for _p in _admin_products:
+            _p["id"] = _next_id
+            _next_id += 1
+            PRODUCTS.append(_p)
+        print("Panou admin: %d produse suplimentare încărcate (id %d–%d)." % (len(_admin_products), _next_id - len(_admin_products), _next_id - 1))
+except FileNotFoundError:
+    pass
+
 # Descrieri scurte per produs (afișate pe pagina de produs; fallback pe categorie)
 DESCRIPTIONS = {
     1: "200 de exerciții gradate de la A1 la A2, cu răspunsuri la final, vocabular tematic pe 20 de teme și mini-teste de verificare la fiecare 5 lecții.",
