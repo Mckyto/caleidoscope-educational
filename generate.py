@@ -25,6 +25,18 @@ GRADIENTS_JSON = json.dumps(GRADIENTS)
 # Cupoane acceptate la checkout (cod -> procent reducere). Validate pe client (site static).
 COUPONS = {"BUNVENIT10": 10, "SCOALA15": 15, "STUDENT20": 20}
 
+# --- Plată manuală prin Revolut (fără procesator de plăți, fără PFA) -----------------------
+# Flux: clientul plasează comanda -> primește instrucțiunile de plată (link revolut.me + suma exactă
+#       + numărul comenzii de trecut în descriere) -> confirmă plata prin e-mail -> fișierele se
+#       trimit manual pe e-mail după ce banii ajung în cont.
+# Deblocarea automată a fișierelor reale este OPRITĂ: Caleido.getOwned() (kit.py) ignoră comenzile
+# fără paid:true, iar checkout-ul nu setează niciodată paid:true din browser.
+# TODO: completează datele tale reale mai jos (sunt afișate pe ecranul de confirmare a comenzii).
+REVOLUT_ME = "https://revolut.me/NUMELE-TAU"   # linkul tău personal revolut.me (Profil -> Payment link)
+REVOLUT_TAG = ""                                # opțional: tag-ul tău Revolut, ex. "@caleidoscope"
+REVOLUT_IBAN = ""                               # opțional: IBAN-ul RON din aplicația Revolut
+ORDER_MAIL = "contact@caleidoscope-educational.ro"  # e-mailul pe care clienții confirmă plata
+
 # Script JS partajat: construiește un card de produs din obiectul JSON (identic vizual cu product_card din kit.py)
 CARD_JS = """
 var G=%s;
@@ -533,10 +545,10 @@ def build_checkout():
         </div>
         <h4 style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.4rem 0 .5rem">Metodă de plată</h4>
         <div class="pay-opts">
-          <label><input type="radio" name="pay" value="card" checked><span>__CARD__ Card bancar</span></label>
-          <label><input type="radio" name="pay" value="wallet"><span>__BOLT__ Apple / Google Pay</span></label>
-          <label><input type="radio" name="pay" value="transfer"><span>__FILE__ Transfer bancar</span></label>
+          <label><input type="radio" name="pay" value="revolut" checked><span>__BOLT__ Revolut (link de plată)</span></label>
+          <label><input type="radio" name="pay" value="transfer"><span>__FILE__ Transfer bancar către Revolut</span></label>
         </div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:.55rem;line-height:1.5">Imediat după plasarea comenzii primești instrucțiunile de plată: link de plată Revolut, suma exactă și numărul comenzii. Fișierele ajung pe e-mail după confirmarea plății.</p>
         <label class="consent"><input type="checkbox" id="o_terms" required> Am citit și sunt de acord cu <a href="termeni.html" style="text-decoration:underline">termenii și condițiile</a> și sunt de acord ca livrarea conținutului digital să înceapă imediat, pierzând dreptul de retragere.</label>
       </form>
     </div>
@@ -552,18 +564,18 @@ def build_checkout():
     </div>
     <div class="coupon"><input id="coupon" placeholder="Cod de reducere" aria-label="Cod de reducere"><button class="btn btn-ghost btn-sm" id="applyCoupon">Aplică</button></div>
     <button class="btn btn-primary" id="placeOrder" style="width:100%;justify-content:center;padding:.9rem">__LOCK__ Plasează comanda</button>
-    <p style="font-size:.78rem;color:var(--muted);margin-top:.8rem;text-align:center">Plată securizată · Factură automată · Descărcare instantă</p>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:.8rem;text-align:center">Plată prin Revolut · Confirmare rapidă · Fișierele ajung pe e-mail</p>
     <div style="display:flex;gap:.4rem;justify-content:center;margin-top:.6rem;flex-wrap:wrap">
-      <span class="level-pill">VISA</span><span class="level-pill">Mastercard</span><span class="level-pill">Apple Pay</span><span class="level-pill">Google Pay</span>
+      <span class="level-pill">Revolut</span><span class="level-pill">Transfer bancar</span><span class="level-pill">RON</span>
     </div>
   </aside>
 </div>
 </div></section>
-""".replace("__CARD__", svg("card", 20)).replace("__BOLT__", svg("bolt", 20)).replace("__FILE__", svg("file", 20)).replace("__LOCK__", svg("lock", 18, 2.2))
+""".replace("__BOLT__", svg("bolt", 20)).replace("__FILE__", svg("file", 20)).replace("__LOCK__", svg("lock", 18, 2.2))
     js = """
 <script>
 (function(){
-  var COUPONS=%s, DATA=%s;
+  var COUPONS=%s, DATA=%s, REVOLUT_ME=%s, REVOLUT_TAG=%s, REVOLUT_IBAN=%s, ORDER_MAIL=%s;
   var box=document.getElementById('cartItems'), billing=document.getElementById('billing'), grid=document.getElementById('checkoutGrid');
   var coupon=(function(){ try{ return JSON.parse(sessionStorage.getItem('caleido_coupon')) }catch(e){ return null } })();
   var money=function(n){ return (Math.round(n*100)/100).toLocaleString('ro-RO')+' LEI' };
@@ -612,24 +624,39 @@ def build_checkout():
     if(!document.getElementById('o_terms').checked){ Caleido.toast('Te rugăm să accepți termenii și condițiile.'); return }
     var no='CE-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900000)+100000);
     var total=document.getElementById('sumTotal').textContent, mail=document.getElementById('o_mail').value;
+    var payEl=document.querySelector('input[name=pay]:checked'), pay=payEl?payEl.value:'revolut';
     var orders=(function(){ try{ return JSON.parse(localStorage.getItem('caleido_orders'))||[] }catch(e){ return [] } })();
-    orders.unshift({no:no,date:new Date().toISOString(),items:cart,total:total,email:mail,coupon:coupon||null}); localStorage.setItem('caleido_orders',JSON.stringify(orders));
+    orders.unshift({no:no,date:new Date().toISOString(),items:cart,total:total,email:mail,pay:pay,paid:false,coupon:coupon||null}); localStorage.setItem('caleido_orders',JSON.stringify(orders));
     Caleido.setCart([]); sessionStorage.removeItem('caleido_coupon');
-    /* Demo: aici s-ar face redirect către procesatorul de plăți. */
-    /* Fișierele reale (schițele) din comandă s-au deblocat (Caleido.getOwned citește caleido_orders): se pot vedea și descărca imediat. */
-    var files=cart.map(function(it){ return {it:it,f:Caleido.fileFor(it.id)} }).filter(function(x){ return x.f });
+    /* Plată manuală prin Revolut: clientul trimite suma pe linkul revolut.me (sau prin transfer către
+       tag/IBAN), cu numărul comenzii în descriere, apoi confirmă pe e-mail. Fișierele NU se deblochează
+       automat — se trimit manual pe e-mail după ce banii ajung (getOwned ignoră comenzile fără paid:true). */
+    var itemsTxt=cart.map(function(it){ return '- '+it.title+' x '+it.qty+' = '+money(it.price*it.qty) }).join('\\n');
+    var mailBody='Buna ziua,\\n\\nAm achitat comanda '+no+' in valoare de '+total+'.\\n\\nProduse:\\n'+itemsTxt+'\\n\\nNume: '+document.getElementById('o_name').value+'\\nE-mail: '+mail+'\\n\\nVa rog sa-mi trimiteti fisierele. Multumesc!';
+    var mailHref='mailto:'+ORDER_MAIL+'?subject='+encodeURIComponent('Confirmare plata '+no)+'&body='+encodeURIComponent(mailBody);
+    var altPay=(REVOLUT_TAG||REVOLUT_IBAN)?'<p style="margin-top:.9rem;font-size:.88rem;color:var(--muted)">Sau direct din aplicația Revolut'+(REVOLUT_TAG?', către tagul <b style="color:var(--ink)">'+esc(REVOLUT_TAG)+'</b>':'')+(REVOLUT_IBAN?' · IBAN: <b style="color:var(--ink)">'+esc(REVOLUT_IBAN)+'</b>':'')+'.</p>':'';
     grid.innerHTML='<div class="success" style="grid-column:1/-1"><div class="ok"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>'
-      +'<h2>Mulțumim! Comanda '+no+' a fost înregistrată.</h2><p>Total: <b>'+total+'</b>. Vei primi factura și linkurile de descărcare pe <b>'+esc(mail)+'</b>. (Demo: nu s-a efectuat nicio plată reală.)</p>'
-      +(files.length?'<div class="tile" style="margin-top:1.4rem;text-align:left"><h3>__DL__ Fișele tale s-au deblocat</h3><p>Le poți vedea clar și descărca acum — și oricând, din pagina produsului sau din contul tău.</p><div class="dl-list">'
-        +files.map(function(x){ return '<div class="dl-item"><span>'+esc(x.it.title)+'</span><span class="acts"><a class="btn btn-ghost btn-sm" href="'+esc(x.f.full)+'" target="_blank" rel="noopener">Vezi</a><a class="btn btn-primary btn-sm" href="'+esc(x.f.full)+'" download>Descarcă ('+esc(x.f.ext)+')</a></span></div>' }).join('')+'</div></div>':'')
+      +'<h2>Comanda '+no+' a fost înregistrată!</h2><p>Mai ai un singur pas: achită <b style="font-size:1.15rem">'+total+'</b> prin Revolut. Imediat după confirmarea plății primești fișierele pe <b>'+esc(mail)+'</b>.</p>'
+      +'<div class="tile" style="margin-top:1.4rem;text-align:left"><h3>__BOLT__ Cum plătești prin Revolut</h3>'
+      +'<ol style="margin:.7rem 0 1.1rem;padding-left:1.25rem;line-height:1.8;color:var(--ink-2)">'
+      +'<li>Deschide linkul de plată de mai jos (se deschide Revolut).</li>'
+      +'<li>Trimite exact <b>'+total+'</b>.</li>'
+      +'<li>La descriere / mențiune scrie numărul comenzii: <b>'+no+'</b>.</li>'
+      +'<li>Apasă „Confirmă plata” și primești fișierele pe e-mail, în cel mai scurt timp.</li></ol>'
+      +'<div style="display:flex;gap:.6rem;flex-wrap:wrap">'
+      +'<a class="btn btn-primary" href="'+esc(REVOLUT_ME)+'" target="_blank" rel="noopener">Plătește '+total+' cu Revolut →</a>'
+      +'<a class="btn btn-ghost" href="'+mailHref+'">Confirmă plata pe e-mail</a></div>'
+      +altPay+'</div>'
       +'<div style="display:flex;gap:.6rem;justify-content:center;margin-top:1.4rem;flex-wrap:wrap"><a class="btn btn-primary" href="cont.html">Vezi comanda în cont</a><a class="btn btn-ghost" href="produse.html">Continuă cumpărăturile</a></div></div>';
     window.scrollTo({top:0,behavior:'smooth'});
   });
   window.addEventListener('cart:change',render); window.addEventListener('storage',render);
   render();
 })();
-</script>""" % (json.dumps(COUPONS), PRODUCTS_JSON)
-    js = js.replace("__DL__", svg("download", 18, 2.2).replace('<svg ', '<svg style="vertical-align:-3px;color:var(--violet)" '))
+</script>""" % (json.dumps(COUPONS), PRODUCTS_JSON, json.dumps(REVOLUT_ME, ensure_ascii=False),
+        json.dumps(REVOLUT_TAG, ensure_ascii=False), json.dumps(REVOLUT_IBAN, ensure_ascii=False),
+        json.dumps(ORDER_MAIL, ensure_ascii=False))
+    js = js.replace("__BOLT__", svg("bolt", 18, 2.2).replace('<svg ', '<svg style="vertical-align:-3px;color:var(--violet)" '))
     write("checkout.html", head("Checkout — Caleidoscope Educational.ro", "Finalizare comandă: coș, cod de reducere, date de facturare.", "produse", page="checkout.html", noindex=True) + body + footer(js))
 
 
