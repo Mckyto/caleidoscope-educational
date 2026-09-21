@@ -797,11 +797,14 @@ FOOTER = """
     return i===-1;
   }
 
-  /* --- produse cumpărate: derivate din comenzile salvate pe acest dispozitiv (caleido_orders) --- */
+  /* --- produse cumpărate: derivate din comenzile salvate pe acest dispozitiv (caleido_orders) ---
+     Plata este manuală (Revolut): checkout-ul salvează comenzile cu paid:false și deblocarea
+     automată este oprită — contează doar comenzile marcate manual cu paid:true (din consola de
+     administrare/browser, după ce banii au ajuns efectiv). Fișierele se trimit oricum pe e-mail. */
   var OKEY='caleido_orders', FILES=__FILES__;
   function getOwned(){
     var ids=[];
-    read(OKEY).forEach(function(o){ (o&&o.items||[]).forEach(function(it){ var id=String(it.id); if(ids.indexOf(id)<0) ids.push(id) }) });
+    read(OKEY).forEach(function(o){ if(!(o&&o.paid===true)) return; (o.items||[]).forEach(function(it){ var id=String(it.id); if(ids.indexOf(id)<0) ids.push(id) }) });
     return ids;
   }
   function isOwned(id){ return getOwned().indexOf(String(id))>-1 }
