@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "nameHash": "8236a0d0eb538dc696f69cd9b0c8dde1af4ab4c673e8b4e053c1eeea5f4b0ea0",
+ "kdf": {
+  "iterations": 310000,
+  "salt": "rPXL9khhgT_XVDN93ak8gA"
+ },
+ "verify": "25nMCKGL6xm2Yxh1hI_fpelwZ2nZ42SU0T-4q3ll0xk",
+ "enc": {
+  "salt": "fu4odBjbFTqFljkHDFDYjA",
+  "iv": "DNntIU14e4BX8OVY",
+  "ct": "xIn_-cjQSrtqRdN37GsW1NgugEibCxxA0bEV5AKZfZq7yyRN5awxF8GO_qKI_1BnkcTHJ1aFjMJbqZLOeAXscQvGJz87mQAkkotZkdaNaJZiE7mMgYHd8VksDg_LNX6IUHyTyKfVJ2UiOG0JJg"
+ },
+ "repo": "Mckyto/caleidoscope-educational",
+ "branch": "main",
+ "createdAt": "2026-09-21T15:47:07.063Z"
+}
